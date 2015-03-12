@@ -1,0 +1,14 @@
+{
+  "name": "yummies-core-components",
+  "version": "0.1.0",
+  "description": "",
+  "contributors": [
+    "Denis Koltsov <iam@mistadikay.com> https://github.com/mistadikay",
+    "Kir Belevich <kir@soulshine.in> https://github.com/deepsweet"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yummies/yummies-core-components.git"
+  },
+  "license": "MIT"
+}

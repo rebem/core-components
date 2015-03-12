@@ -1,0 +1,39 @@
+.popup {
+    &__switcher {
+        display: none;
+    }
+
+    &__switcher:checked + &__wrapper {
+        display: block;
+    }
+
+    &__wrapper {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: none;
+    }
+
+    &__inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+
+    &__overlay {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 666;
+    }
+
+    &__content {
+        position: relative;
+        z-index: 667;
+    }
+}

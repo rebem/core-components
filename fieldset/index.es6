@@ -11,10 +11,10 @@ export default Base => class extends Base {
                     elem: 'label',
                     tag: 'label',
                     props: {
-                        htmlFor: this.props.parentID,
+                        htmlFor: this.props._parentID,
                         key: 'label'
                     },
-                    content: this.props.labelText
+                    content: this.props._labelText
                 },
                 {
                     elem: 'control',

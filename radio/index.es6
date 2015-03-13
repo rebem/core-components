@@ -1,4 +1,4 @@
-import InputClass from '@input?raw';
+import InputClass from '@input?raw&-styles';
 
 let cache = {};
 

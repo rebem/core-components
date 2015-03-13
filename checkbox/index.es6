@@ -1,4 +1,4 @@
-import InputClass from '@input?raw';
+import InputClass from '@input?raw&-styles';
 
 export default Base => class extends InputClass(Base) {
     static get displayName() {

@@ -13,7 +13,15 @@ export default Base => class extends Base {
         };
     }
 
-    onChange(e) {
+    _handleKeyUp(e) {
+
+        // hide on Esc
+        if (e.keyCode === 27) {
+            this.hide();
+        }
+    }
+
+    _onChange(e) {
         if (e.target.checked) {
             this.show();
         } else {
@@ -23,7 +31,7 @@ export default Base => class extends Base {
 
     show() {
         // todo will broke when rendering on server
-        window.addEventListener('keyup', this.handleKeyUp);
+        window.addEventListener('keyup', this._handleKeyUp);
 
         this.setState({
             visibility: true
@@ -36,7 +44,7 @@ export default Base => class extends Base {
 
     hide() {
         // todo will broke when rendering on server
-        window.removeEventListener('keyup', this.handleKeyUp);
+        window.removeEventListener('keyup', this._handleKeyUp);
 
         this.setState({
             visibility: false
@@ -47,20 +55,12 @@ export default Base => class extends Base {
         });
     }
 
-    handleKeyUp(e) {
-
-        // hide on Esc
-        if (e.keyCode === 27) {
-            this.hide();
-        }
-    }
-
     render() {
         const popupID = 'popup-' + UID(20);
 
         return {
             block: 'popup',
-            onKeyUp: this.handleKeyUp,
+            onKeyUp: this._handleKeyUp,
             content: [
                 {
                     elem: 'switcher',
@@ -70,7 +70,7 @@ export default Base => class extends Base {
                         id: popupID,
                         key: 'switcher',
                         checked: this.state.visibility,
-                        onChange: this.onChange
+                        onChange: this._onChange
                     }
                 },
                 {

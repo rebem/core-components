@@ -6,12 +6,11 @@ export default Base => class extends Base {
     render() {
         return {
             block: 'fieldset',
+            tag: 'label',
             content: [
                 {
                     elem: 'label',
-                    tag: 'label',
                     props: {
-                        htmlFor: this.props._parentID,
                         key: 'label'
                     },
                     content: this.props._labelText

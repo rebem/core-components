@@ -10,16 +10,18 @@ export default Base => class extends Base {
             selectedIndex: 0
         };
     }
-    onTabClick(i) {
+
+    _onTabClick(i) {
         this.setState({
             selectedIndex: i
         });
 
-        if (this.props.onTabChange) {
-            this.props.onTabChange.call(this, i + 1);
+        if (this.props._onTabChange) {
+            this.props._onTabChange(i);
         }
     }
-    buildTabs() {
+
+    render() {
         const titles = {
             elem: 'titles',
             props: {
@@ -39,7 +41,7 @@ export default Base => class extends Base {
             titles.content.push({
                 elem: 'title',
                 props: {
-                    onClick: this.onTabClick.bind(this, i),
+                    onClick: this._onTabClick.bind(this, i),
                     // TODO: better key
                     key: 'title' + i
                 },
@@ -71,8 +73,5 @@ export default Base => class extends Base {
                 panels
             ]
         };
-    }
-    render() {
-        return this.buildTabs();
     }
 };

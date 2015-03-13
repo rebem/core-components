@@ -3,6 +3,10 @@ import reactProps from 'react-attrs-map';
 const inputOnlyProps = reactProps('input');
 
 export default Base => class extends Base {
+    static get displayName() {
+        return 'core: input';
+    }
+
     constructor(props) {
         super(props);
 

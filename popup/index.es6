@@ -1,6 +1,10 @@
 import UID from 'component-uid';
 
 export default Base => class extends Base {
+    static get displayName() {
+        return 'core: popup';
+    }
+
     constructor(props) {
         super(props);
 

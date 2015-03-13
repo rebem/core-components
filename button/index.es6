@@ -1,6 +1,10 @@
 import InputClass from '@input?raw';
 
 export default Base => class extends InputClass(Base) {
+    static get displayName() {
+        return 'core: button';
+    }
+
     constructor(props) {
         super(props);
 

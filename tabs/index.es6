@@ -1,4 +1,8 @@
 export default Base => class extends Base {
+    static get displayName() {
+        return 'core: tabs';
+    }
+
     constructor(props) {
         super(props);
 

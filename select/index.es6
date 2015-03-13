@@ -3,6 +3,10 @@ import reactProps from 'react-attrs-map';
 const selectOnlyProps = reactProps('select');
 
 export default Base => class extends Base {
+    static get displayName() {
+        return 'core: select';
+    }
+
     constructor(props) {
         super(props);
 

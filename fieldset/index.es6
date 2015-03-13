@@ -1,4 +1,8 @@
 export default Base => class extends Base {
+    static get displayName() {
+        return 'core: fieldset';
+    }
+
     render() {
         return {
             block: 'fieldset',

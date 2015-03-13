@@ -1,7 +1,7 @@
 {
   "name": "yummies-core-components",
   "version": "0.1.3",
-  "description": "",
+  "description": "Yummies Core Components",
   "contributors": [
     "Denis Koltsov <iam@mistadikay.com> https://github.com/mistadikay",
     "Kir Belevich <kir@soulshine.in> https://github.com/deepsweet"
@@ -9,6 +9,19 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/yummies/yummies-core-components.git"
+  },
+  "dependencies": {
+    "react-attrs-map": "0.1.x",
+    "component-uid": "0.0.x"
+  },
+  "peerDependencies": {
+    "react": "0.13.x",
+    "yummies": "0.6.x",
+    "yummies-inherit-loader": "0.8.x",
+    "yummies-common-styles-loader": "0.1.x",
+    "babel": "4.7.x",
+    "babel-core": "4.7.x",
+    "babel-runtime": "4.7.x"
   },
   "license": "MIT"
 }

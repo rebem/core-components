@@ -11,7 +11,7 @@ export default Base => class extends Base {
         super(props);
 
         this.state = {
-            value: props.defaultValue || null,
+            value: props.defaultChecked || null,
             hovered: false,
             focused: false
         };
@@ -67,11 +67,7 @@ export default Base => class extends Base {
         }
     }
 
-    val() {
-        return this.state.value;
-    }
-
-    getOptions() {
+    _getOptions() {
         return this.props._options.map(option => {
             return {
                 elem: 'option',
@@ -84,6 +80,10 @@ export default Base => class extends Base {
                 }
             };
         });
+    }
+
+    val() {
+        return this.state.value;
     }
 
     render() {
@@ -104,13 +104,14 @@ export default Base => class extends Base {
                     props: {
                         key: 'control',
                         ...this.propsFrom(selectOnlyProps),
+                        value: this.state.value,
                         onChange: this._onSelectChange,
                         onFocus: this._onSelectFocus,
                         onBlur: this._onSelectBlur,
                         onMouseLeave: this._onSelectMouseLeave,
                         onMouseEnter: this._onSelectMouseEnter
                     },
-                    content: this.getOptions()
+                    content: this._getOptions()
                 },
                 ...[ this.props.children ]
             ]

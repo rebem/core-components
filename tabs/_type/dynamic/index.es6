@@ -3,25 +3,12 @@ export default Base => class extends Base {
         return 'core: tabs/_type/dynamic';
     }
 
-    onNewTabClick() {
-        if (this.props.onNewTab) {
-            this.props.onNewTab();
+    _onNewTabClick() {
+        if (this.props._onNewTab) {
+            this.props._onNewTab();
         }
     }
-    buildTabs() {
-        let tabs = super.buildTabs();
 
-        tabs.content[0].content.push({
-            elem: 'plus',
-            props: {
-                onClick: this.onNewTabClick,
-                key: 'plus'
-            },
-            content: '+'
-        });
-
-        return tabs;
-    }
     render() {
         let template = super.render();
 
@@ -29,6 +16,15 @@ export default Base => class extends Base {
             ...template.mods,
             type: 'dynamic'
         };
+
+        template.content[0].content.push({
+            elem: 'plus',
+            props: {
+                onClick: this._onNewTabClick,
+                key: 'plus'
+            },
+            content: '+'
+        });
 
         return template;
     }

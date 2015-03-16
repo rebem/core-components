@@ -9,26 +9,50 @@ export default Base => class extends Base {
         }
     }
 
+    _onDeleteTabClick(i, e) {
+        e.stopPropagation();
+
+        if (this.props._tabs.length > 1) {
+            if (i <= this.state.selected) {
+                this.setState({
+                    selected: this.state.selected ? this.state.selected - 1 : 0
+                }, () => {
+                    if (this.props._onDeleteTab) {
+                        this.props._onDeleteTab(i);
+                    }
+                });
+            } else {
+                if (this.props._onDeleteTab) {
+                    this.props._onDeleteTab(i);
+                }
+            }
+        }
+    }
+
     _getTitles() {
         let titles = super._getTitles();
 
-        titles.forEach(title => {
-            title.content = [
-                title.content,
-                {
-                    elem: 'delete',
-                    key: 'delete'
-                }
-            ];
-        });
+        if (this.props._tabs.length > 1) {
+            titles.forEach((title, i) => {
+                title.content = [
+                    title.content,
+                    {
+                        elem: 'delete',
+                        props: {
+                            key: 'delete',
+                            onClick: this._onDeleteTabClick.bind(this, i)
+                        }
+                    }
+                ];
+            });
+        }
 
         titles.push({
             elem: 'plus',
             props: {
-                onClick: this._onNewTabClick,
-                key: 'plus'
-            },
-            content: '+'
+                key: 'plus',
+                onClick: this._onNewTabClick
+            }
         });
 
         return titles;

@@ -7,22 +7,22 @@ export default Base => class extends Base {
         super(props);
 
         this.state = {
-            selectedIndex: 0
+            selected: this.props._selected || 0
         };
     }
 
     _onTabClick(i) {
         this.setState({
-            selectedIndex: i
+            selected: i
+        }, () => {
+            if (this.props._onTabChange) {
+                this.props._onTabChange(i);
+            }
         });
-
-        if (this.props._onTabChange) {
-            this.props._onTabChange(i);
-        }
     }
 
     _getTitles() {
-        return this.props.children.map((child, i) => {
+        return this.props._tabs.map((child, i) => {
             return {
                 elem: 'title',
                 props: {
@@ -30,7 +30,7 @@ export default Base => class extends Base {
                     key: 'title' + i
                 },
                 mods: {
-                    selected: this.state.selectedIndex === i
+                    selected: this.state.selected === i
                 },
                 content: {
                     elem: 'title-inner',
@@ -41,14 +41,14 @@ export default Base => class extends Base {
     }
 
     _getPanels() {
-        return this.props.children.map((child, i) => {
+        return this.props._tabs.map((child, i) => {
             return {
                 elem: 'panel',
                 props: {
                     key: 'panel' + i
                 },
                 mods: {
-                    selected: this.state.selectedIndex === i
+                    selected: this.state.selected === i
                 },
                 content: child.content
             };

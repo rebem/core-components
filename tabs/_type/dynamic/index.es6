@@ -12,6 +12,16 @@ export default Base => class extends Base {
     _getTitles() {
         let titles = super._getTitles();
 
+        titles.forEach(title => {
+            title.content = [
+                title.content,
+                {
+                    elem: 'delete',
+                    key: 'delete'
+                }
+            ];
+        });
+
         titles.push({
             elem: 'plus',
             props: {

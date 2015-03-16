@@ -9,15 +9,10 @@ export default Base => class extends Base {
         }
     }
 
-    render() {
-        let template = super.render();
+    _getTitles() {
+        let titles = super._getTitles();
 
-        template.mods = {
-            ...template.mods,
-            type: 'dynamic'
-        };
-
-        template.content[0].content.push({
+        titles.push({
             elem: 'plus',
             props: {
                 onClick: this._onNewTabClick,
@@ -25,6 +20,17 @@ export default Base => class extends Base {
             },
             content: '+'
         });
+
+        return titles;
+    }
+
+    render() {
+        let template = super.render();
+
+        template.mods = {
+            ...template.mods,
+            type: 'dynamic'
+        };
 
         return template;
     }

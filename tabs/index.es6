@@ -21,28 +21,12 @@ export default Base => class extends Base {
         }
     }
 
-    render() {
-        const titles = {
-            elem: 'titles',
-            props: {
-                key: 'titles'
-            },
-            content: []
-        };
-        const panels = {
-            elem: 'panels',
-            props: {
-                key: 'panels'
-            },
-            content: []
-        };
-
-        this.props.children.forEach((child, i) => {
-            titles.content.push({
+    _getTitles() {
+        return this.props.children.map((child, i) => {
+            return {
                 elem: 'title',
                 props: {
                     onClick: this._onTabClick.bind(this, i),
-                    // TODO: better key
                     key: 'title' + i
                 },
                 mods: {
@@ -52,25 +36,43 @@ export default Base => class extends Base {
                     elem: 'title-inner',
                     content: child.title
                 }
-            });
+            };
+        });
+    }
 
-            panels.content.push({
+    _getPanels() {
+        return this.props.children.map((child, i) => {
+            return {
                 elem: 'panel',
                 props: {
-                    key: 'title' + i
+                    key: 'panel' + i
                 },
                 mods: {
                     selected: this.state.selectedIndex === i
                 },
                 content: child.content
-            });
+            };
         });
+    }
 
+    render() {
         return {
             block: 'tabs',
             content: [
-                titles,
-                panels
+                {
+                    elem: 'titles',
+                    props: {
+                        key: 'titles'
+                    },
+                    content: this._getTitles()
+                },
+                {
+                    elem: 'panels',
+                    props: {
+                        key: 'panels'
+                    },
+                    content: this._getPanels()
+                }
             ]
         };
     }

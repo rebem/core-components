@@ -11,10 +11,18 @@ export default Base => class extends Base {
         super(props);
 
         this.state = {
-            value: props.defaultChecked || null,
+            value: props.value || null,
             hovered: false,
             focused: false
         };
+    }
+
+    componentWillReceiveProps({ value }) {
+        if (this.props.value !== value) {
+            this.setState({
+                value
+            });
+        }
     }
 
     _onSelectChange(e) {

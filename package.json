@@ -18,7 +18,7 @@
     "react": "0.13.x",
     "yummies": "0.7.x",
     "yummies-inherit-loader": "0.10.x",
-    "yummies-common-styles-loader": "0.1.x",
+    "yummies-common-styles-loader": "0.2.x",
     "babel": "4.7.x",
     "babel-core": "4.7.x",
     "babel-runtime": "4.7.x"

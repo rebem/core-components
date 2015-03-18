@@ -47,8 +47,8 @@ export default Base => class extends InputClass(Base) {
         }
     }
 
-    val() {
-        return this.state.value;
+    componentWillReceiveProps() {
+        // file input doesn't allow to change it's value programmatically
     }
 
     render() {

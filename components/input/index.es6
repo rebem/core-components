@@ -17,6 +17,14 @@ export default Base => class extends Base {
         };
     }
 
+    componentWillReceiveProps({ value }) {
+        if (this.props.value !== value) {
+            this.setState({
+                value
+            });
+        }
+    }
+
     _onInputChange(e) {
         this.setState({
             value: e.target.value
@@ -67,14 +75,8 @@ export default Base => class extends Base {
         }
     }
 
-    val(newValue) {
-        if (!newValue) {
-            return this.state.value;
-        }
-
-        this.setState({
-            value: newValue
-        });
+    val() {
+        return this.state.value;
     }
 
     render() {

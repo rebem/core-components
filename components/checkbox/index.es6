@@ -10,8 +10,16 @@ export default Base => class extends InputClass(Base) {
 
         this.state = {
             ...this.state,
-            checked: props.defaultChecked
+            checked: props.checked
         };
+    }
+
+    componentWillReceiveProps({ checked }) {
+        if (this.props.checked !== checked) {
+            this.setState({
+                checked
+            });
+        }
     }
 
     _onInputChange(e) {

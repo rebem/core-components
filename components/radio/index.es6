@@ -12,7 +12,7 @@ export default Base => class extends InputClass(Base) {
 
         this.state = {
             ...this.state,
-            checked: props.defaultChecked
+            checked: props.checked
         };
     }
 
@@ -26,6 +26,14 @@ export default Base => class extends InputClass(Base) {
 
         if (index >= 0) {
             cache[this.props.name].splice(index, 1);
+        }
+    }
+
+    componentWillReceiveProps({ checked }) {
+        if (this.props.checked !== checked) {
+            this.setState({
+                checked
+            });
         }
     }
 

@@ -11,22 +11,12 @@ export default Base => class extends Base {
         };
     }
 
-    _onTabClick(i) {
-        this.setState({
-            selected: i
-        }, () => {
-            if (this.props._onTabChange) {
-                this.props._onTabChange(i);
-            }
-        });
-    }
-
     _getTitles() {
         return this.props._tabs.map((child, i) => {
             return {
                 elem: 'title',
                 props: {
-                    onClick: this._onTabClick.bind(this, i),
+                    onClick: this.selectTab.bind(this, i),
                     key: 'title' + i
                 },
                 mods: {
@@ -52,6 +42,16 @@ export default Base => class extends Base {
                 },
                 content: child.content
             };
+        });
+    }
+
+    selectTab(i) {
+        this.setState({
+            selected: i
+        }, () => {
+            if (this.props._onTabChange) {
+                this.props._onTabChange(i);
+            }
         });
     }
 

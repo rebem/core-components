@@ -15,6 +15,10 @@ export default Base => class extends InputClass(Base) {
         };
     }
 
+    componentWillReceiveProps() {
+        // file input doesn't allow to change it's value programmatically
+    }
+
     _onInputMouseDown(e) {
         this.setState({
             pressed: true
@@ -45,10 +49,6 @@ export default Base => class extends InputClass(Base) {
         if (this.props.onMouseLeave) {
             this.props.onMouseLeave(e);
         }
-    }
-
-    componentWillReceiveProps() {
-        // file input doesn't allow to change it's value programmatically
     }
 
     render() {

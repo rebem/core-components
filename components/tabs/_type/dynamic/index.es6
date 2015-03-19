@@ -45,8 +45,8 @@ export default Base => class extends Base {
                     {
                         elem: 'delete',
                         props: {
-                            key: 'delete',
-                            onClick: this._onDeleteTabClick.bind(this, i)
+                            onClick: this._onDeleteTabClick.bind(this, i),
+                            key: 'delete'
                         }
                     }
                 ];
@@ -56,8 +56,8 @@ export default Base => class extends Base {
         titles.push({
             elem: 'plus',
             props: {
-                key: 'plus',
-                onClick: this._onNewTabClick
+                onClick: this._onNewTabClick,
+                key: 'plus'
             }
         });
 

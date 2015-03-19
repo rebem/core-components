@@ -21,19 +21,19 @@ export default Base => class extends InputClass(Base) {
         cache[this.props.name].push(this);
     }
 
-    componentWillUnmount() {
-        const index = cache[this.props.name].indexOf(index);
-
-        if (index >= 0) {
-            cache[this.props.name].splice(index, 1);
-        }
-    }
-
     componentWillReceiveProps({ checked }) {
         if (this.props.checked !== checked) {
             this.setState({
                 checked
             });
+        }
+    }
+
+    componentWillUnmount() {
+        const index = cache[this.props.name].indexOf(index);
+
+        if (index >= 0) {
+            cache[this.props.name].splice(index, 1);
         }
     }
 

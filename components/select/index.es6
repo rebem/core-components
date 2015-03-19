@@ -82,9 +82,9 @@ export default Base => class extends Base {
                 tag: 'option',
                 content: option.text,
                 props: {
-                    key: 'option' + option.value || option.text,
                     selected: option.selected,
-                    value: option.value
+                    value: option.value,
+                    key: 'option' + option.value || option.text
                 }
             };
         });
@@ -110,14 +110,14 @@ export default Base => class extends Base {
                     tag: 'select',
                     ref: 'control',
                     props: {
-                        key: 'control',
                         ...this.propsFrom(selectOnlyProps),
                         value: this.state.value,
                         onChange: this._onSelectChange,
                         onFocus: this._onSelectFocus,
                         onBlur: this._onSelectBlur,
                         onMouseLeave: this._onSelectMouseLeave,
-                        onMouseEnter: this._onSelectMouseEnter
+                        onMouseEnter: this._onSelectMouseEnter,
+                        key: 'control'
                     },
                     content: this._getOptions()
                 },

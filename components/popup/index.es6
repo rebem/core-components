@@ -68,9 +68,9 @@ export default Base => class extends Base {
                     props: {
                         type: 'checkbox',
                         id: popupID,
-                        key: 'switcher',
                         checked: this.state.visibility,
-                        onChange: this._onChange
+                        onChange: this._onChange,
+                        key: 'switcher'
                     }
                 },
                 {
@@ -83,8 +83,8 @@ export default Base => class extends Base {
                             elem: 'overlay',
                             tag: 'label',
                             props: {
-                                key: 'overlay',
-                                htmlFor: popupID
+                                htmlFor: popupID,
+                                key: 'overlay'
                             }
                         },
                         {

@@ -35,7 +35,13 @@ export default Base => class extends Base {
         if (this.props._tabs.length > 1) {
             titles.forEach((title, i) => {
                 title.content = [
-                    title.content,
+                    {
+                        ...title.content,
+                        props: {
+                            ...title.content.props,
+                            key: 'content'
+                        }
+                    },
                     {
                         elem: 'delete',
                         props: {

@@ -1,6 +1,8 @@
-import { excludePropsFor, onlyPropsFor } from 'react-attrs-map';
+import reactProps from 'react-attrs-map';
 
 import MixinPropsFilter from '#_props-filter?raw';
+
+const selectOnlyProps = reactProps('select');
 
 export default Base => class extends Base {
     static get displayName() {
@@ -107,14 +109,14 @@ export default Base => class extends Base {
                 hovered: this.state.hovered,
                 disabled: this.props.disabled || false
             },
-            props: excludePropsFor('select', this.props),
+            props: this._propsExclude(selectOnlyProps),
             content: [
                 {
                     elem: 'control',
                     tag: 'select',
                     ref: 'control',
                     props: {
-                        ...onlyPropsFor('select', this.props),
+                        ...this._propsFrom(selectOnlyProps),
                         value: this.state.value,
                         onChange: this._onSelectChange,
                         onFocus: this._onSelectFocus,

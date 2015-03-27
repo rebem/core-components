@@ -11,7 +11,7 @@
     "url": "https://github.com/yummies/yummies-core-components.git"
   },
   "dependencies": {
-    "react-attrs-map": "0.2.x",
+    "react-attrs-map": "0.1.x",
     "component-uid": "0.0.x"
   },
   "peerDependencies": {

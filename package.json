@@ -22,11 +22,6 @@
     "react-attrs-map": "0.1.x",
     "component-uid": "0.0.x"
   },
-  "devDependencies": {
-    "babel": "5.x.x",
-    "babel-core": "5.x.x",
-    "babel-runtime": "5.x.x"
-  },
   "peerDependencies": {
     "react": "0.13.x",
     "yummies": "0.8.x",

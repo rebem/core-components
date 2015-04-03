@@ -23,9 +23,9 @@
     "component-uid": "0.0.x"
   },
   "devDependencies": {
-    "babel": "4.7.x",
-    "babel-core": "4.7.x",
-    "babel-runtime": "4.7.x"
+    "babel": "5.x.x",
+    "babel-core": "5.x.x",
+    "babel-runtime": "5.x.x"
   },
   "peerDependencies": {
     "react": "0.13.x",

@@ -24,8 +24,8 @@
   },
   "peerDependencies": {
     "react": "0.13.x",
-    "yummies": "0.8.x",
-    "yummies-inherit-loader": "0.13.x",
+    "yummies": "0.9.x",
+    "yummies-inherit-loader": "0.14.x",
     "yummies-common-styles-loader": "0.2.x"
   },
   "engines": {

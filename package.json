@@ -21,6 +21,13 @@
     "@yummies/inherit-loader": "0.15.x",
     "@yummies/common-styles-loader": "0.3.x"
   },
+  "devDependencies": {
+    "eslint": "0.19.x",
+    "babel-eslint": "3.0.x"
+  },
+  "scripts": {
+    "lint": "eslint --ext .es6 components/"
+  },
   "engines": {
     "node": ">=0.10.0"
   },

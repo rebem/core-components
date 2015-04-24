@@ -21,10 +21,8 @@ export default Base => class extends Base {
                         this.props._onDeleteTab(i);
                     }
                 });
-            } else {
-                if (this.props._onDeleteTab) {
-                    this.props._onDeleteTab(i);
-                }
+            } else if (this.props._onDeleteTab) {
+                this.props._onDeleteTab(i);
             }
         }
     }

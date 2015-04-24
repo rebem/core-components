@@ -26,7 +26,9 @@
     "babel-eslint": "3.0.x"
   },
   "scripts": {
-    "lint": "eslint --ext .es6 components/"
+    "lint": "eslint --ext .es6 components/",
+    "test": "npm run lint",
+    "travis": "npm run test"
   },
   "engines": {
     "node": ">=0.10.0"

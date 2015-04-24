@@ -2,21 +2,14 @@
   "name": "@yummies/core-components",
   "version": "0.10.3",
   "description": "Yummies Core Components",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/yummies/core-components.git"
-  },
+  "repository": "yummies/core-components",
   "contributors": [
-    {
-      "name": "Kir Belevich",
-      "email": "kir@soulshine.in",
-      "url": "https://github.com/deepsweet"
-    },
-    {
-      "name": "Denis Koltsov",
-      "email": "iam@mistadikay.com",
-      "url": "https://github.com/mistadikay"
-    }
+    "Kir Belevich <kir@soulshine.in> (https://github.com/deepsweet)",
+    "Denis Koltsov <iam@mistadikay.com> 9https://github.com/mistadikay)"
+  ],
+  "files": [
+    "components/",
+    "LICENSE"
   ],
   "dependencies": {
     "react-attrs-map": "0.1.x",
@@ -24,9 +17,9 @@
   },
   "peerDependencies": {
     "react": "0.13.x",
-    "yummies": "0.9.x",
-    "yummies-inherit-loader": "0.15.x",
-    "yummies-common-styles-loader": "0.3.x"
+    "@yummies/yummies": "0.9.x",
+    "@yummies/inherit-loader": "0.15.x",
+    "@yummies/common-styles-loader": "0.3.x"
   },
   "engines": {
     "node": ">=0.10.0"

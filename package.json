@@ -2,6 +2,8 @@
   "name": "@yummies/core-components",
   "version": "0.10.5",
   "description": "Yummies Core Components",
+  "keywords": [ "yummies", "react", "components" ],
+  "homepage": "https://github.com/yummies/core-components",
   "repository": "yummies/core-components",
   "contributors": [
     "Kir Belevich <kir@soulshine.in> (https://github.com/deepsweet)",

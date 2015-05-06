@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "husky": "0.7.x",
-    "eslint": "0.19.x",
+    "eslint": "0.20.x",
     "babel-eslint": "3.0.x"
   },
   "scripts": {

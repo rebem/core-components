@@ -13,7 +13,7 @@ export default Base => class extends Base {
         };
     }
 
-    _handleKeyUp(e) {
+    _onKeyUp(e) {
 
         // hide on Esc
         if (e.keyCode === 27) {
@@ -31,7 +31,7 @@ export default Base => class extends Base {
 
     show() {
         // todo will broke when rendering on server
-        window.addEventListener('keyup', this._handleKeyUp);
+        window.addEventListener('keyup', this._onKeyUp);
 
         this.setState({
             visibility: true
@@ -44,7 +44,7 @@ export default Base => class extends Base {
 
     hide() {
         // todo will broke when rendering on server
-        window.removeEventListener('keyup', this._handleKeyUp);
+        window.removeEventListener('keyup', this._onKeyUp);
 
         this.setState({
             visibility: false
@@ -60,7 +60,7 @@ export default Base => class extends Base {
 
         return {
             block: 'popup',
-            onKeyUp: ::this._handleKeyUp,
+            onKeyUp: ::this._onKeyUp,
             content: [
                 {
                     elem: 'switcher',

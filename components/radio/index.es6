@@ -69,7 +69,7 @@ export default Base => class extends InputClass(Base) {
             ...template.content[0].props,
             type: 'radio',
             checked: this.state.checked,
-            onChange: this._onInputChange
+            onChange: ::this._onInputChange
         };
 
         return template;

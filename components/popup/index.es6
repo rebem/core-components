@@ -60,7 +60,7 @@ export default Base => class extends Base {
 
         return {
             block: 'popup',
-            onKeyUp: this._handleKeyUp,
+            onKeyUp: ::this._handleKeyUp,
             content: [
                 {
                     elem: 'switcher',
@@ -69,7 +69,7 @@ export default Base => class extends Base {
                         type: 'checkbox',
                         id: popupID,
                         checked: this.state.visibility,
-                        onChange: this._onChange,
+                        onChange: ::this._onChange,
                         key: 'switcher'
                     }
                 },

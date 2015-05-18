@@ -59,9 +59,9 @@ export default Base => class extends InputClass(Base) {
         template.content[0].props = {
             ...template.content[0].props,
             type: 'button',
-            onMouseDown: this._onInputMouseDown,
-            onMouseUp: this._onInputMouseUp,
-            onMouseLeave: this._onInputMouseLeave
+            onMouseDown: ::this._onInputMouseDown,
+            onMouseUp: ::this._onInputMouseUp,
+            onMouseLeave: ::this._onInputMouseLeave
         };
 
         return template;

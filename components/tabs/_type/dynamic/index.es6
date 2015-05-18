@@ -54,7 +54,7 @@ export default Base => class extends Base {
         titles.push({
             elem: 'plus',
             props: {
-                onClick: this._onNewTabClick,
+                onClick: ::this._onNewTabClick,
                 key: 'plus'
             }
         });

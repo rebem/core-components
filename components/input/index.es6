@@ -103,11 +103,11 @@ export default Base => class extends Base {
                     props: {
                         ...this._propsFrom(inputOnlyProps),
                         value: this.state.value,
-                        onChange: this._onInputChange,
-                        onFocus: this._onInputFocus,
-                        onBlur: this._onInputBlur,
-                        onMouseLeave: this._onInputMouseLeave,
-                        onMouseEnter: this._onInputMouseEnter,
+                        onChange: ::this._onInputChange,
+                        onFocus: ::this._onInputFocus,
+                        onBlur: ::this._onInputBlur,
+                        onMouseLeave: ::this._onInputMouseLeave,
+                        onMouseEnter: ::this._onInputMouseEnter,
                         key: 'control'
                     }
                 },

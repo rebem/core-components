@@ -24,9 +24,9 @@
     "@yummies/common-styles-loader": "0.4.x"
   },
   "devDependencies": {
-    "husky": "0.7.x",
-    "eslint": "0.20.x",
-    "babel-eslint": "3.0.x"
+    "husky": "0.8.x",
+    "eslint": "0.21.x",
+    "babel-eslint": "3.1.x"
   },
   "scripts": {
     "lint": "eslint --ext .es6 components/",

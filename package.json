@@ -19,7 +19,7 @@
   },
   "peerDependencies": {
     "react": "0.13.x",
-    "@yummies/yummies": "0.10.x",
+    "@yummies/yummies": "0.11.x",
     "@yummies/inherit-loader": "0.15.x",
     "@yummies/common-styles-loader": "0.4.x"
   },

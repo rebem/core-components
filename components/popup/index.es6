@@ -11,10 +11,11 @@ export default Base => class extends Base {
         this.state = {
             visibility: false
         };
+
+        this._onKeyUp = this._onKeyUp.bind(this);
     }
 
     _onKeyUp(e) {
-
         // hide on Esc
         if (e.keyCode === 27) {
             this.hide();
@@ -60,7 +61,7 @@ export default Base => class extends Base {
 
         return {
             block: 'popup',
-            onKeyUp: ::this._onKeyUp,
+            onKeyUp: this._onKeyUp,
             content: [
                 {
                     elem: 'switcher',

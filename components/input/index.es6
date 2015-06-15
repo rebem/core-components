@@ -99,7 +99,6 @@ export default Base => class extends Base {
                 {
                     elem: 'control',
                     tag: 'input',
-                    ref: 'control',
                     props: {
                         type: 'text',
                         ...this._propsFrom(inputOnlyProps),
@@ -109,6 +108,7 @@ export default Base => class extends Base {
                         onBlur: ::this._onInputBlur,
                         onMouseLeave: ::this._onInputMouseLeave,
                         onMouseEnter: ::this._onInputMouseEnter,
+                        ref: 'control',
                         key: 'control'
                     }
                 },

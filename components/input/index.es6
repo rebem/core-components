@@ -101,6 +101,7 @@ export default Base => class extends Base {
                     tag: 'input',
                     ref: 'control',
                     props: {
+                        type: 'text',
                         ...this._propsFrom(inputOnlyProps),
                         value: this.state.value,
                         onChange: ::this._onInputChange,

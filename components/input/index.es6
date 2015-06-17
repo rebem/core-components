@@ -24,7 +24,7 @@ export default Base => class extends Base {
     }
 
     componentWillReceiveProps({ value }) {
-        if (this.props.value !== value) {
+        if (this.state.value !== value) {
             this.setState({
                 value
             });

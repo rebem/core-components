@@ -22,7 +22,7 @@ export default Base => class extends InputClass(Base) {
     }
 
     componentWillReceiveProps({ checked }) {
-        if (this.state.checked !== checked) {
+        if (this.props.checked !== checked) {
             this.setState({
                 checked
             });

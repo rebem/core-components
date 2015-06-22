@@ -1,11 +1,11 @@
 export default Base => class extends Base {
     static get displayName() {
-        return 'core: fieldset';
+        return 'core: label-group';
     }
 
     render() {
         return {
-            block: 'fieldset',
+            block: 'label-group',
             tag: 'label',
             content: [
                 {

@@ -81,8 +81,14 @@ export default Base => class extends Base {
         }
     }
 
-    val() {
-        return this.state.value;
+    val(newValue) {
+        if (typeof newValue !== 'undefined') {
+            this.setState({
+                value: newValue
+            });
+        } else {
+            return this.state.value;
+        }
     }
 
     render() {

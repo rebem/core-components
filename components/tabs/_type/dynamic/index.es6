@@ -27,6 +27,16 @@ export default Base => class extends Base {
         }
     }
 
+    _getDeleteButton() {
+        return {
+            elem: 'delete',
+            props: {
+                onClick: this._onDeleteTabClick.bind(this, i),
+                key: 'delete'
+            }
+        };
+    }
+
     _getTitles() {
         let titles = super._getTitles();
 
@@ -40,13 +50,7 @@ export default Base => class extends Base {
                             key: 'content'
                         }
                     },
-                    {
-                        elem: 'delete',
-                        props: {
-                            onClick: this._onDeleteTabClick.bind(this, i),
-                            key: 'delete'
-                        }
-                    }
+                    this._getDeleteButton()
                 ];
             });
         }

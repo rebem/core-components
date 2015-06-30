@@ -27,7 +27,7 @@ export default Base => class extends Base {
         }
     }
 
-    _getDeleteButton() {
+    _getDeleteButton(i) {
         return {
             elem: 'delete',
             props: {
@@ -50,7 +50,7 @@ export default Base => class extends Base {
                             key: 'content'
                         }
                     },
-                    this._getDeleteButton()
+                    this._getDeleteButton(i)
                 ];
             });
         }

@@ -50,6 +50,7 @@ export default Base => class extends InputClass(Base) {
         let template = super.render();
 
         template.block = 'button';
+        template.tag = 'span';
 
         template.mods = {
             ...template.mods,

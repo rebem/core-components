@@ -1,12 +1,13 @@
 export default Base => class extends Base {
     static get displayName() {
-        return 'core: Table';
+        return 'core: TableBody';
     }
 
     render() {
         return {
             block: 'table',
-            tag: 'table',
+            elem: 'body',
+            tag: 'tbody',
             props: this.props,
             content: this.props.children
         };

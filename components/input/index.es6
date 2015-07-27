@@ -1,6 +1,6 @@
 import reactProps from 'react-attrs-map';
 
-import MixinPropsFilter from '#_props-filter?raw';
+import ExtendPropsFilter from '#_props-filter?raw';
 
 const inputOnlyProps = reactProps('input');
 
@@ -9,8 +9,8 @@ export default Base => class extends Base {
         return 'core: input';
     }
 
-    static get mixins() {
-        return [ MixinPropsFilter ];
+    static get extendWith() {
+        return [ ExtendPropsFilter ];
     }
 
     constructor(props) {

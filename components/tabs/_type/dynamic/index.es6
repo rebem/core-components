@@ -38,7 +38,7 @@ export default Base => class extends Base {
     }
 
     _getTitles() {
-        let titles = super._getTitles();
+        const titles = super._getTitles();
 
         if (this.props._tabs.length > 1) {
             titles.forEach((title, i) => {
@@ -67,7 +67,7 @@ export default Base => class extends Base {
     }
 
     render() {
-        let template = super.render();
+        const template = super.render();
 
         template.mods = {
             ...template.mods,

@@ -1,6 +1,6 @@
 import InputClass from '#input?raw&-styles';
 
-let cache = {};
+const cache = {};
 
 export default Base => class extends InputClass(Base) {
     static get displayName() {
@@ -56,7 +56,7 @@ export default Base => class extends InputClass(Base) {
     }
 
     render() {
-        let template = super.render();
+        const template = super.render();
 
         template.block = 'radio';
 

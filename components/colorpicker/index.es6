@@ -6,7 +6,7 @@ export default Base => class extends InputClass(Base) {
     }
 
     render() {
-        let template = super.render();
+        const template = super.render();
 
         template.block = 'colorpicker';
 

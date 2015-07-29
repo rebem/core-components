@@ -32,6 +32,10 @@ export default Base => class extends InputClass(Base) {
         }
     }
 
+    val() {
+        return this.state.checked;
+    }
+
     render() {
         const template = super.render();
 

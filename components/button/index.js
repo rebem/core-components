@@ -38,7 +38,7 @@ export default Base => class extends InputClass(Base) {
         this.setState({
             pressed: false
         });
-        
+
         super._onInputMouseLeave(e);
     }
 

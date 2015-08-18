@@ -3,9 +3,9 @@ export default Base => class extends Base {
     _propsExclude(propNames) {
         const out = {};
 
-        Object.keys(this.props).forEach(propName => {
-            if (propNames.indexOf(propName) === -1) {
-                out[propName] = this.props[propName];
+        Object.keys(this.props).forEach(p => {
+            if (propNames.indexOf(p) === -1) {
+                out[p] = this.props[p];
             }
         });
 
@@ -16,9 +16,9 @@ export default Base => class extends Base {
     _propsFrom(propNames) {
         const out = {};
 
-        Object.keys(this.props).forEach(propName => {
-            if (propNames.indexOf(propName) >= 0) {
-                out[propName] = this.props[propName];
+        Object.keys(this.props).forEach(p => {
+            if (propNames.indexOf(p) >= 0) {
+                out[p] = this.props[p];
             }
         });
 

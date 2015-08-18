@@ -28,7 +28,7 @@
     "eslint-plugin-babel": "1.2.x"
   },
   "scripts": {
-    "lint": "eslint --ext .es6 components/",
+    "lint": "eslint components/",
     "test": "npm run lint",
     "travis": "npm run test",
     "prepush": "npm run test"

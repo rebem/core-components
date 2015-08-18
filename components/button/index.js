@@ -35,15 +35,11 @@ export default Base => class extends InputClass(Base) {
     }
 
     _onInputMouseLeave(e) {
-        super._onInputMouseLeave(e);
-
         this.setState({
             pressed: false
         });
-
-        if (this.props.onMouseLeave) {
-            this.props.onMouseLeave(e);
-        }
+        
+        super._onInputMouseLeave(e);
     }
 
     render() {

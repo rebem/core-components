@@ -30,7 +30,7 @@ export default Base => class extends InputClass(Base) {
     }
 
     componentWillUnmount() {
-        const index = cache[this.props.name].indexOf(index);
+        const index = cache[this.props.name].indexOf(this);
 
         if (index >= 0) {
             cache[this.props.name].splice(index, 1);

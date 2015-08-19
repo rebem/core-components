@@ -15,9 +15,8 @@ export default Base => class extends InputClass(Base) {
         };
     }
 
-    componentWillReceiveProps() {
-        // file input doesn't allow to change it's value programmatically
-    }
+    // file input doesn't allow to change it's value programmatically
+    // componentWillReceiveProps() {}
 
     _onInputMouseDown(e) {
         this.setState({

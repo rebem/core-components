@@ -39,7 +39,9 @@ export default Base => class extends InputClass(Base) {
             pressed: false
         });
 
-        super._onInputMouseLeave(e);
+        if (super._onInputMouseLeave) {
+            super._onInputMouseLeave(e);
+        }
     }
 
     render() {

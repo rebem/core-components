@@ -37,8 +37,8 @@ export default Base => class extends Base {
         this.setState({
             visibility: true
         }, () => {
-            if (this.props._onShow) {
-                this.props._onShow();
+            if (this.props.onShow) {
+                this.props.onShow();
             }
         });
     }
@@ -50,8 +50,8 @@ export default Base => class extends Base {
         this.setState({
             visibility: false
         }, () => {
-            if (this.props._onHide) {
-                this.props._onHide();
+            if (this.props.onHide) {
+                this.props.onHide();
             }
         });
     }

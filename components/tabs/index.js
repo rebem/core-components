@@ -7,12 +7,12 @@ export default Base => class extends Base {
         super(props);
 
         this.state = {
-            selected: this.props._selected || 0
+            selected: this.props.selected || 0
         };
     }
 
     _getTitles() {
-        return this.props._tabs.map((child, i) => {
+        return this.props.tabs.map((child, i) => {
             return {
                 elem: 'title',
                 props: {
@@ -31,7 +31,7 @@ export default Base => class extends Base {
     }
 
     _getPanels() {
-        return this.props._tabs.map((child, i) => {
+        return this.props.tabs.map((child, i) => {
             return {
                 elem: 'panel',
                 props: {
@@ -49,8 +49,8 @@ export default Base => class extends Base {
         this.setState({
             selected: i
         }, () => {
-            if (this.props._onTabChange) {
-                this.props._onTabChange(i);
+            if (this.props.onTabChange) {
+                this.props.onTabChange(i);
             }
         });
     }

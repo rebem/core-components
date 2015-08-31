@@ -4,25 +4,25 @@ export default Base => class extends Base {
     }
 
     _onNewTabClick() {
-        if (this.props._onNewTab) {
-            this.props._onNewTab();
+        if (this.props.onNewTab) {
+            this.props.onNewTab();
         }
     }
 
     _onDeleteTabClick(i, e) {
         e.stopPropagation();
 
-        if (this.props._tabs.length > 1) {
+        if (this.props.tabs.length > 1) {
             if (i <= this.state.selected) {
                 this.setState({
                     selected: this.state.selected ? this.state.selected - 1 : 0
                 }, () => {
-                    if (this.props._onDeleteTab) {
-                        this.props._onDeleteTab(i);
+                    if (this.props.onDeleteTab) {
+                        this.props.onDeleteTab(i);
                     }
                 });
-            } else if (this.props._onDeleteTab) {
-                this.props._onDeleteTab(i);
+            } else if (this.props.onDeleteTab) {
+                this.props.onDeleteTab(i);
             }
         }
     }
@@ -40,7 +40,7 @@ export default Base => class extends Base {
     _getTitles() {
         const titles = super._getTitles();
 
-        if (this.props._tabs.length > 1) {
+        if (this.props.tabs.length > 1) {
             titles.forEach((title, i) => {
                 title.content = [
                     {

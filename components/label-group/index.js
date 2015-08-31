@@ -13,7 +13,7 @@ export default Base => class extends Base {
             props: {
                 key: 'label'
             },
-            content: this.props._labelText
+            content: this.props.labelText
         };
     }
 
@@ -31,10 +31,10 @@ export default Base => class extends Base {
         return {
             block: 'label-group',
             mods: {
-                'control-position': this.props._controlPosition
+                'control-position': this.props.controlPosition
             },
             tag: 'label',
-            content: this.props._controlPosition === 'right' ?
+            content: this.props.controlPosition === 'right' ?
                 [
                     this._renderLabel(),
                     this._renderControl()

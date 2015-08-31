@@ -82,7 +82,7 @@ export default Base => class extends Base {
     }
 
     _getOptions() {
-        return this.props._options.map(option => {
+        return this.props.options.map(option => {
             return {
                 elem: 'option',
                 tag: 'option',
@@ -109,7 +109,6 @@ export default Base => class extends Base {
                 hovered: this.state.hovered,
                 disabled: this.props.disabled || false
             },
-            props: this._propsExclude(selectOnlyProps),
             content: [
                 {
                     elem: 'control',

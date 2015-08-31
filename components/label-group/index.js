@@ -4,7 +4,7 @@ export default Base => class extends Base {
     }
 
     static defaultProps = {
-        _controlPosition: 'right'
+        controlPosition: 'right'
     };
 
     _renderLabel() {

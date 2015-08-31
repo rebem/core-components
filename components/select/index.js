@@ -109,6 +109,7 @@ export default Base => class extends Base {
                 hovered: this.state.hovered,
                 disabled: this.props.disabled || false
             },
+            props: this._propsExclude(selectOnlyProps),
             content: [
                 {
                     elem: 'control',

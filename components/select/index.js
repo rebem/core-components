@@ -1,16 +1,8 @@
-import reactProps from 'react-attrs-map';
-
-import ExtendPropsFilter from '#_props-filter?raw';
-
-const selectOnlyProps = reactProps('select');
+import { filterPropsFor, filterPropsExcept } from 'react-attrs-filter';
 
 export default Base => class extends Base {
     static get displayName() {
         return 'core: select';
-    }
-
-    static get extendWith() {
-        return [ ExtendPropsFilter ];
     }
 
     constructor(props) {
@@ -109,14 +101,14 @@ export default Base => class extends Base {
                 hovered: this.state.hovered,
                 disabled: this.props.disabled || false
             },
-            props: this._propsExclude(selectOnlyProps),
+            props: filterPropsExcept(this.props, 'select'),
             content: [
                 {
                     elem: 'control',
                     tag: 'select',
                     ref: 'control',
                     props: {
-                        ...this._propsFrom(selectOnlyProps),
+                        ...filterPropsFor(this.props, 'select'),
                         value: this.state.value,
                         onChange: ::this._onSelectChange,
                         onFocus: ::this._onSelectFocus,

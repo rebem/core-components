@@ -1,16 +1,8 @@
-import reactProps from 'react-attrs-map';
-
-import ExtendPropsFilter from '#_props-filter?raw';
-
-const inputOnlyProps = reactProps('input');
+import { filterPropsFor, filterPropsExcept } from 'react-attrs-filter';
 
 export default Base => class extends Base {
     static get displayName() {
         return 'core: input';
-    }
-
-    static get extendWith() {
-        return [ ExtendPropsFilter ];
     }
 
     constructor(props) {
@@ -100,14 +92,14 @@ export default Base => class extends Base {
                 hovered: this.state.hovered,
                 disabled: this.props.disabled || false
             },
-            props: this._propsExclude(inputOnlyProps),
+            props: filterPropsExcept(this.props, 'input'),
             content: [
                 {
                     elem: 'control',
                     tag: 'input',
                     props: {
                         type: 'text',
-                        ...this._propsFrom(inputOnlyProps),
+                        ...filterPropsFor(this.props, 'input'),
                         value: this.state.value,
                         onChange: ::this._onInputChange,
                         onFocus: ::this._onInputFocus,

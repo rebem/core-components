@@ -14,15 +14,15 @@
     "LICENSE"
   ],
   "dependencies": {
-    "react-attrs-map": "0.1.x",
+    "react-attrs-filter": "0.1.x",
     "component-uid": "0.0.x"
   },
   "peerDependencies": {
-    "react": "0.13.x",
-    "@yummies/yummies": "0.12.x"
+    "@yummies/yummies": "0.13.x",
+    "@yummies/dom": "0.2.x"
   },
   "devDependencies": {
-    "husky": "0.9.x",
+    "husky": "0.10.x",
     "eslint": "1.8.x",
     "babel-eslint": "4.1.x",
     "eslint-plugin-babel": "2.1.x"

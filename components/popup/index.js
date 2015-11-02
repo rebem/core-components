@@ -1,5 +1,8 @@
 import UID from 'component-uid';
 
+const ESC_KEYCODE = 27;
+const UID_LENGTH = 20;
+
 export default Base => class extends Base {
     static get displayName() {
         return 'core: popup';
@@ -17,7 +20,7 @@ export default Base => class extends Base {
 
     _onKeyUp(e) {
         // hide on Esc
-        if (e.keyCode === 27) {
+        if (e.keyCode === ESC_KEYCODE) {
             this.hide();
         }
     }
@@ -57,7 +60,7 @@ export default Base => class extends Base {
     }
 
     render() {
-        const popupID = 'popup-' + UID(20);
+        const popupID = 'popup-' + UID(UID_LENGTH);
 
         return {
             block: 'popup',

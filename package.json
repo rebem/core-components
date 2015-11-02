@@ -23,8 +23,8 @@
   },
   "devDependencies": {
     "husky": "0.9.x",
-    "eslint": "1.2.x",
-    "babel-eslint": "4.0.x",
+    "eslint": "1.8.x",
+    "babel-eslint": "4.1.x",
     "eslint-plugin-babel": "2.1.x"
   },
   "scripts": {

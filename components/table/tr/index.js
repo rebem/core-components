@@ -1,7 +1,5 @@
 export default Base => class extends Base {
-    static get displayName() {
-        return 'core: TableRow';
-    }
+    static displayName = 'core: TableRow';
 
     render() {
         return {

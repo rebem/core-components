@@ -1,7 +1,5 @@
 export default Base => class extends Base {
-    static get displayName() {
-        return 'core: tabs/_type/dynamic';
-    }
+    static displayName = 'core: tabs/_type/dynamic';
 
     _onNewTabClick() {
         if (this.props.onNewTab) {

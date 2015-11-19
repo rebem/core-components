@@ -4,9 +4,7 @@ const ESC_KEYCODE = 27;
 const UID_LENGTH = 20;
 
 export default Base => class extends Base {
-    static get displayName() {
-        return 'core: popup';
-    }
+    static displayName = 'core: popup';
 
     constructor(props) {
         super(props);

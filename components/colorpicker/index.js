@@ -1,9 +1,7 @@
 import InputClass from '#input?raw&-styles';
 
 export default Base => class extends InputClass(Base) {
-    static get displayName() {
-        return 'core: colorpicker';
-    }
+    static displayName = 'core: colorpicker';
 
     render() {
         const template = super.render();

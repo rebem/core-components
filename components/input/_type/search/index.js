@@ -1,7 +1,5 @@
 export default Base => class extends Base {
-    static get displayName() {
-        return 'core: input/_type/search';
-    }
+    static displayName = 'core: input/_type/search';
 
     render() {
         const template = super.render();

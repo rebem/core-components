@@ -1,9 +1,7 @@
 import { filterPropsFor, filterPropsExcept } from 'react-attrs-filter';
 
 export default Base => class extends Base {
-    static get displayName() {
-        return 'core: input';
-    }
+    static displayName = 'core: input';
 
     constructor(props) {
         super(props);

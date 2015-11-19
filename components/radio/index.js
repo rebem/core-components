@@ -3,9 +3,7 @@ import InputClass from '#input?raw&-styles';
 const cache = {};
 
 export default Base => class extends InputClass(Base) {
-    static get displayName() {
-        return 'core: radio';
-    }
+    static displayName = 'core: radio';
 
     constructor(props) {
         super(props);

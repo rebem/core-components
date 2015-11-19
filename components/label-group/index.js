@@ -1,7 +1,5 @@
 export default Base => class extends Base {
-    static get displayName() {
-        return 'core: label-group';
-    }
+    static displayName = 'core: label-group';
 
     static defaultProps = {
         controlPosition: 'right'

@@ -1,9 +1,7 @@
 import InputClass from '#input?raw&-styles';
 
 export default Base => class extends InputClass(Base) {
-    static get displayName() {
-        return 'core: attach';
-    }
+    static displayName = 'core: attach';
 
     constructor(props) {
         super(props);

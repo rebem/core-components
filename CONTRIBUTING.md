@@ -23,9 +23,7 @@
 - `displayName`
 ```js
 // es6
-static get displayName() {
-    return 'Component';
-}
+static displayName = 'Component';
 
 // old syntax
 displayName: 'Component'
@@ -34,7 +32,7 @@ displayName: 'Component'
 - `mixins`
 ```js
 // es6 (yummies mixins only)
-static get mixins() {
+static mixins() {
     return [ MixinValidate ];
 }
 
@@ -45,7 +43,7 @@ mixins: [ DragDropMixin ],
 - `propTypes`
 ```js
 // es6
-static get propTypes() {
+static propTypes() {
     return {
        onChange: PropTypes.func.isRequired,
        ...
@@ -64,7 +62,7 @@ propTypes: {
 - `defaultProps` static getter (`getDefaultProps` method for old syntax)
 ```js
 // es6
-static get defaultProps() {
+static defaultProps() {
     return {
         initialCount: 0
     };
@@ -106,7 +104,7 @@ constructor(props) {
 - `static` methods including `static getter` methods (`statics` object for old syntax)
 ```js
 // es6
-static get configuration() {
+static configuration() {
     return {
         ...
     };
@@ -120,7 +118,7 @@ statics: {
     ...
 }
 ```
-    
+
 #### 4. lifecycle
 
 React lifecycle methods in the order they're being invoked
@@ -132,7 +130,7 @@ React lifecycle methods in the order they're being invoked
 - `componentWillUpdate`
 - `componentDidUpdate`
 - `componentWillUnmount`
-    
+
 #### 5. internal
 
 Internal methods (prefixed with underscore `_`)
@@ -187,10 +185,10 @@ Price({
 
     // 1.
     _currency: productInfo.currency,
-    
+
     // 2.
     _onSomething: this._onSomething,
-    
+
     // 3.
     block: 'what',
     elem: 'what',
@@ -200,18 +198,18 @@ Price({
     mix: {
         ...
     },
-    
+
     // 4.
     value: this.state.value,
-    
+
     // 5.
     onChange: this.onPriceChange,
-    
+
     // 6.
     ref: 'price'
-    
+
     // 7.
     key: 'price'
-    
+
 }, productInfo.price)
 ```

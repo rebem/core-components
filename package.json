@@ -18,8 +18,8 @@
     "component-uid": "0.0.x"
   },
   "peerDependencies": {
-    "@yummies/yummies": "0.13.x",
-    "@yummies/dom": "0.2.x"
+    "@yummies/yummies": ">=0.13.0 <2.0.0",
+    "@yummies/dom": ">=0.2.0 <1.0.0"
   },
   "devDependencies": {
     "husky": "0.10.x",

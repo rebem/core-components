@@ -23,9 +23,9 @@
   },
   "devDependencies": {
     "husky": "0.10.x",
-    "eslint": "1.8.x",
+    "eslint": "1.10.x",
     "babel-eslint": "4.1.x",
-    "eslint-plugin-babel": "2.1.x"
+    "eslint-plugin-babel": "2.2.x"
   },
   "scripts": {
     "lint": "eslint components/",

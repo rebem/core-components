@@ -2,7 +2,7 @@ import Yummies from '@yummies/yummies';
 import YummiesDOM from '@yummies/dom';
 import TestUtils from 'react-addons-test-utils';
 import chai, { expect } from 'chai';
-import { render } from 'test/helpers/render';
+import { createRender, renderOnce } from 'test/helpers/render';
 
 import Input from '#input';
 
@@ -13,14 +13,14 @@ describe('Input', () => {
         });
 
         it('is a component', () => {
-            expect(TestUtils.isCompositeComponent(render(Input()))).to.be.true;
+            expect(TestUtils.isCompositeComponent(renderOnce(Input()))).to.be.true;
         });
     });
 
     describe('render', () => {
         beforeEach(function() {
             this.renderWithProps = props => {
-                this.rootComponent = render(Input(props));
+                this.rootComponent = renderOnce(Input(props));
                 this.inputControl = TestUtils.findRenderedDOMComponentWithTag(this.rootComponent, 'input');
                 this.rootComponentDOMNode = YummiesDOM.findDOMNode(this.rootComponent);
                 this.inputControlDOMNode = YummiesDOM.findDOMNode(this.inputControl);
@@ -133,18 +133,18 @@ describe('Input', () => {
 
         describe('componentWillReceiveProps', () => {
             it('value', function() {
-                const div = document.createElement('div');
-                let Component = Yummies.render(Input({ value: 'test' }), div);
+                const render = createRender();
+                let component = render(Input({ value: 'test' }));
 
-                expect(Component.state.value).to.be.equal('test');
+                expect(component.state.value).to.be.equal('test');
 
-                Component = Yummies.render(Input({ value: 'test2' }), div);
+                component = render(Input({ value: 'test2' }));
 
-                expect(Component.state.value).to.be.equal('test2');
+                expect(component.state.value).to.be.equal('test2');
 
-                Component = Yummies.render(Input({ value: 'test2' }), div);
+                component = render(Input({ value: 'test2' }));
 
-                expect(Component.state.value).to.be.equal('test2');
+                expect(component.state.value).to.be.equal('test2');
             });
         });
     });

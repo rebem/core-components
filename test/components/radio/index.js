@@ -1,6 +1,6 @@
 import TestUtils from 'react-addons-test-utils';
 import { expect } from 'chai';
-import { render } from 'test/helpers/render';
+import { renderOnce } from 'test/helpers/render';
 
 import Radio from '#radio';
 
@@ -11,7 +11,7 @@ describe('Radio', () => {
         });
 
         it('is a component', () => {
-            expect(TestUtils.isCompositeComponent(render(Radio()))).to.be.true;
+            expect(TestUtils.isCompositeComponent(renderOnce(Radio()))).to.be.true;
         });
     });
 });

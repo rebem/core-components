@@ -1,6 +1,6 @@
 import TestUtils from 'react-addons-test-utils';
 import { expect } from 'chai';
-import { render } from 'test/helpers/render';
+import { renderOnce } from 'test/helpers/render';
 
 import Img from '#img';
 
@@ -11,7 +11,7 @@ describe('Img', () => {
         });
 
         it('is a component', () => {
-            expect(TestUtils.isCompositeComponent(render(Img()))).to.be.true;
+            expect(TestUtils.isCompositeComponent(renderOnce(Img()))).to.be.true;
         });
     });
 });

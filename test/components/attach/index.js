@@ -1,6 +1,6 @@
 import TestUtils from 'react-addons-test-utils';
 import { expect } from 'chai';
-import { render } from 'test/helpers/render';
+import { renderOnce } from 'test/helpers/render';
 
 import Attach from '#attach';
 
@@ -11,7 +11,7 @@ describe('Attach', () => {
         });
 
         it('is a component', () => {
-            expect(TestUtils.isCompositeComponent(render(Attach()))).to.be.true;
+            expect(TestUtils.isCompositeComponent(renderOnce(Attach()))).to.be.true;
         });
     });
 });

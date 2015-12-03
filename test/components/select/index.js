@@ -1,6 +1,6 @@
 import TestUtils from 'react-addons-test-utils';
 import { expect } from 'chai';
-import { render } from 'test/helpers/render';
+import { renderOnce } from 'test/helpers/render';
 
 import Select from '#select';
 
@@ -20,7 +20,7 @@ describe('Select', () => {
                 ]
             });
 
-            expect(TestUtils.isCompositeComponent(render(Component))).to.be.true;
+            expect(TestUtils.isCompositeComponent(renderOnce(Component))).to.be.true;
         });
     });
 });

@@ -1,6 +1,6 @@
 import TestUtils from 'react-addons-test-utils';
 import { expect } from 'chai';
-import { render } from 'test/helpers/render';
+import { renderOnce } from 'test/helpers/render';
 
 import Button from '#button';
 
@@ -11,7 +11,7 @@ describe('Button', () => {
         });
 
         it('is a component', () => {
-            expect(TestUtils.isCompositeComponent(render(Button()))).to.be.true;
+            expect(TestUtils.isCompositeComponent(renderOnce(Button()))).to.be.true;
         });
     });
 });

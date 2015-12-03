@@ -22,16 +22,45 @@
     "@yummies/dom": ">=0.2.0 <2.0.0"
   },
   "devDependencies": {
+    "start": "1.1.x",
     "husky": "0.10.x",
+
     "eslint": "1.10.x",
     "babel-eslint": "4.1.x",
-    "eslint-plugin-babel": "2.2.x"
+    "eslint-plugin-babel": "2.2.x",
+
+    "babel": "5.8.x",
+    "babel-runtime": "5.8.x",
+    "babel-core": "5.8.x",
+    "babel-loader": "5.3.x",
+
+    "@yummies/yummies": "1.0.x",
+    "@yummies/dom": "1.0.x",
+    "@yummies/inheritance-loader": "0.1.x",
+    "react-addons-test-utils": "0.14.x",
+    "webpack": "1.12.x",
+    "json-loader": "0.5.x",
+    "isparta-loader": "1.0.x",
+    "mocha": "2.3.x",
+    "chai": "3.4.x",
+    "chai-spies": "0.7.x",
+    "chai-bem": "1.2.x",
+    "karma": "0.13.x",
+    "karma-mocha": "0.2.x",
+    "karma-mocha-reporter": "1.1.x",
+    "karma-chrome-launcher": "0.2.x",
+    "karma-webpack": "1.7.x",
+    "karma-coverage": "0.5.x",
+    "karma-clear-screen-reporter": "1.0.x",
+    "coveralls": "2.11.x"
   },
   "scripts": {
-    "lint": "eslint components/",
-    "test": "npm run lint",
-    "travis": "npm run test",
-    "prepush": "npm run test"
+    "task": "babel-node node_modules/.bin/start tasks/",
+    "lint": "npm run task eslint",
+    "test": "npm run task test",
+    "tdd": "npm run task tdd",
+    "travis": "npm run task travis",
+    "precommit": "npm run task eslint"
   },
   "engines": {
     "node": ">=0.12.0",

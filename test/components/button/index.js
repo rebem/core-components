@@ -21,7 +21,7 @@ describe('Button', () => {
         beforeEach(function() {
             this.renderWithProps = props => {
                 this.rootComponent = renderOnce(Button(props));
-                this.inputControl = TestUtils.findRenderedDOMComponentWithTag(this.rootComponent, 'input');
+                this.inputControl = TestUtils.findRenderedDOMComponentWithClass(this.rootComponent, 'button__control');
                 this.rootComponentDOMNode = YummiesDOM.findDOMNode(this.rootComponent);
                 this.inputControlDOMNode = YummiesDOM.findDOMNode(this.inputControl);
             };

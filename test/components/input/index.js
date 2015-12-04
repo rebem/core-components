@@ -89,11 +89,17 @@ describe('Input', () => {
             it('onChange', function() {
                 const spy = chai.spy();
 
-                this.renderWithProps({ onChange: e => {
-                    spy(e.target.value);
-                } });
-                TestUtils.Simulate.change(this.inputControlDOMNode, { target: { value: 'cho' } });
-                expect(spy).to.have.been.called.with('cho');
+                this.renderWithProps({
+                    onChange(e) {
+                        spy(e.target.value);
+                    }
+                });
+                TestUtils.Simulate.change(this.inputControlDOMNode, { target: { value: 'test' } });
+                expect(spy).to.have.been.called.with('test');
+
+                this.renderWithProps();
+                TestUtils.Simulate.change(this.inputControlDOMNode, { target: { value: 'test' } });
+                expect(spy).to.have.been.called.with('test');
             });
 
             it('onFocus', function() {
@@ -102,13 +108,20 @@ describe('Input', () => {
                 this.renderWithProps({ onFocus: spy });
                 TestUtils.Simulate.focus(this.inputControlDOMNode);
                 expect(spy).to.have.been.called.once;
+
+                this.renderWithProps();
+                TestUtils.Simulate.focus(this.inputControlDOMNode);
+                expect(spy).to.have.been.called.once;
             });
 
             it('onBlur', function() {
                 const spy = chai.spy();
 
                 this.renderWithProps({ onBlur: spy });
-                TestUtils.Simulate.focus(this.inputControlDOMNode);
+                TestUtils.Simulate.blur(this.inputControlDOMNode);
+                expect(spy).to.have.been.called.once;
+
+                this.renderWithProps();
                 TestUtils.Simulate.blur(this.inputControlDOMNode);
                 expect(spy).to.have.been.called.once;
             });
@@ -119,13 +132,20 @@ describe('Input', () => {
                 this.renderWithProps({ onMouseEnter: spy });
                 TestUtils.Simulate.mouseEnter(this.inputControlDOMNode);
                 expect(spy).to.have.been.called.once;
+
+                this.renderWithProps();
+                TestUtils.Simulate.mouseEnter(this.inputControlDOMNode);
+                expect(spy).to.have.been.called.once;
             });
 
             it('onMouseLeave', function() {
                 const spy = chai.spy();
 
                 this.renderWithProps({ onMouseLeave: spy });
-                TestUtils.Simulate.mouseEnter(this.inputControlDOMNode);
+                TestUtils.Simulate.mouseLeave(this.inputControlDOMNode);
+                expect(spy).to.have.been.called.once;
+
+                this.renderWithProps();
                 TestUtils.Simulate.mouseLeave(this.inputControlDOMNode);
                 expect(spy).to.have.been.called.once;
             });

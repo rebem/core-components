@@ -1,4 +1,4 @@
-import { filterPropsFor, filterPropsExcept } from 'react-attrs-filter';
+import { filterPropsFor } from 'react-attrs-filter';
 
 export default Base => class extends Base {
     static displayName = 'core: input';
@@ -84,7 +84,6 @@ export default Base => class extends Base {
                 hovered: this.state.hovered,
                 disabled: this.props.disabled || false
             },
-            props: filterPropsExcept(this.props, 'input'),
             content: [
                 {
                     elem: 'control',

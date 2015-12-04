@@ -64,13 +64,16 @@ export default Base => class extends InputClass(Base) {
             onMouseLeave: ::this._onInputMouseLeave
         };
 
-        template.content.splice(1, 0, {
-            elem: 'value',
-            props: {
-                key: 'value'
-            },
-            content: this.props.value
-        });
+        if ('value' in this.props) {
+            template.content.push({
+                elem: 'value',
+                tag: 'span',
+                props: {
+                    key: 'value'
+                },
+                content: this.props.value
+            });
+        }
 
         return template;
     }

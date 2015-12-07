@@ -6,7 +6,7 @@ import { createRender, renderOnce } from 'test/helpers/render';
 
 import Checkbox from '#checkbox';
 
-describe('Input', () => {
+describe('Checkbox', () => {
     describe('basic', () => {
         it('exists', () => {
             expect(Checkbox).to.exist;
@@ -59,11 +59,6 @@ describe('Input', () => {
                 expect(this.rootComponentDOMNode).to.have.mods({ disabled: true });
             });
 
-            // it('value change', function() {
-            //     TestUtils.Simulate.change(this.inputControlDOMNode, { target: { value: 'test' } });
-            //     expect(this.inputControlDOMNode.value).to.be.equal('test');
-            // });
-
             it('children', function() {
                 this.renderWithProps({
                     children: Yummies.createElement('div', {
@@ -94,6 +89,10 @@ describe('Input', () => {
                         spy(e.target.checked);
                     }
                 });
+                TestUtils.Simulate.change(this.inputControlDOMNode, { target: { checked: true } });
+                expect(spy).to.have.been.called.with(true);
+
+                this.renderWithProps();
                 TestUtils.Simulate.change(this.inputControlDOMNode, { target: { checked: true } });
                 expect(spy).to.have.been.called.with(true);
             });
@@ -148,7 +147,7 @@ describe('Input', () => {
         });
 
         describe('componentWillReceiveProps', () => {
-            it('value', function() {
+            it('checked', function() {
                 const render = createRender();
                 let component = render(Checkbox({ checked: true }));
 

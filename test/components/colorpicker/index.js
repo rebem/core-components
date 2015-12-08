@@ -4,7 +4,7 @@ import { renderOnce } from 'test/helpers/render';
 
 import Colorpicker from '#colorpicker';
 
-describe('Colorpicker', () => {
+describe('colorpicker', () => {
     describe('basic', () => {
         it('exists', () => {
             expect(Colorpicker).to.exist;

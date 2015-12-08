@@ -4,7 +4,7 @@ import { renderOnce } from 'test/helpers/render';
 
 import Tabs from '#tabs';
 
-describe('Tabs', () => {
+describe('tabs', () => {
     describe('basic', () => {
         it('exists', () => {
             expect(Tabs).to.exist;

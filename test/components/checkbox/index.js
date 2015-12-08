@@ -6,7 +6,7 @@ import { createRender, renderOnce } from 'test/helpers/render';
 
 import Checkbox from '#checkbox';
 
-describe('Checkbox', () => {
+describe('checkbox', () => {
     describe('basic', () => {
         it('exists', () => {
             expect(Checkbox).to.exist;

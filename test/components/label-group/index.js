@@ -4,7 +4,7 @@ import { renderOnce } from 'test/helpers/render';
 
 import LabelGroup from '#label-group';
 
-describe('LabelGroup', () => {
+describe('labelGroup', () => {
     describe('basic', () => {
         it('exists', () => {
             expect(LabelGroup).to.exist;

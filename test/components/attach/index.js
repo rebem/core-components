@@ -6,7 +6,7 @@ import { renderOnce } from 'test/helpers/render';
 
 import Attach from '#attach';
 
-describe('Attach', () => {
+describe('attach', () => {
     describe('basic', () => {
         it('exists', () => {
             expect(Attach).to.exist;

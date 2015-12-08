@@ -4,7 +4,7 @@ import { renderOnce } from 'test/helpers/render';
 
 import Img from '#img';
 
-describe('Img', () => {
+describe('img', () => {
     describe('basic', () => {
         it('exists', () => {
             expect(Img).to.exist;

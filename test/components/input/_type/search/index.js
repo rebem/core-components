@@ -5,7 +5,7 @@ import { renderOnce } from 'test/helpers/render';
 
 import Input from '#input?_type=search';
 
-describe('Input type search', () => {
+describe('input_type_search', () => {
     describe('basic', () => {
         it('exists', () => {
             expect(Input).to.exist;

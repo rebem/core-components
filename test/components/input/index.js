@@ -6,7 +6,7 @@ import { createRender, renderOnce } from 'test/helpers/render';
 
 import Input from '#input';
 
-describe('Input', () => {
+describe('input', () => {
     describe('basic', () => {
         it('exists', () => {
             expect(Input).to.exist;

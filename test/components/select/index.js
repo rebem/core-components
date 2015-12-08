@@ -4,7 +4,7 @@ import { renderOnce } from 'test/helpers/render';
 
 import Select from '#select';
 
-describe('Select', () => {
+describe('select', () => {
     describe('basic', () => {
         it('exists', () => {
             expect(Select).to.exist;

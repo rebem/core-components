@@ -6,7 +6,7 @@ import { renderOnce } from 'test/helpers/render';
 
 import Button from '#button';
 
-describe('Button', () => {
+describe('button', () => {
     describe('basic', () => {
         it('exists', () => {
             expect(Button).to.exist;

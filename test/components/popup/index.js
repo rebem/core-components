@@ -4,7 +4,7 @@ import { renderOnce } from 'test/helpers/render';
 
 import Popup from '#popup';
 
-describe('Popup', () => {
+describe('popup', () => {
     describe('basic', () => {
         it('exists', () => {
             expect(Popup).to.exist;

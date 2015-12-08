@@ -4,7 +4,7 @@ import { renderOnce } from 'test/helpers/render';
 
 import Table from '#table';
 
-describe('Table', () => {
+describe('table', () => {
     describe('basic', () => {
         it('exists', () => {
             expect(Table).to.exist;

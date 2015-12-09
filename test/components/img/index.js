@@ -17,12 +17,28 @@ describe('img', () => {
     });
 
     describe('DOM', () => {
-        it('initial', function() {
-            const rootComponent = renderOnce(Img());
-            const rootComponentDOMNode = YummiesDOM.findDOMNode(rootComponent);
+        beforeEach(function() {
+            this.renderWithProps = props => {
+                this.rootComponent = renderOnce(Img(props));
+                this.rootComponentDOMNode = YummiesDOM.findDOMNode(this.rootComponent);
+            };
 
-            expect(rootComponentDOMNode).to.be.a.block('img');
-            expect(rootComponentDOMNode.tagName).to.be.equal('IMG');
+            this.renderWithProps();
+        });
+
+        it('initial', function() {
+            expect(this.rootComponentDOMNode).to.be.a.block('img');
+            expect(this.rootComponentDOMNode.tagName).to.be.equal('IMG');
+        });
+
+        it('props', function() {
+            const testWidth = 200;
+
+            this.renderWithProps({
+                width: testWidth
+            });
+
+            expect(this.rootComponentDOMNode.width).to.be.equal(testWidth);
         });
     });
 });

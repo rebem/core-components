@@ -28,11 +28,11 @@ describe('table/tr', () => {
         });
 
         it('initial', function() {
+            expect(this.rootComponentDOMNode.tagName).to.be.equal('TR');
             expect(this.rootComponentDOMNode).to.be.an.elem({
                 block: 'table',
                 elem: 'row'
             });
-            expect(this.rootComponentDOMNode.tagName).to.be.equal('TR');
         });
 
         it('props', function() {

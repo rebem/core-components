@@ -27,8 +27,8 @@ describe('img', () => {
         });
 
         it('initial', function() {
-            expect(this.rootComponentDOMNode).to.be.a.block('img');
             expect(this.rootComponentDOMNode.tagName).to.be.equal('IMG');
+            expect(this.rootComponentDOMNode).to.be.a.block('img');
         });
 
         it('props', function() {

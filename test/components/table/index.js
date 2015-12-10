@@ -28,8 +28,8 @@ describe('table', () => {
         });
 
         it('initial', function() {
-            expect(this.rootComponentDOMNode).to.be.a.block('table');
             expect(this.rootComponentDOMNode.tagName).to.be.equal('TABLE');
+            expect(this.rootComponentDOMNode).to.be.a.block('table');
         });
 
         it('props', function() {

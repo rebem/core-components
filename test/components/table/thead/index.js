@@ -28,11 +28,11 @@ describe('table/thead', () => {
         });
 
         it('initial', function() {
+            expect(this.rootComponentDOMNode.tagName).to.be.equal('THEAD');
             expect(this.rootComponentDOMNode).to.be.an.elem({
                 block: 'table',
                 elem: 'head'
             });
-            expect(this.rootComponentDOMNode.tagName).to.be.equal('THEAD');
         });
 
         it('props', function() {

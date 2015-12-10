@@ -31,8 +31,9 @@ describe('textarea', () => {
 
         describe('DOM', () => {
             it('initial', function() {
-                expect(this.rootComponentDOMNode.className).to.be.a.block('textarea');
-                expect(this.inputControlDOMNode.className).to.be.an.elem({
+                expect(this.inputControlDOMNode.tagName).to.be.equal('TEXTAREA');
+                expect(this.rootComponentDOMNode).to.be.a.block('textarea');
+                expect(this.inputControlDOMNode).to.be.an.elem({
                     block: 'textarea',
                     elem: 'control'
                 });

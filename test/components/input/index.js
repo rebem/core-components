@@ -31,8 +31,10 @@ describe('input', () => {
 
         describe('DOM', () => {
             it('initial', function() {
-                expect(this.rootComponentDOMNode.className).to.be.a.block('input');
-                expect(this.inputControlDOMNode.className).to.be.an.elem({
+                expect(this.inputControlDOMNode.tagName).to.be.equal('INPUT');
+                expect(this.inputControlDOMNode.type).to.be.equal('text');
+                expect(this.rootComponentDOMNode).to.be.a.block('input');
+                expect(this.inputControlDOMNode).to.be.an.elem({
                     block: 'input',
                     elem: 'control'
                 });

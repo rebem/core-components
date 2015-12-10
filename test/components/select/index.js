@@ -33,8 +33,9 @@ describe('select', () => {
 
         describe('DOM', () => {
             it('initial', function() {
-                expect(this.rootComponentDOMNode.className).to.be.a.block('select');
-                expect(this.inputControlDOMNode.className).to.be.an.elem({
+                expect(this.inputControlDOMNode.tagName).to.be.equal('SELECT');
+                expect(this.rootComponentDOMNode).to.be.a.block('select');
+                expect(this.inputControlDOMNode).to.be.an.elem({
                     block: 'select',
                     elem: 'control'
                 });

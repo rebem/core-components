@@ -31,8 +31,10 @@ describe('checkbox', () => {
 
         describe('DOM', () => {
             it('initial', function() {
-                expect(this.rootComponentDOMNode.className).to.be.a.block('checkbox');
-                expect(this.inputControlDOMNode.className).to.be.an.elem({
+                expect(this.inputControlDOMNode.tagName).to.be.equal('INPUT');
+                expect(this.inputControlDOMNode.type).to.be.equal('checkbox');
+                expect(this.rootComponentDOMNode).to.be.a.block('checkbox');
+                expect(this.inputControlDOMNode).to.be.an.elem({
                     block: 'checkbox',
                     elem: 'control'
                 });

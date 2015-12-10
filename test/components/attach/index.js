@@ -31,8 +31,10 @@ describe('attach', () => {
 
         describe('DOM', () => {
             it('initial without value', function() {
-                expect(this.rootComponentDOMNode.className).to.be.a.block('attach');
-                expect(this.inputControlDOMNode.className).to.be.an.elem({
+                expect(this.inputControlDOMNode.tagName).to.be.equal('INPUT');
+                expect(this.inputControlDOMNode.type).to.be.equal('file');
+                expect(this.rootComponentDOMNode).to.be.a.block('attach');
+                expect(this.inputControlDOMNode).to.be.an.elem({
                     block: 'attach',
                     elem: 'control'
                 });
@@ -44,7 +46,7 @@ describe('attach', () => {
                 const inputValue = TestUtils.findRenderedDOMComponentWithClass(this.rootComponent, 'attach__value');
                 const inputValueDOMNode = YummiesDOM.findDOMNode(inputValue);
 
-                expect(inputValueDOMNode.className).to.be.an.elem({
+                expect(inputValueDOMNode).to.be.an.elem({
                     block: 'attach',
                     elem: 'value'
                 });

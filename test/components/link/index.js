@@ -28,8 +28,8 @@ describe('link', () => {
         });
 
         it('initial', function() {
-            expect(this.rootComponentDOMNode).to.be.a.block('link');
             expect(this.rootComponentDOMNode.tagName).to.be.equal('A');
+            expect(this.rootComponentDOMNode).to.be.a.block('link');
         });
 
         it('props', function() {

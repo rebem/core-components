@@ -1,16 +1,18 @@
-import { filterPropsFor, filterPropsExcept } from 'react-attrs-filter';
+import { filterPropsFor } from 'react-attrs-filter';
 
 export default Base => class extends Base {
     static displayName = 'core: select';
     static defaultProps = {
-        options: []
+        value: null,
+        options: [],
+        disabled: false
     };
 
     constructor(props) {
         super(props);
 
         this.state = {
-            value: props.value || null,
+            value: props.value,
             hovered: false,
             focused: false
         };
@@ -77,13 +79,11 @@ export default Base => class extends Base {
     _getOptions() {
         return this.props.options.map(option => {
             return {
-                elem: 'option',
                 tag: 'option',
                 content: option.text,
                 props: {
-                    selected: option.selected,
                     value: option.value,
-                    key: 'option' + option.value || option.text
+                    key: 'option-' + option.value
                 }
             };
         });
@@ -100,9 +100,8 @@ export default Base => class extends Base {
             mods: {
                 focused: this.state.focused,
                 hovered: this.state.hovered,
-                disabled: this.props.disabled || false
+                disabled: this.props.disabled
             },
-            props: filterPropsExcept(this.props, 'select'),
             content: [
                 {
                     elem: 'control',

@@ -2,6 +2,9 @@ import { filterPropsFor, filterPropsExcept } from 'react-attrs-filter';
 
 export default Base => class extends Base {
     static displayName = 'core: select';
+    static defaultProps = {
+        options: []
+    };
 
     constructor(props) {
         super(props);

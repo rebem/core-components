@@ -6,7 +6,8 @@ export default {
     autoWatch: true,
     reporters: [
         'clear-screen',
-        ...karmaCommonConfig.reporters
+        'progress',
+        'coverage'
     ],
     customLaunchers: {
         ChromeBackground: {

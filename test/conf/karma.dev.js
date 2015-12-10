@@ -8,5 +8,11 @@ export default {
         'clear-screen',
         ...karmaCommonConfig.reporters
     ],
-    browsers: [ 'Chrome' ]
+    customLaunchers: {
+        ChromeBackground: {
+            base: 'Chrome',
+            flags: [ '--disable-background-timer-throttling' ]
+        }
+    },
+    browsers: [ 'ChromeBackground' ]
 };

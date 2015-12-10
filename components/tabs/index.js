@@ -1,11 +1,15 @@
 export default Base => class extends Base {
     static displayName = 'core: tabs';
+    static defaultProps = {
+        selected: 0,
+        tabs: []
+    };
 
     constructor(props) {
         super(props);
 
         this.state = {
-            selected: this.props.selected || 0
+            selected: this.props.selected
         };
     }
 

@@ -4,6 +4,9 @@ const cache = {};
 
 export default Base => class extends InputClass(Base) {
     static displayName = 'core: radio';
+    static defaultProps = {
+        checked: false
+    };
 
     constructor(props) {
         super(props);
@@ -28,11 +31,7 @@ export default Base => class extends InputClass(Base) {
     }
 
     componentWillUnmount() {
-        const index = cache[this.props.name].indexOf(this);
-
-        if (index >= 0) {
-            cache[this.props.name].splice(index, 1);
-        }
+        cache[this.props.name] = cache[this.props.name].filter(cached => cached !== this);
     }
 
     _onInputChange(e) {

@@ -1,6 +1,10 @@
+import UID from 'component-uid';
+import EventEmitter from 'eventemitter3';
+
 import InputClass from '#input?raw&-styles';
 
-const cache = {};
+const UID_LENGTH = 20;
+const radioGroup = new EventEmitter();
 
 export default Base => class extends InputClass(Base) {
     static displayName = 'core: radio';
@@ -11,15 +15,17 @@ export default Base => class extends InputClass(Base) {
     constructor(props) {
         super(props);
 
+        this._uid = UID(UID_LENGTH);
         this.state = {
             ...this.state,
             checked: props.checked
         };
+
+        this._onRadioGroupChange = this._onRadioGroupChange.bind(this);
     }
 
-    componentWillMount() {
-        cache[this.props.name] = cache[this.props.name] || [];
-        cache[this.props.name].push(this);
+    componentDidMount() {
+        radioGroup.on('change', this._onRadioGroupChange);
     }
 
     componentWillReceiveProps({ checked }) {
@@ -31,7 +37,15 @@ export default Base => class extends InputClass(Base) {
     }
 
     componentWillUnmount() {
-        cache[this.props.name] = cache[this.props.name].filter(cached => cached !== this);
+        radioGroup.off('change', this._onRadioGroupChange);
+    }
+
+    _onRadioGroupChange({ form, id }) {
+        if (this.refs.control.form === form && this._uid !== id) {
+            this.setState({
+                checked: false
+            });
+        }
     }
 
     _onInputChange(e) {
@@ -39,12 +53,9 @@ export default Base => class extends InputClass(Base) {
             checked: e.target.checked
         });
 
-        cache[this.props.name].forEach(cached => {
-            if (cached !== this && e.target.checked) {
-                cached.setState({
-                    checked: false
-                });
-            }
+        radioGroup.emit('change', {
+            form: this.refs.control.form,
+            id: this._uid
         });
 
         if (this.props.onChange) {

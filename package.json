@@ -40,6 +40,8 @@
     "@yummies/inheritance-loader": "0.1.x",
     "react-addons-test-utils": "0.14.x",
     "webpack": "1.12.x",
+    "webpack-dev-server": "1.14.x",
+    "html-webpack-plugin": "1.7.x",
     "json-loader": "0.5.x",
     "isparta-loader": "1.0.x",
     "mocha": "2.3.x",
@@ -60,6 +62,7 @@
     "lint": "npm run task eslint",
     "test": "npm run task test",
     "tdd": "npm run task tdd",
+    "start": "npm run task demo",
     "travis": "npm run task travis",
     "precommit": "npm run task eslint"
   },

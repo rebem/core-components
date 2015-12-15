@@ -2,6 +2,7 @@ export { cleanCoverage } from './clean';
 export { karmaBuild, karmaDev, karmaTravis } from './karma';
 export { eslint } from './lint';
 export { coveralls } from './coveralls';
+export { demo } from './demo';
 
 export const test = [
     exports.eslint,

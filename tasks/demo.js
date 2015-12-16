@@ -31,7 +31,7 @@ export function demo() {
                         path.resolve('components/')
                     ],
                     loaders: [
-                        '@yummies/inheritance-loader',
+                        '@yummies/inheritance-loader?layers[]=components/&layers[]=demo/components/',
                         'babel?cacheDirectory'
                     ]
                 }

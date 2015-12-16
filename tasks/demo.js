@@ -1,8 +1,11 @@
 export function demo() {
+    process.env.NODE_ENV = 'development';
+
     const path = require('path');
     const webpack = require('webpack');
     const WebpackDevServer = require('webpack-dev-server');
     const HtmlWebpackPlugin = require('html-webpack-plugin');
+
     const config = {
         cache: true,
         stats: {
@@ -41,7 +44,6 @@ export function demo() {
             ]
         },
         plugins: [
-            new webpack.IgnorePlugin(/^\.\/locale$/, [ /moment$/ ]),
             new webpack.HotModuleReplacementPlugin(),
             new webpack.NoErrorsPlugin(),
             new HtmlWebpackPlugin({
@@ -52,8 +54,6 @@ export function demo() {
             })
         ]
     };
-
-    process.env.NODE_ENV = 'development';
 
     return new Promise((resolve, reject) => {
         const server = new WebpackDevServer(webpack(config), {

@@ -21,9 +21,8 @@ describe('attach', () => {
         beforeEach(function() {
             this.renderWithProps = props => {
                 this.rootComponent = renderOnce(Attach(props));
-                this.inputControl = TestUtils.findRenderedDOMComponentWithClass(this.rootComponent, 'attach__control');
                 this.rootComponentDOMNode = YummiesDOM.findDOMNode(this.rootComponent);
-                this.inputControlDOMNode = YummiesDOM.findDOMNode(this.inputControl);
+                this.inputControlDOMNode = TestUtils.findRenderedDOMComponentWithClass(this.rootComponent, 'attach__control');
             };
 
             this.renderWithProps();
@@ -43,8 +42,7 @@ describe('attach', () => {
             it('initial with value', function() {
                 this.renderWithProps({ value: 'test' });
 
-                const inputValue = TestUtils.findRenderedDOMComponentWithClass(this.rootComponent, 'attach__value');
-                const inputValueDOMNode = YummiesDOM.findDOMNode(inputValue);
+                const inputValueDOMNode = TestUtils.findRenderedDOMComponentWithClass(this.rootComponent, 'attach__value');
 
                 expect(inputValueDOMNode).to.be.an.elem({
                     block: 'attach',

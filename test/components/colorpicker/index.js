@@ -21,9 +21,8 @@ describe('colorpicker', () => {
         beforeEach(function() {
             this.renderWithProps = props => {
                 this.rootComponent = renderOnce(Colorpicker(props));
-                this.inputControl = TestUtils.findRenderedDOMComponentWithClass(this.rootComponent, 'colorpicker__control');
                 this.rootComponentDOMNode = YummiesDOM.findDOMNode(this.rootComponent);
-                this.inputControlDOMNode = YummiesDOM.findDOMNode(this.inputControl);
+                this.inputControlDOMNode = TestUtils.findRenderedDOMComponentWithClass(this.rootComponent, 'colorpicker__control');
             };
 
             this.renderWithProps();

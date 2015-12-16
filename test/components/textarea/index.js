@@ -21,9 +21,8 @@ describe('textarea', () => {
         beforeEach(function() {
             this.renderWithProps = props => {
                 this.rootComponent = renderOnce(Textarea(props));
-                this.inputControl = TestUtils.findRenderedDOMComponentWithClass(this.rootComponent, 'textarea__control');
                 this.rootComponentDOMNode = YummiesDOM.findDOMNode(this.rootComponent);
-                this.inputControlDOMNode = YummiesDOM.findDOMNode(this.inputControl);
+                this.inputControlDOMNode = TestUtils.findRenderedDOMComponentWithClass(this.rootComponent, 'textarea__control');
             };
 
             this.renderWithProps();

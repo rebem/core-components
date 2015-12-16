@@ -21,9 +21,8 @@ describe('radio', () => {
         beforeEach(function() {
             this.renderWithProps = props => {
                 this.rootComponent = renderOnce(Radio(props));
-                this.inputControl = TestUtils.findRenderedDOMComponentWithClass(this.rootComponent, 'radio__control');
                 this.rootComponentDOMNode = YummiesDOM.findDOMNode(this.rootComponent);
-                this.inputControlDOMNode = YummiesDOM.findDOMNode(this.inputControl);
+                this.inputControlDOMNode = TestUtils.findRenderedDOMComponentWithClass(this.rootComponent, 'radio__control');
             };
 
             this.renderWithProps();
@@ -63,9 +62,8 @@ describe('radio', () => {
 
             it('radio group', function() {
                 const radio1 = renderOnce(Radio({ name: 'group1' }));
-                const radio1InputControl = TestUtils.findRenderedDOMComponentWithClass(radio1, 'radio__control');
                 const radio1DOMNode = YummiesDOM.findDOMNode(radio1);
-                const radio1InputControlDOMNode = YummiesDOM.findDOMNode(radio1InputControl);
+                const radio1InputControlDOMNode = TestUtils.findRenderedDOMComponentWithClass(radio1, 'radio__control');
 
                 const radio2 = renderOnce(Radio({ name: 'group1', checked: true }));
                 const radio2DOMNode = YummiesDOM.findDOMNode(radio2);
@@ -179,9 +177,8 @@ describe('radio', () => {
         describe('componentWillUnmount', () => {
             it('remove radio from existing group', function() {
                 const radio1 = renderOnce(Radio({ name: 'group2' }));
-                const radio1InputControl = TestUtils.findRenderedDOMComponentWithClass(radio1, 'radio__control');
                 const radio1DOMNode = YummiesDOM.findDOMNode(radio1);
-                const radio1InputControlDOMNode = YummiesDOM.findDOMNode(radio1InputControl);
+                const radio1InputControlDOMNode = TestUtils.findRenderedDOMComponentWithClass(radio1, 'radio__control');
 
                 const radio2 = renderOnce(Radio({ name: 'group2', checked: true }));
                 const radio2DOMNode = YummiesDOM.findDOMNode(radio2);

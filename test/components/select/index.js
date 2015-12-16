@@ -23,9 +23,8 @@ describe('select', () => {
         beforeEach(function() {
             this.renderWithProps = props => {
                 this.rootComponent = renderOnce(Select(props));
-                this.inputControl = TestUtils.findRenderedDOMComponentWithClass(this.rootComponent, 'select__control');
                 this.rootComponentDOMNode = YummiesDOM.findDOMNode(this.rootComponent);
-                this.inputControlDOMNode = YummiesDOM.findDOMNode(this.inputControl);
+                this.inputControlDOMNode = TestUtils.findRenderedDOMComponentWithClass(this.rootComponent, 'select__control');
             };
 
             this.renderWithProps();
@@ -85,11 +84,9 @@ describe('select', () => {
                 });
 
                 const options = TestUtils.scryRenderedDOMComponentsWithTag(this.rootComponent, 'option');
-                const option1DOMNode = YummiesDOM.findDOMNode(options[0]);
-                const option2DOMNode = YummiesDOM.findDOMNode(options[1]);
 
-                expect(option1DOMNode.selected).to.be.false;
-                expect(option2DOMNode.selected).to.be.true;
+                expect(options[0].selected).to.be.false;
+                expect(options[1].selected).to.be.true;
             });
         });
 

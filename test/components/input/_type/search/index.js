@@ -19,9 +19,8 @@ describe('input_type_search', () => {
     describe('DOM', () => {
         it('initial', function() {
             const rootComponent = renderOnce(Input());
-            const inputControl = TestUtils.findRenderedDOMComponentWithClass(rootComponent, 'input__control');
             const rootComponentDOMNode = YummiesDOM.findDOMNode(rootComponent);
-            const inputControlDOMNode = YummiesDOM.findDOMNode(inputControl);
+            const inputControlDOMNode = TestUtils.findRenderedDOMComponentWithClass(rootComponent, 'input__control');
 
             expect(rootComponentDOMNode).to.have.mods({ type: 'search' });
             expect(inputControlDOMNode.type).to.be.equal('search');

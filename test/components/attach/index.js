@@ -49,7 +49,7 @@ describe('attach', () => {
                     elem: 'value'
                 });
 
-                expect(inputValueDOMNode.innerText).to.be.equal('test');
+                expect(inputValueDOMNode.textContent).to.be.equal('test');
             });
 
             it('hover', function() {

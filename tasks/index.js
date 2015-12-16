@@ -1,4 +1,5 @@
-export { cleanCoverage } from './clean';
+export { cleanBuild, cleanCoverage } from './clean';
+export { babelBuild } from './build';
 export { karmaBuild, karmaDev, karmaTravis } from './karma';
 export { eslint } from './lint';
 export { coveralls } from './coveralls';
@@ -20,4 +21,9 @@ export const travis = [
     exports.cleanCoverage,
     exports.karmaTravis,
     exports.coveralls
+];
+
+export const build = [
+    exports.cleanBuild,
+    exports.babelBuild
 ];

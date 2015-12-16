@@ -10,7 +10,7 @@
     "Denis Koltsov <iam@mistadikay.com> (https://github.com/mistadikay)"
   ],
   "files": [
-    "components/",
+    "build/",
     "LICENSE"
   ],
   "dependencies": {
@@ -25,6 +25,8 @@
   "devDependencies": {
     "start": "1.1.x",
     "husky": "0.10.x",
+    "recursive-readdir": "1.3.x",
+    "node-mkdirp": "0.0.x",
 
     "eslint": "1.10.x",
     "eslint-plugin-babel": "3.0.x",
@@ -62,6 +64,8 @@
   },
   "scripts": {
     "task": "babel-node node_modules/.bin/start tasks/",
+
+    "build": "npm run task build",
 
     "lint": "npm run task eslint",
     "test": "npm run task test",

@@ -76,7 +76,7 @@ export default Base => class extends Base {
         }
     }
 
-    _getOptions() {
+    _renderOptions() {
         return this.props.options.map(option => {
             return {
                 tag: 'option',
@@ -117,7 +117,7 @@ export default Base => class extends Base {
                         onMouseEnter: ::this._onSelectMouseEnter,
                         key: 'control'
                     },
-                    content: this._getOptions()
+                    content: this._renderOptions()
                 },
                 ...[ this.props.children ]
             ]

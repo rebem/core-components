@@ -13,7 +13,7 @@ export default Base => class extends Base {
         };
     }
 
-    _getTitles() {
+    _renderTitles() {
         return this.props.tabs.map((child, i) => {
             return {
                 elem: 'title',
@@ -32,7 +32,7 @@ export default Base => class extends Base {
         });
     }
 
-    _getPanels() {
+    _renderPanels() {
         return this.props.tabs.map((child, i) => {
             return {
                 elem: 'panel',
@@ -66,14 +66,14 @@ export default Base => class extends Base {
                     props: {
                         key: 'titles'
                     },
-                    content: this._getTitles()
+                    content: this._renderTitles()
                 },
                 {
                     elem: 'panels',
                     props: {
                         key: 'panels'
                     },
-                    content: this._getPanels()
+                    content: this._renderPanels()
                 }
             ]
         };

@@ -62,12 +62,14 @@
   },
   "scripts": {
     "task": "babel-node node_modules/.bin/start tasks/",
+
     "lint": "npm run task eslint",
     "test": "npm run task test",
     "tdd": "npm run task tdd",
     "start": "npm run task demo",
     "travis": "npm run task travis",
-    "precommit": "npm run task eslint"
+
+    "prepush": "npm test"
   },
   "engines": {
     "node": ">=0.12.0",

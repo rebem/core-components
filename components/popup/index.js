@@ -62,6 +62,9 @@ export default Base => class extends Base {
 
         return {
             block: 'popup',
+            mods: {
+                visibility: this.state.visibility
+            },
             onKeyUp: this._onKeyUp,
             content: [
                 {

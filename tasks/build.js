@@ -1,4 +1,5 @@
-const indexFileName = 'index.js';
+const inFileName = 'index.js';
+const outFileName = 'index.js';
 
 export function babelBuild() {
     const fs = require('fs');
@@ -18,12 +19,12 @@ export function babelBuild() {
 
             return Promise.all(
                 readDirResult.files
-                    .filter(inFile => path.extname(inFile) === path.extname(indexFileName))
+                    .filter(inFile => path.extname(inFile) === path.extname(inFileName))
                     .map(inFile => {
                         const inDir = path.dirname(inFile);
                         const relativeInDir = path.relative(inRootDir, inDir);
                         const outDir = path.resolve(outRootDir, relativeInDir);
-                        const outFile = path.resolve(outDir, indexFileName);
+                        const outFile = path.resolve(outDir, outFileName);
 
                         return new Promise((resolve, reject) => {
                             mkdirp(outDir, (mkdirpErr) => {

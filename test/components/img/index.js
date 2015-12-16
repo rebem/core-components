@@ -16,7 +16,7 @@ describe('img', () => {
         });
     });
 
-    describe('DOM', () => {
+    describe('render', () => {
         beforeEach(function() {
             this.renderWithProps = props => {
                 this.rootComponent = renderOnce(Img(props));
@@ -26,19 +26,21 @@ describe('img', () => {
             this.renderWithProps();
         });
 
-        it('initial', function() {
-            expect(this.rootComponentDOMNode.tagName).to.be.equal('IMG');
-            expect(this.rootComponentDOMNode).to.be.a.block('img');
-        });
-
-        it('props', function() {
-            const testWidth = 200;
-
-            this.renderWithProps({
-                width: testWidth
+        describe('DOM', () => {
+            it('initial', function() {
+                expect(this.rootComponentDOMNode.tagName).to.be.equal('IMG');
+                expect(this.rootComponentDOMNode).to.be.a.block('img');
             });
 
-            expect(this.rootComponentDOMNode.width).to.be.equal(testWidth);
+            it('props', function() {
+                const testWidth = 200;
+
+                this.renderWithProps({
+                    width: testWidth
+                });
+
+                expect(this.rootComponentDOMNode.width).to.be.equal(testWidth);
+            });
         });
     });
 });

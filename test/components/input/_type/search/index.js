@@ -16,18 +16,20 @@ describe('input_type_search', () => {
         });
     });
 
-    describe('DOM', () => {
-        it('initial', function() {
-            const rootComponent = renderOnce(Input());
-            const rootComponentDOMNode = YummiesDOM.findDOMNode(rootComponent);
-            const inputControlDOMNode = TestUtils.findRenderedDOMComponentWithClass(rootComponent, 'input__control');
+    describe('render', () => {
+        describe('DOM', () => {
+            it('initial', function() {
+                const rootComponent = renderOnce(Input());
+                const rootComponentDOMNode = YummiesDOM.findDOMNode(rootComponent);
+                const inputControlDOMNode = TestUtils.findRenderedDOMComponentWithClass(rootComponent, 'input__control');
 
-            expect(rootComponentDOMNode).to.have.mods({ type: 'search' });
-            expect(inputControlDOMNode.type).to.be.equal('search');
-            expect(inputControlDOMNode.getAttribute('autocomplete')).to.be.equal('off');
-            expect(inputControlDOMNode.getAttribute('autocapitalize')).to.be.equal('off');
-            expect(inputControlDOMNode.getAttribute('autocorrect')).to.be.equal('off');
-            expect(inputControlDOMNode.getAttribute('spellcheck')).to.be.equal('off');
+                expect(rootComponentDOMNode).to.have.mods({ type: 'search' });
+                expect(inputControlDOMNode.type).to.be.equal('search');
+                expect(inputControlDOMNode.getAttribute('autocomplete')).to.be.equal('off');
+                expect(inputControlDOMNode.getAttribute('autocapitalize')).to.be.equal('off');
+                expect(inputControlDOMNode.getAttribute('autocorrect')).to.be.equal('off');
+                expect(inputControlDOMNode.getAttribute('spellcheck')).to.be.equal('off');
+            });
         });
     });
 });

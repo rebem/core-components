@@ -17,7 +17,7 @@ describe('link', () => {
         });
     });
 
-    describe('DOM', () => {
+    describe('render', () => {
         beforeEach(function() {
             this.renderWithProps = props => {
                 this.rootComponent = renderOnce(Link(props));
@@ -27,30 +27,32 @@ describe('link', () => {
             this.renderWithProps();
         });
 
-        it('initial', function() {
-            expect(this.rootComponentDOMNode.tagName).to.be.equal('A');
-            expect(this.rootComponentDOMNode).to.be.a.block('link');
-        });
-
-        it('props', function() {
-            this.renderWithProps({
-                href: '#test'
+        describe('DOM', () => {
+            it('initial', function() {
+                expect(this.rootComponentDOMNode.tagName).to.be.equal('A');
+                expect(this.rootComponentDOMNode).to.be.a.block('link');
             });
 
-            expect(this.rootComponentDOMNode.href).to.be.equal(location.href + '#test');
-        });
+            it('props', function() {
+                this.renderWithProps({
+                    href: '#test'
+                });
 
-        it('children', function() {
-            this.renderWithProps({
-                children: Yummies.createElement('div', {
-                    key: 'test',
-                    className: 'test-children'
-                })
+                expect(this.rootComponentDOMNode.href).to.be.equal(location.href + '#test');
             });
 
-            expect(
-                TestUtils.findRenderedDOMComponentWithClass(this.rootComponent, 'test-children')
-            ).to.be.block('test-children');
+            it('children', function() {
+                this.renderWithProps({
+                    children: Yummies.createElement('div', {
+                        key: 'test',
+                        className: 'test-children'
+                    })
+                });
+
+                expect(
+                    TestUtils.findRenderedDOMComponentWithClass(this.rootComponent, 'test-children')
+                ).to.be.block('test-children');
+            });
         });
     });
 });

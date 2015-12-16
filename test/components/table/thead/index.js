@@ -17,7 +17,7 @@ describe('table/thead', () => {
         });
     });
 
-    describe('DOM', () => {
+    describe('render', () => {
         beforeEach(function() {
             this.renderWithProps = props => {
                 this.rootComponent = renderOnce(TableThead(props), 'table');
@@ -27,35 +27,37 @@ describe('table/thead', () => {
             this.renderWithProps();
         });
 
-        it('initial', function() {
-            expect(this.rootComponentDOMNode.tagName).to.be.equal('THEAD');
-            expect(this.rootComponentDOMNode).to.be.an.elem({
-                block: 'table',
-                elem: 'head'
-            });
-        });
-
-        it('props', function() {
-            const testAttr = 'test';
-
-            this.renderWithProps({
-                'data-test-attr': testAttr
+        describe('DOM', () => {
+            it('initial', function() {
+                expect(this.rootComponentDOMNode.tagName).to.be.equal('THEAD');
+                expect(this.rootComponentDOMNode).to.be.an.elem({
+                    block: 'table',
+                    elem: 'head'
+                });
             });
 
-            expect(this.rootComponentDOMNode.getAttribute('data-test-attr')).to.be.equal(testAttr);
-        });
+            it('props', function() {
+                const testAttr = 'test';
 
-        it('children', function() {
-            this.renderWithProps({
-                children: Yummies.createElement('tr', {
-                    key: 'test',
-                    className: 'test-children'
-                })
+                this.renderWithProps({
+                    'data-test-attr': testAttr
+                });
+
+                expect(this.rootComponentDOMNode.getAttribute('data-test-attr')).to.be.equal(testAttr);
             });
 
-            expect(
-                TestUtils.findRenderedDOMComponentWithClass(this.rootComponent, 'test-children')
-            ).to.be.block('test-children');
+            it('children', function() {
+                this.renderWithProps({
+                    children: Yummies.createElement('tr', {
+                        key: 'test',
+                        className: 'test-children'
+                    })
+                });
+
+                expect(
+                    TestUtils.findRenderedDOMComponentWithClass(this.rootComponent, 'test-children')
+                ).to.be.block('test-children');
+            });
         });
     });
 });

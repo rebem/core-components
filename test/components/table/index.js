@@ -17,7 +17,7 @@ describe('table', () => {
         });
     });
 
-    describe('DOM', () => {
+    describe('render', () => {
         beforeEach(function() {
             this.renderWithProps = props => {
                 this.rootComponent = renderOnce(Table(props));
@@ -27,32 +27,34 @@ describe('table', () => {
             this.renderWithProps();
         });
 
-        it('initial', function() {
-            expect(this.rootComponentDOMNode.tagName).to.be.equal('TABLE');
-            expect(this.rootComponentDOMNode).to.be.a.block('table');
-        });
-
-        it('props', function() {
-            const testCellpadding = 5;
-
-            this.renderWithProps({
-                cellPadding: testCellpadding
+        describe('DOM', () => {
+            it('initial', function() {
+                expect(this.rootComponentDOMNode.tagName).to.be.equal('TABLE');
+                expect(this.rootComponentDOMNode).to.be.a.block('table');
             });
 
-            expect(this.rootComponentDOMNode.cellPadding).to.be.equal(String(testCellpadding));
-        });
+            it('props', function() {
+                const testCellpadding = 5;
 
-        it('children', function() {
-            this.renderWithProps({
-                children: Yummies.createElement('tbody', {
-                    key: 'test',
-                    className: 'test-children'
-                })
+                this.renderWithProps({
+                    cellPadding: testCellpadding
+                });
+
+                expect(this.rootComponentDOMNode.cellPadding).to.be.equal(String(testCellpadding));
             });
 
-            expect(
-                TestUtils.findRenderedDOMComponentWithClass(this.rootComponent, 'test-children')
-            ).to.be.block('test-children');
+            it('children', function() {
+                this.renderWithProps({
+                    children: Yummies.createElement('tbody', {
+                        key: 'test',
+                        className: 'test-children'
+                    })
+                });
+
+                expect(
+                    TestUtils.findRenderedDOMComponentWithClass(this.rootComponent, 'test-children')
+                ).to.be.block('test-children');
+            });
         });
     });
 });

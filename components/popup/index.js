@@ -12,28 +12,22 @@ export default Base => class extends Base {
         this.state = {
             visibility: false
         };
-
-        this._onKeyUp = this._onKeyUp.bind(this);
     }
 
     _onKeyUp(e) {
-        // hide on Esc
         if (e.keyCode === ESC_KEYCODE) {
             this.hide();
         }
     }
 
     _onChange(e) {
-        if (e.target.checked) {
-            this.show();
-        } else {
+        if (!e.target.checked) {
             this.hide();
         }
     }
 
     show() {
-        // todo will broke when rendering on server
-        window.addEventListener('keyup', this._onKeyUp);
+        this.refs.popup.focus();
 
         this.setState({
             visibility: true
@@ -45,9 +39,6 @@ export default Base => class extends Base {
     }
 
     hide() {
-        // todo will broke when rendering on server
-        window.removeEventListener('keyup', this._onKeyUp);
-
         this.setState({
             visibility: false
         }, () => {
@@ -62,10 +53,11 @@ export default Base => class extends Base {
 
         return {
             block: 'popup',
-            mods: {
-                visibility: this.state.visibility
+            props: {
+                tabIndex: -1,
+                onKeyUp: ::this._onKeyUp,
+                ref: 'popup'
             },
-            onKeyUp: this._onKeyUp,
             content: [
                 {
                     elem: 'switcher',

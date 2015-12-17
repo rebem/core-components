@@ -8,7 +8,7 @@ export function babelBuild() {
     const mkdirp = require('mkdirp');
     const babel = require('babel-core');
 
-    const inRootDir = path.resolve('components/');
+    const inRootDir = path.resolve('src/');
     const outRootDir = path.resolve('build/');
 
     return new Promise((rootResolve, rootReject) => {

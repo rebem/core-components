@@ -28,10 +28,10 @@ export function demo() {
                     test: /\.js$/,
                     include: [
                         path.resolve('demo/'),
-                        path.resolve('components/')
+                        path.resolve('src/')
                     ],
                     loaders: [
-                        '@yummies/inheritance-loader?layers[]=components/&layers[]=demo/components/',
+                        '@yummies/inheritance-loader?layers[]=src/&layers[]=demo/components/',
                         'babel?cacheDirectory'
                     ]
                 }

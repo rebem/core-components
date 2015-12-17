@@ -12,19 +12,19 @@ export default {
             {
                 test: /\.js$/,
                 exclude: [
-                    path.resolve('components/'),
+                    path.resolve('src/'),
                     path.resolve('node_modules/')
                 ],
                 loaders: [
-                    '@yummies/inheritance-loader?layers[]=components/',
+                    '@yummies/inheritance-loader?layers[]=src/',
                     'babel?cacheDirectory'
                 ]
             },
             {
                 test: /\.js$/,
-                include: path.resolve('components/'),
+                include: path.resolve('src/'),
                 loaders: [
-                    '@yummies/inheritance-loader?layers[]=components/',
+                    '@yummies/inheritance-loader?layers[]=src/',
                     'isparta'
                 ]
             }

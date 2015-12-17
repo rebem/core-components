@@ -40,23 +40,6 @@ static mixins() {
 mixins: [ DragDropMixin ],
 ```
 
-- `propTypes`
-```js
-// es6
-static propTypes() {
-    return {
-       onChange: PropTypes.func.isRequired,
-       ...
-   };
-}
-
-// old syntax
-propTypes: {
-   onChange: PropTypes.func.isRequired,
-   ...
-}
-```
-
 #### 2. init
 
 - `defaultProps` static getter (`getDefaultProps` method for old syntax)

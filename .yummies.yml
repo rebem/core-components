@@ -1,0 +1,3 @@
+dir: build/
+files:
+  main: index.js

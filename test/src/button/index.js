@@ -107,6 +107,18 @@ describe('button', () => {
                 expect(spy).to.have.been.called.once;
             });
 
+            it('onClick', function() {
+                const spy = chai.spy();
+
+                this.renderWithProps({ onClick: spy });
+                TestUtils.Simulate.click(this.inputControlDOMNode);
+                expect(spy).to.have.been.called.once;
+
+                this.renderWithProps();
+                TestUtils.Simulate.click(this.inputControlDOMNode);
+                expect(spy).to.have.been.called.once;
+            });
+
             it('onMouseEnter', function() {
                 const spy = chai.spy();
 

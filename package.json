@@ -15,7 +15,6 @@
     "LICENSE"
   ],
   "dependencies": {
-    "react-attrs-filter": "0.1.x",
     "component-uid": "0.0.x",
     "eventemitter3": "1.1.x"
   },

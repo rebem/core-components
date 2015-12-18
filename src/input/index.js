@@ -1,5 +1,3 @@
-import { filterPropsFor } from 'react-attrs-filter';
-
 export default Base => class extends Base {
     static displayName = 'core: input';
 
@@ -90,7 +88,7 @@ export default Base => class extends Base {
                     tag: 'input',
                     props: {
                         type: 'text',
-                        ...filterPropsFor(this.props, 'input'),
+                        ...this.props,
                         value: this.state.value,
                         onChange: ::this._onInputChange,
                         onFocus: ::this._onInputFocus,

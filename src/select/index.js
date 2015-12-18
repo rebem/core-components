@@ -1,5 +1,3 @@
-import { filterPropsFor } from 'react-attrs-filter';
-
 export default Base => class extends Base {
     static displayName = 'core: select';
     static defaultProps = {
@@ -108,7 +106,7 @@ export default Base => class extends Base {
                     tag: 'select',
                     ref: 'control',
                     props: {
-                        ...filterPropsFor(this.props, 'select'),
+                        ...this.props,
                         value: this.state.value,
                         onChange: ::this._onSelectChange,
                         onFocus: ::this._onSelectFocus,

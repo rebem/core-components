@@ -1,3 +1,4 @@
-dir: components/
-files:
-  main: index.js
+src:
+  path: components/
+  files:
+    main: index.js

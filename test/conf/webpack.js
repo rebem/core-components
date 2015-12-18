@@ -7,6 +7,14 @@ export default {
             test: path.resolve('test/')
         }
     },
+    yummies: {
+        layers: [
+            {
+                path: './',
+                mode: 'src'
+            }
+        ]
+    },
     module: {
         preLoaders: [
             {
@@ -16,7 +24,7 @@ export default {
                     path.resolve('node_modules/')
                 ],
                 loaders: [
-                    '@yummies/inheritance-loader?layers[]=src/',
+                    '@yummies/inheritance-loader',
                     'babel?cacheDirectory'
                 ]
             },
@@ -24,7 +32,7 @@ export default {
                 test: /\.js$/,
                 include: path.resolve('src/'),
                 loaders: [
-                    '@yummies/inheritance-loader?layers[]=src/',
+                    '@yummies/inheritance-loader',
                     'isparta'
                 ]
             }

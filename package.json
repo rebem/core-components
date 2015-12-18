@@ -11,6 +11,7 @@
   ],
   "files": [
     "build/",
+    ".yummies.yml",
     "LICENSE"
   ],
   "dependencies": {
@@ -41,7 +42,7 @@
 
     "@yummies/yummies": "1.0.x",
     "@yummies/dom": "1.0.x",
-    "@yummies/inheritance-loader": "0.1.x",
+    "@yummies/inheritance-loader": "1.0.x",
     "react-addons-test-utils": "0.14.x",
 
     "webpack": "1.12.x",

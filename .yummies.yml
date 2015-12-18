@@ -1,3 +1,9 @@
-dir: build/
-files:
-  main: index.js
+default:
+  path: build/
+  files:
+    main: index.js
+
+src:
+  path: src/
+  files:
+    main: index.js

@@ -40,8 +40,8 @@
     "babel-plugin-add-module-exports": "0.1.x",
     "babel-loader": "6.2.x",
 
-    "@yummies/yummies": "1.0.x",
-    "@yummies/dom": "1.0.x",
+    "@yummies/yummies": "2.0.x",
+    "@yummies/dom": "2.0.x",
     "@yummies/inheritance-loader": "1.0.x",
     "react-addons-test-utils": "0.14.x",
 

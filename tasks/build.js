@@ -44,7 +44,9 @@ export function babelBuild() {
                             });
                         });
                     })
-            ).then(rootResolve);
+            )
+            .then(rootResolve)
+            .catch(rootReject);
         });
     });
 }

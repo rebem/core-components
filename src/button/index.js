@@ -12,24 +12,6 @@ export default Base => class extends Base {
         };
     }
 
-    componentWillReceiveProps({ value }) {
-        if (this.props.value !== value) {
-            this.setState({
-                value
-            });
-        }
-    }
-
-    _onInputChange(e) {
-        this.setState({
-            value: e.target.value
-        });
-
-        if (this.props.onChange) {
-            this.props.onChange(e);
-        }
-    }
-
     _onInputFocus(e) {
         this.setState({
             focused: true
@@ -91,10 +73,6 @@ export default Base => class extends Base {
         }
     }
 
-    val() {
-        return this.state.value;
-    }
-
     render() {
         return {
             block: 'button',
@@ -113,7 +91,6 @@ export default Base => class extends Base {
                         type: 'button',
                         ...this.props,
                         value: this.state.value,
-                        onChange: ::this._onInputChange,
                         onFocus: ::this._onInputFocus,
                         onBlur: ::this._onInputBlur,
                         onMouseLeave: ::this._onInputMouseLeave,

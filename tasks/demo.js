@@ -22,30 +22,33 @@ export function demo() {
             'webpack/hot/dev-server',
             './demo/index'
         ],
-        yummies: {
-            layers: [
-                {
-                    path: './',
-                    mode: 'src'
-                },
-                {
-                    path: 'demo/',
-                    mode: 'src'
-                }
-            ]
-        },
         module: {
             preLoaders: [
                 {
                     test: /\.js$/,
-                    include: [
-                        path.resolve('demo/'),
-                        path.resolve('src/')
+                    loader: '@yummies/inheritance-loader',
+                    query: {
+                        layers: [
+                            {
+                                path: path.resolve('./'),
+                                mode: 'src'
+                            },
+                            {
+                                path: path.resolve('demo/'),
+                                mode: 'src'
+                            }
+                        ]
+                    }
+                },
+                {
+                    test: /\.js$/,
+                    exclude: [
+                        path.resolve('node_modules/')
                     ],
-                    loaders: [
-                        '@yummies/inheritance-loader',
-                        'babel?cacheDirectory'
-                    ]
+                    loader: 'babel',
+                    query: {
+                        cacheDirectory: true
+                    }
                 }
             ],
             loaders: [

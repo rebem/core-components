@@ -7,34 +7,40 @@ export default {
             test: path.resolve('test/')
         }
     },
-    yummies: {
-        layers: [
-            {
-                path: './',
-                mode: 'src'
-            }
-        ]
-    },
     module: {
         preLoaders: [
+            {
+                test: /\.js$/,
+                loader: '@yummies/inheritance-loader',
+                query: {
+                    layers: [
+                        {
+                            path: path.resolve('./'),
+                            mode: 'src'
+                        }
+                    ],
+                    include: [
+                        path.resolve('test/src/')
+                    ]
+                }
+            },
+            {
+                test: /\.js$/,
+                include: [
+                    path.resolve('src/')
+                ],
+                loader: 'isparta'
+            },
             {
                 test: /\.js$/,
                 exclude: [
                     path.resolve('src/'),
                     path.resolve('node_modules/')
                 ],
-                loaders: [
-                    '@yummies/inheritance-loader',
-                    'babel?cacheDirectory'
-                ]
-            },
-            {
-                test: /\.js$/,
-                include: path.resolve('src/'),
-                loaders: [
-                    '@yummies/inheritance-loader',
-                    'isparta'
-                ]
+                loader: 'babel',
+                query: {
+                    cacheDirectory: true
+                }
             }
         ],
         loaders: [

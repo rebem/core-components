@@ -1,11 +1,14 @@
 export default Base => class extends Base {
     static displayName = 'core: input';
+    static defaultProps = {
+        value: ''
+    };
 
     constructor(props) {
         super(props);
 
         this.state = {
-            value: props.value || '',
+            value: props.value,
             focused: false,
             hovered: false
         };

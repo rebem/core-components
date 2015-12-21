@@ -95,7 +95,29 @@ describe('attach', () => {
             });
         });
 
+        describe('API', () => {
+            it('val()', function() {
+                expect(this.rootComponent.val()).to.be.equal(null);
+            });
+        });
+
         describe('callbacks', () => {
+            it('onChange', function() {
+                const spy = chai.spy();
+
+                this.renderWithProps({
+                    onChange(e) {
+                        spy(e.target.value);
+                    }
+                });
+                TestUtils.Simulate.change(this.inputControlDOMNode, { target: { value: '' } });
+                expect(spy).to.have.been.called.with('');
+
+                this.renderWithProps();
+                TestUtils.Simulate.change(this.inputControlDOMNode, { target: { value: '' } });
+                expect(spy).to.have.been.called.with('');
+            });
+
             it('onFocus', function() {
                 const spy = chai.spy();
 

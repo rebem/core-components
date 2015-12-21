@@ -1,12 +1,10 @@
 import UID from 'component-uid';
 import EventEmitter from 'eventemitter3';
 
-import InputClass from '#input?raw&-styles';
-
 const UID_LENGTH = 20;
 const radioGroup = new EventEmitter();
 
-export default Base => class extends InputClass(Base) {
+export default Base => class extends Base {
     static displayName = 'core: radio';
     static defaultProps = {
         checked: false
@@ -63,23 +61,75 @@ export default Base => class extends InputClass(Base) {
         }
     }
 
+    _onInputFocus(e) {
+        this.setState({
+            focused: true
+        });
+
+        if (this.props.onFocus) {
+            this.props.onFocus(e);
+        }
+    }
+
+    _onInputBlur(e) {
+        this.setState({
+            focused: false
+        });
+
+        if (this.props.onBlur) {
+            this.props.onBlur(e);
+        }
+    }
+
+    _onInputMouseEnter(e) {
+        this.setState({
+            hovered: true
+        });
+
+        if (this.props.onMouseEnter) {
+            this.props.onMouseEnter(e);
+        }
+    }
+
+    _onInputMouseLeave(e) {
+        this.setState({
+            hovered: false
+        });
+
+        if (this.props.onMouseLeave) {
+            this.props.onMouseLeave(e);
+        }
+    }
+
     render() {
-        const template = super.render();
-
-        template.block = 'radio';
-
-        template.mods = {
-            ...template.mods,
-            checked: this.state.checked
+        return {
+            block: 'radio',
+            tag: 'label',
+            mods: {
+                focused: this.state.focused,
+                hovered: this.state.hovered,
+                checked: this.state.checked,
+                disabled: this.props.disabled
+            },
+            content: [
+                {
+                    elem: 'control',
+                    tag: 'input',
+                    props: {
+                        type: 'radio',
+                        ...this.props,
+                        checked: this.state.checked,
+                        onChange: ::this._onInputChange,
+                        onFocus: ::this._onInputFocus,
+                        onBlur: ::this._onInputBlur,
+                        onMouseLeave: ::this._onInputMouseLeave,
+                        onMouseEnter: ::this._onInputMouseEnter,
+                        ref: 'control',
+                        key: 'control'
+                    }
+                },
+                ...[ this.props.children ]
+            ]
         };
-
-        template.content[0].props = {
-            ...template.content[0].props,
-            type: 'radio',
-            checked: this.state.checked,
-            onChange: ::this._onInputChange
-        };
-
-        return template;
     }
 };

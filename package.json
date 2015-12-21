@@ -74,7 +74,8 @@
     "start": "npm run task demo",
     "travis": "npm run task travis",
 
-    "prepush": "npm test"
+    "prepush": "npm test",
+    "prepublish": "npm run build"
   },
   "engines": {
     "node": ">=0.12.0",

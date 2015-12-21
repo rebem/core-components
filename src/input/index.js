@@ -1,6 +1,7 @@
 export default Base => class extends Base {
     static displayName = 'core: input';
     static defaultProps = {
+        disabled: false,
         value: ''
     };
 

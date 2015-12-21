@@ -43,6 +43,7 @@
     "@yummies/dom": "2.0.x",
     "@yummies/inheritance-loader": "2.1.x",
     "react-addons-test-utils": "0.14.x",
+    "legit-tests": "0.6.x",
 
     "webpack": "1.12.x",
     "webpack-dev-server": "1.14.x",

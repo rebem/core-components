@@ -41,7 +41,7 @@
 
     "@yummies/yummies": "2.0.x",
     "@yummies/dom": "2.0.x",
-    "@yummies/inheritance-loader": "3.0.x",
+    "@yummies/inheritance-loader": "3.2.x",
     "react-addons-test-utils": "0.14.x",
     "legit-tests": "0.6.x",
 

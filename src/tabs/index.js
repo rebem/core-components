@@ -5,8 +5,8 @@ export default Base => class extends Base {
         tabs: []
     };
 
-    constructor(props) {
-        super(props);
+    constructor(props, context) {
+        super(props, context);
 
         this.state = {
             selected: this.props.selected

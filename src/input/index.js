@@ -5,8 +5,8 @@ export default Base => class extends Base {
         value: ''
     };
 
-    constructor(props) {
-        super(props);
+    constructor(props, context) {
+        super(props, context);
 
         this.state = {
             value: props.value,

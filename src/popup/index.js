@@ -6,8 +6,8 @@ const UID_LENGTH = 20;
 export default Base => class extends Base {
     static displayName = 'core: popup';
 
-    constructor(props) {
-        super(props);
+    constructor(props, context) {
+        super(props, context);
 
         this.state = {
             visibility: false

@@ -1,8 +1,8 @@
 export default Base => class extends Base {
     static displayName = 'core: colorpicker';
 
-    constructor(props) {
-        super(props);
+    constructor(props, context) {
+        super(props, context);
 
         this.state = {
             value: props.value || '',

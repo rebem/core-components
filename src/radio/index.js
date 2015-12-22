@@ -10,8 +10,8 @@ export default Base => class extends Base {
         checked: false
     };
 
-    constructor(props) {
-        super(props);
+    constructor(props, context) {
+        super(props, context);
 
         this._uid = UID(UID_LENGTH);
         this.state = {

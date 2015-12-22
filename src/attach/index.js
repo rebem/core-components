@@ -4,8 +4,8 @@ export default Base => class extends Base {
         disabled: false
     };
 
-    constructor(props) {
-        super(props);
+    constructor(props, context) {
+        super(props, context);
 
         this.state = {
             pressed: false,

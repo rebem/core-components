@@ -3,9 +3,9 @@ import YummiesDOM from '@yummies/dom';
 import { expect } from 'chai';
 import { renderOnce } from 'test/helpers/render';
 
-import Input from '#input?_type=search';
+import Input from '#input/_type/search';
 
-describe('input_type_search', () => {
+describe('input/_type/search', () => {
     describe('basic', () => {
         it('exists', () => {
             expect(Input).to.exist;

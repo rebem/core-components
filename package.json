@@ -41,7 +41,7 @@
 
     "@yummies/yummies": "2.1.x",
     "@yummies/dom": "2.0.x",
-    "@yummies/inheritance-loader": "3.2.x",
+    "@yummies/layers-loader": "0.0.x",
     "react-addons-test-utils": "0.14.x",
     "legit-tests": "0.6.x",
 
@@ -54,7 +54,7 @@
     "chai": "3.4.x",
     "chai-spies": "0.7.x",
     "chai-bem": "1.2.x",
-    "karma": "0.13.x",
+    "karma": "0.13.15",
     "karma-mocha": "0.2.x",
     "karma-mocha-reporter": "1.1.x",
     "karma-chrome-launcher": "0.2.x",

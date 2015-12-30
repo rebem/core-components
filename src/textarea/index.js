@@ -2,12 +2,16 @@ import { Component } from '@yummies/yummies';
 
 export default class extends Component {
     static displayName = 'core: textarea';
+    static defaultProps = {
+        value: '',
+        disabled: false
+    };
 
     constructor(props, context) {
         super(props, context);
 
         this.state = {
-            value: props.value || '',
+            value: props.value,
             focused: false,
             hovered: false
         };
@@ -82,7 +86,7 @@ export default class extends Component {
             mods: {
                 focused: this.state.focused,
                 hovered: this.state.hovered,
-                disabled: this.props.disabled || false
+                disabled: this.props.disabled
             },
             content: [
                 {

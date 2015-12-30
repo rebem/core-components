@@ -2,6 +2,9 @@ import { Component } from '@yummies/yummies';
 
 export default class extends Component {
     static displayName = 'core: checkbox';
+    static defaultProps = {
+        disabled: false
+    };
 
     constructor(props, context) {
         super(props, context);
@@ -83,7 +86,7 @@ export default class extends Component {
                 focused: this.state.focused,
                 hovered: this.state.hovered,
                 checked: this.state.checked,
-                disabled: this.props.disabled || false
+                disabled: this.props.disabled
             },
             content: [
                 {

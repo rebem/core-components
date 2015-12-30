@@ -86,7 +86,7 @@ export default class extends Component {
             mods: {
                 focused: this.state.focused,
                 hovered: this.state.hovered,
-                disabled: this.props.disabled || false
+                disabled: this.props.disabled
             },
             content: [
                 {

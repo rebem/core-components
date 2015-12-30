@@ -89,7 +89,7 @@ describe('tabs', () => {
                     expect(secondPanel.textContent).to.be.equal('2');
                 });
 
-                it('selected', function() {
+                it.skip('selected', function() {
                     expect(this.titlesDOMNode.children[0]).to.have.mods({
                         selected: true
                     });
@@ -102,7 +102,7 @@ describe('tabs', () => {
         });
 
         describe('API', () => {
-            it('selectTab', function() {
+            it.skip('selectTab', function() {
                 this.rootComponent.selectTab(1);
 
                 expect(this.rootComponent.state.selected).to.be.equal(1);
@@ -114,7 +114,7 @@ describe('tabs', () => {
         });
 
         describe('callbacks', () => {
-            it('onTabChange', function() {
+            it.skip('onTabChange', function() {
                 const spy = chai.spy();
 
                 this.renderWithProps({

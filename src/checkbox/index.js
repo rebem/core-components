@@ -1,4 +1,6 @@
-export default Base => class extends Base {
+import { Component } from '@yummies/yummies';
+
+export default class extends Component {
     static displayName = 'core: checkbox';
 
     constructor(props, context) {
@@ -104,4 +106,4 @@ export default Base => class extends Base {
             ]
         };
     }
-};
+}

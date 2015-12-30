@@ -1,10 +1,11 @@
+import { Component } from '@yummies/yummies';
 import UID from 'component-uid';
 import EventEmitter from 'eventemitter3';
 
 const UID_LENGTH = 20;
 const radioGroup = new EventEmitter();
 
-export default Base => class extends Base {
+export default class extends Component {
     static displayName = 'core: radio';
     static defaultProps = {
         checked: false
@@ -132,4 +133,4 @@ export default Base => class extends Base {
             ]
         };
     }
-};
+}

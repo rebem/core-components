@@ -1,9 +1,10 @@
+import { Component } from '@yummies/yummies';
 import UID from 'component-uid';
 
 const ESC_KEYCODE = 27;
 const UID_LENGTH = 20;
 
-export default Base => class extends Base {
+export default class extends Component {
     static displayName = 'core: popup';
 
     constructor(props, context) {
@@ -99,4 +100,4 @@ export default Base => class extends Base {
             ]
         };
     }
-};
+}

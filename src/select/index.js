@@ -1,4 +1,6 @@
-export default Base => class extends Base {
+import { Component } from '@yummies/yummies';
+
+export default class extends Component {
     static displayName = 'core: select';
     static defaultProps = {
         value: null,
@@ -121,4 +123,4 @@ export default Base => class extends Base {
             ]
         };
     }
-};
+}

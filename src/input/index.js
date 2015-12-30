@@ -1,4 +1,6 @@
-export default Base => class extends Base {
+import { Component } from '@yummies/yummies';
+
+export default class extends Component {
     static displayName = 'core: input';
     static defaultProps = {
         disabled: false,
@@ -107,4 +109,4 @@ export default Base => class extends Base {
             ]
         };
     }
-};
+}

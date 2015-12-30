@@ -1,23 +1,20 @@
-export default Base => class extends Base {
+import { Component } from '@yummies/yummies';
+
+import Input from '#input';
+
+export default class extends Component {
     static displayName = 'core: input/_type/search';
 
     render() {
-        const template = super.render();
-
-        template.mods = {
-            ...template.mods,
-            type: 'search'
-        };
-
-        template.content[0].props = {
-            ...template.content[0].props,
+        return Input({
             type: 'search',
             autoComplete: 'off',
             autoCapitalize: 'off',
             autoCorrect: 'off',
-            spellCheck: 'off'
-        };
-
-        return template;
+            spellCheck: 'off',
+            mods: {
+                type: 'search'
+            }
+        });
     }
-};
+}

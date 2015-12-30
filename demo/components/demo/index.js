@@ -18,6 +18,18 @@ import Textarea from '#textarea';
 export default class extends Component {
     static displayName = 'Demo';
 
+    constructor(props, context) {
+        super(props, context);
+
+        this.state = {
+            selectedTabIndex: 0
+        };
+    }
+
+    onTabChange(selectedTabIndex) {
+        this.setState({ selectedTabIndex });
+    }
+
     _showPopup() {
         this.refs.popup.show();
     }
@@ -163,7 +175,7 @@ export default class extends Component {
                         key: 'tabs'
                     },
                     Tabs({
-                        _tabs: [
+                        tabs: [
                             {
                                 id: 1,
                                 title: 'tab 1',
@@ -179,7 +191,9 @@ export default class extends Component {
                                 title: 'tab 3',
                                 content: 'tab 3 content'
                             }
-                        ]
+                        ],
+                        selected: this.state.selectedTabIndex,
+                        onTabChange: ::this.onTabChange
                     })
                 ),
                 DemoItem(

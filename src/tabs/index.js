@@ -1,61 +1,46 @@
 import { Component } from '@yummies/yummies';
+import Titles from '#tabs/titles';
+import Title from '#tabs/title';
 
 export default class extends Component {
     static displayName = 'core: tabs';
     static defaultProps = {
-        selected: 0,
         tabs: []
     };
 
-    constructor(props, context) {
-        super(props, context);
+    renderTitles() {
+        if ('renderTitles' in this.props) {
+            return this.props.renderTitles();
+        }
 
-        this.state = {
-            selected: this.props.selected
-        };
+        return Titles(
+            {
+                ...this.props,
+                key: 'titles'
+            },
+            this.props.tabs.map((tab, index) => {
+                return Title({
+                    title: tab.title,
+                    index,
+                    ...this.props,
+                    key: index
+                });
+            })
+        );
     }
 
-    _renderTitles() {
-        return this.props.tabs.map((child, i) => {
-            return {
-                elem: 'title',
-                props: {
-                    onClick: this.selectTab.bind(this, i),
-                    key: 'title' + i
-                },
-                mods: {
-                    selected: this.state.selected === i
-                },
-                content: {
-                    elem: 'title-inner',
-                    content: child.title
-                }
-            };
-        });
-    }
-
-    _renderPanels() {
-        return this.props.tabs.map((child, i) => {
+    renderPanels() {
+        return this.props.tabs.map((tab, index) => {
             return {
                 elem: 'panel',
                 props: {
-                    key: 'panel' + i
+                    key: 'panel' + index
                 },
                 mods: {
-                    selected: this.state.selected === i
+                    selected: this.props.selected === index
                 },
-                content: child.content
+                content: tab.content
             };
-        });
-    }
-
-    selectTab(i) {
-        this.setState({
-            selected: i
-        }, () => {
-            if (this.props.onTabChange) {
-                this.props.onTabChange(i);
-            }
         });
     }
 
@@ -63,19 +48,13 @@ export default class extends Component {
         return {
             block: 'tabs',
             content: [
-                {
-                    elem: 'titles',
-                    props: {
-                        key: 'titles'
-                    },
-                    content: this._renderTitles()
-                },
+                this.renderTitles(),
                 {
                     elem: 'panels',
                     props: {
                         key: 'panels'
                     },
-                    content: this._renderPanels()
+                    content: this.renderPanels()
                 }
             ]
         };

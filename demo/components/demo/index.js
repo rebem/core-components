@@ -1,63 +1,22 @@
+import { Component } from '@yummies/yummies';
+
 import DemoItem from '#demo-item';
 import Attach from '#attach';
 import Button from '#button';
 import Checkbox from '#checkbox';
 import ColorPicker from '#colorpicker';
 import Input from '#input';
-import InputSearch from '#input?_type=search';
+import InputSearch from '#input/_type/search';
 import LabelGroup from '#label-group';
 import Link from '#link';
 import Popup from '#popup';
 import Radio from '#radio';
 import Select from '#select';
 import Tabs from '#tabs';
-import TabsDynamic from '#tabs?_type=dynamic';
 import Textarea from '#textarea';
 
-export default Base => class extends Base {
+export default class extends Component {
     static displayName = 'Demo';
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            dynamicTabs: [
-                {
-                    id: 1,
-                    title: 'tab 1',
-                    content: 'tab 1 content'
-                },
-                {
-                    id: 2,
-                    title: 'tab 2',
-                    content: 'tab 2 content'
-                }
-            ]
-        };
-    }
-
-    _onNewTab() {
-        const tabs = this.state.dynamicTabs;
-        const id = tabs[tabs.length - 1].id + 1;
-
-        this.setState({
-            dynamicTabs: tabs.concat({
-                id,
-                title: `tab ${id}`,
-                content: `tab ${id} content`
-            })
-        });
-    }
-
-    _onDeleteTab(index) {
-        const tabs = this.state.dynamicTabs;
-
-        tabs.splice(index, 1);
-
-        this.setState({
-            dynamicTabs: tabs
-        });
-    }
 
     _showPopup() {
         this.refs.popup.show();
@@ -225,19 +184,6 @@ export default Base => class extends Base {
                 ),
                 DemoItem(
                     {
-                        _title: 'Dynamic tabs',
-                        key: 'tabs-dynamic'
-                    },
-                    TabsDynamic({
-                        _tabs: this.state.dynamicTabs.map(
-                            ({ id, title, content }) => ({ id, title, content })
-                        ),
-                        _onNewTab: ::this._onNewTab,
-                        _onDeleteTab: ::this._onDeleteTab
-                    })
-                ),
-                DemoItem(
-                    {
                         _title: 'Textarea',
                         key: 'textarea'
                     },
@@ -248,4 +194,4 @@ export default Base => class extends Base {
             ]
         };
     }
-};
+}

@@ -26,7 +26,7 @@ export function demo() {
             preLoaders: [
                 {
                     test: /\.js$/,
-                    loader: '@yummies/inheritance-loader',
+                    loader: '@yummies/layers-loader',
                     query: {
                         layers: [
                             {

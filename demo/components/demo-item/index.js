@@ -1,4 +1,6 @@
-export default Base => class extends Base {
+import { Component } from '@yummies/yummies';
+
+export default class extends Component {
     static displayName = 'DemoItem';
 
     _renderDescription() {
@@ -45,4 +47,4 @@ export default Base => class extends Base {
             ]
         };
     }
-};
+}

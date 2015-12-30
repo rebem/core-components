@@ -1,7 +1,7 @@
 import { Component } from '@yummies/yummies';
 
 export default class extends Component {
-    static displayName = 'core: TableHead';
+    static displayName = 'core: table/thead';
 
     render() {
         return {

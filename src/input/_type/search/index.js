@@ -14,7 +14,8 @@ export default class extends Component {
             spellCheck: 'off',
             mods: {
                 type: 'search'
-            }
+            },
+            ...this.props
         });
     }
 }

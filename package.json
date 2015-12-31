@@ -28,6 +28,7 @@
 
     "eslint": "1.10.x",
     "eslint-plugin-babel": "3.0.x",
+    "eslint-plugin-react": "3.13.x",
     "babel-eslint": ">5.0.0-beta1",
 
     "babel-core": "6.3.x",

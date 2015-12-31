@@ -33,8 +33,8 @@ export function babelBuild() {
                                     return reject(mkdirpErr);
                                 }
 
-                                babel.transformFile(inFile, (babelErr, babelResult) => {
-                                    fs.writeFile(outFile, babelResult.code, 'utf-8', (writeFileErr) => {
+                                babel.transformFile(inFile, (babelErr, { code }) => {
+                                    fs.writeFile(outFile, code, 'utf-8', (writeFileErr) => {
                                         if (writeFileErr) {
                                             return reject(writeFileErr);
                                         }

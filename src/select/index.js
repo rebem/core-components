@@ -1,7 +1,36 @@
-import { Component } from '@yummies/yummies';
+import { Component, PropTypes } from '@yummies/yummies';
 
 export default class extends Component {
     static displayName = 'core: select';
+    static propTypes = {
+        value: (props, propName, componentName) => {
+            if (!props.options.some(option => props.value === option.value)) {
+                return new Error(`Invalid prop \`${propName}\` of type \`${typeof props[propName]}\` supplied to \`${componentName}\`, expected to be equal to one of the \`value\` fields from \`props.options\``);
+            }
+        },
+        options: PropTypes.arrayOf(
+            PropTypes.shape({
+                text: PropTypes.oneOfType([
+                    PropTypes.string,
+                    PropTypes.number
+                ]),
+                value: PropTypes.oneOfType([
+                    PropTypes.string,
+                    PropTypes.number
+                ])
+            })
+        ),
+        disabled: PropTypes.bool,
+        onChange: PropTypes.func,
+        onFocus: PropTypes.func,
+        onBlur: PropTypes.func,
+        onMouseEnter: PropTypes.func,
+        onMouseLeave: PropTypes.func,
+        children: PropTypes.oneOfType([
+            PropTypes.node,
+            PropTypes.arrayOf(PropTypes.node)
+        ])
+    };
     static defaultProps = {
         value: null,
         options: [],

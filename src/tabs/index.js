@@ -1,10 +1,29 @@
-import { Component } from '@yummies/yummies';
+import { Component, PropTypes } from '@yummies/yummies';
 import Titles from '#tabs/titles';
 import Title from '#tabs/title';
 
 export default class extends Component {
     static displayName = 'core: tabs';
+    static propTypes = {
+        selected: (props, propName, componentName, ...rest) => {
+            if (
+                typeof props.selected !== 'number' ||
+                props.selected < 0 ||
+                props.selected >= props.tabs.length
+            ) {
+                return new Error(`Invalid prop \`${propName}\` of type \`${typeof props[propName]}\` supplied to \`${componentName}\`, expected to be a tab index within given \`props.tabs\` range`);
+            }
+        },
+        tabs: PropTypes.arrayOf(
+            PropTypes.shape({
+                title: PropTypes.node,
+                content: PropTypes.node
+            })
+        ).isRequired,
+        renderTitles: PropTypes.func
+    };
     static defaultProps = {
+        selected: 0,
         tabs: []
     };
 

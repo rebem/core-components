@@ -1,7 +1,17 @@
-import { Component } from '@yummies/yummies';
+import { Component, PropTypes } from '@yummies/yummies';
 
 export default class extends Component {
     static displayName = 'core: tabs/title';
+    static propTypes = {
+        title: PropTypes.node.isRequired,
+        index: PropTypes.number.isRequired,
+        selected: PropTypes.number,
+        onTabChange: PropTypes.func,
+        children: PropTypes.oneOfType([
+            PropTypes.node,
+            PropTypes.arrayOf(PropTypes.node)
+        ])
+    };
 
     selectTab() {
         if ('onTabChange' in this.props) {

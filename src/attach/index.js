@@ -1,7 +1,22 @@
-import { Component } from '@yummies/yummies';
+import { Component, PropTypes } from '@yummies/yummies';
 
 export default class extends Component {
     static displayName = 'core: attach';
+    static propTypes = {
+        value: PropTypes.string,
+        disabled: PropTypes.bool,
+        onChange: PropTypes.func,
+        onFocus: PropTypes.func,
+        onBlur: PropTypes.func,
+        onMouseEnter: PropTypes.func,
+        onMouseLeave: PropTypes.func,
+        onMouseDown: PropTypes.func,
+        onMouseUp: PropTypes.func,
+        children: PropTypes.oneOfType([
+            PropTypes.node,
+            PropTypes.arrayOf(PropTypes.node)
+        ])
+    };
     static defaultProps = {
         disabled: false
     };

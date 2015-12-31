@@ -1,7 +1,20 @@
-import { Component } from '@yummies/yummies';
+import { Component, PropTypes } from '@yummies/yummies';
 
 export default class extends Component {
     static displayName = 'core: checkbox';
+    static propTypes = {
+        checked: PropTypes.bool,
+        disabled: PropTypes.bool,
+        onChange: PropTypes.func,
+        onFocus: PropTypes.func,
+        onBlur: PropTypes.func,
+        onMouseEnter: PropTypes.func,
+        onMouseLeave: PropTypes.func,
+        children: PropTypes.oneOfType([
+            PropTypes.node,
+            PropTypes.arrayOf(PropTypes.node)
+        ])
+    };
     static defaultProps = {
         disabled: false
     };

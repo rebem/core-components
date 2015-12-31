@@ -1,9 +1,26 @@
-import { Component } from '@yummies/yummies';
+import { Component, PropTypes } from '@yummies/yummies';
 
 export default class extends Component {
     static displayName = 'core: colorpicker';
+    static propTypes = {
+        value: (props, propName, componentName) => {
+            if (!/#([A-Fa-f0-9]{6})$/.test(props[propName])) {
+                return new Error(`Invalid prop \`${propName}\` of type \`${typeof props[propName]}\` supplied to \`${componentName}\`, expected \`valid simple color\` (http://www.w3.org/TR/html5/infrastructure.html#valid-simple-color)`);
+            }
+        },
+        disabled: PropTypes.bool,
+        onChange: PropTypes.func,
+        onFocus: PropTypes.func,
+        onBlur: PropTypes.func,
+        onMouseEnter: PropTypes.func,
+        onMouseLeave: PropTypes.func,
+        children: PropTypes.oneOfType([
+            PropTypes.node,
+            PropTypes.arrayOf(PropTypes.node)
+        ])
+    };
     static defaultProps = {
-        value: '',
+        value: '#000000',
         disabled: false
     };
 

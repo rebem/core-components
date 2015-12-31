@@ -40,7 +40,7 @@ export default class extends Component {
             content: [
                 DemoItem(
                     {
-                        _title: 'Attach input',
+                        title: 'Attach input',
                         key: 'attach'
                     },
                     Attach({
@@ -49,7 +49,7 @@ export default class extends Component {
                 ),
                 DemoItem(
                     {
-                        _title: 'Button',
+                        title: 'Button',
                         key: 'button'
                     },
                     Button({
@@ -58,7 +58,7 @@ export default class extends Component {
                 ),
                 DemoItem(
                     {
-                        _title: 'Checkbox',
+                        title: 'Checkbox',
                         key: 'checkbox'
                     },
                     Checkbox({
@@ -67,16 +67,16 @@ export default class extends Component {
                 ),
                 DemoItem(
                     {
-                        _title: 'Color picker',
+                        title: 'Color picker',
                         key: 'colorpicker'
                     },
                     ColorPicker({
-                        value: '#000000'
+                        value: '#ff0000'
                     })
                 ),
                 DemoItem(
                     {
-                        _title: 'Text input',
+                        title: 'Text input',
                         key: 'input'
                     },
                     Input({
@@ -86,7 +86,7 @@ export default class extends Component {
                 ),
                 DemoItem(
                     {
-                        _title: 'Search input',
+                        title: 'Search input',
                         key: 'input-search'
                     },
                     InputSearch({
@@ -95,7 +95,7 @@ export default class extends Component {
                 ),
                 DemoItem(
                     {
-                        _title: 'Label group',
+                        title: 'Label group',
                         key: 'labelgroup'
                     },
                     LabelGroup(
@@ -110,7 +110,7 @@ export default class extends Component {
                 ),
                 DemoItem(
                     {
-                        _title: 'Link',
+                        title: 'Link',
                         key: 'link'
                     },
                     Link({
@@ -120,7 +120,7 @@ export default class extends Component {
                 ),
                 DemoItem(
                     {
-                        _title: 'Popup',
+                        title: 'Popup',
                         key: 'popup'
                     },
                     Popup({
@@ -134,7 +134,7 @@ export default class extends Component {
                 ),
                 DemoItem(
                     {
-                        _title: 'Radio input',
+                        title: 'Radio input',
                         key: 'radio'
                     },
                     Radio({
@@ -152,11 +152,11 @@ export default class extends Component {
                 ),
                 DemoItem(
                     {
-                        _title: 'Select',
+                        title: 'Select',
                         key: 'select'
                     },
                     Select({
-                        _options: [
+                        options: [
                             {
                                 value: 'be',
                                 text: 'To be?'
@@ -171,7 +171,7 @@ export default class extends Component {
                 ),
                 DemoItem(
                     {
-                        _title: 'Tabs',
+                        title: 'Tabs',
                         key: 'tabs'
                     },
                     Tabs({
@@ -198,7 +198,7 @@ export default class extends Component {
                 ),
                 DemoItem(
                     {
-                        _title: 'Textarea',
+                        title: 'Textarea',
                         key: 'textarea'
                     },
                     Textarea({

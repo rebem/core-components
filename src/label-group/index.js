@@ -1,8 +1,21 @@
-import { Component } from '@yummies/yummies';
+import { Component, PropTypes } from '@yummies/yummies';
 
 export default class extends Component {
     static displayName = 'core: label-group';
-
+    static propTypes = {
+        controlPosition: PropTypes.oneOf([
+            'left',
+            'right'
+        ]),
+        labelText: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ]),
+        children: PropTypes.oneOfType([
+            PropTypes.node,
+            PropTypes.arrayOf(PropTypes.node)
+        ])
+    };
     static defaultProps = {
         controlPosition: 'right'
     };

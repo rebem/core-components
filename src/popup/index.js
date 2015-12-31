@@ -1,4 +1,4 @@
-import { Component } from '@yummies/yummies';
+import { Component, PropTypes } from '@yummies/yummies';
 import UID from 'component-uid';
 
 const ESC_KEYCODE = 27;
@@ -6,6 +6,14 @@ const UID_LENGTH = 20;
 
 export default class extends Component {
     static displayName = 'core: popup';
+    static propTypes = {
+        onShow: PropTypes.func,
+        onHide: PropTypes.func,
+        children: PropTypes.oneOfType([
+            PropTypes.node,
+            PropTypes.arrayOf(PropTypes.node)
+        ])
+    };
 
     constructor(props, context) {
         super(props, context);

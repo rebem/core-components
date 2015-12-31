@@ -1,16 +1,30 @@
-import { Component } from '@yummies/yummies';
+import { Component, PropTypes } from '@yummies/yummies';
 
 export default class extends Component {
     static displayName = 'DemoItem';
+    static propTypes = {
+        title: PropTypes.oneOfType([
+            PropTypes.node,
+            PropTypes.arrayOf(PropTypes.node)
+        ]),
+        description: PropTypes.oneOfType([
+            PropTypes.node,
+            PropTypes.arrayOf(PropTypes.node)
+        ]),
+        children: PropTypes.oneOfType([
+            PropTypes.node,
+            PropTypes.arrayOf(PropTypes.node)
+        ])
+    };
 
     _renderDescription() {
-        if ('_description' in this.props) {
+        if ('description' in this.props) {
             return {
                 elem: 'description',
                 props: {
                     key: 'description'
                 },
-                content: this.props._description
+                content: this.props.description
             };
         }
 
@@ -18,13 +32,13 @@ export default class extends Component {
     }
 
     _renderTitle() {
-        if ('_title' in this.props) {
+        if ('title' in this.props) {
             return {
                 elem: 'title',
                 props: {
                     key: 'title'
                 },
-                content: this.props._title
+                content: this.props.title
             };
         }
 

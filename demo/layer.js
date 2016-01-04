@@ -1,6 +1,6 @@
-var path = require('path');
+import path from 'path';
 
-module.exports = {
+export default {
     src: {
         path: path.resolve('./demo/components/'),
         files: {

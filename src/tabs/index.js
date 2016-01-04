@@ -17,7 +17,10 @@ export default class extends Component {
         tabs: PropTypes.arrayOf(
             PropTypes.shape({
                 title: PropTypes.node,
-                content: PropTypes.node
+                content: PropTypes.oneOfType([
+                    PropTypes.node,
+                    PropTypes.arrayOf(PropTypes.node)
+                ])
             })
         ).isRequired,
         renderTitles: PropTypes.func

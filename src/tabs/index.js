@@ -29,7 +29,7 @@ export default class extends Component {
 
     renderTitles() {
         if ('renderTitles' in this.props) {
-            return this.props.renderTitles();
+            return this.props.renderTitles({ ...this.props, key: 'titles' });
         }
 
         return Titles(

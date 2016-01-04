@@ -20,7 +20,7 @@ export function demo() {
         },
         entry: [
             'webpack/hot/dev-server',
-            './demo/index'
+            './demo/'
         ],
         module: {
             preLoaders: [
@@ -30,13 +30,16 @@ export function demo() {
                     query: {
                         layers: [
                             {
-                                path: path.resolve('./'),
+                                module: require('../'),
                                 mode: 'src'
                             },
                             {
-                                path: path.resolve('demo/'),
+                                module: require('../demo/layer'),
                                 mode: 'src'
                             }
+                        ],
+                        include: [
+                            path.resolve('./demo/index')
                         ]
                     }
                 },

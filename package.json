@@ -14,6 +14,7 @@
     ".yummies.yml",
     "LICENSE"
   ],
+  "main": "index.js",
   "dependencies": {
     "@yummies/yummies": ">=3.0.0-alpha.1",
     "component-uid": "0.0.x",

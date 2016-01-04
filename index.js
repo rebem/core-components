@@ -2,13 +2,13 @@ var path = require('path');
 
 module.exports = {
     default: {
-        path: path.resolve('build/'),
+        path: path.resolve(__dirname, 'build/'),
         files: {
             main: 'index.js'
         }
     },
     src: {
-        path: path.resolve('src/'),
+        path: path.resolve(__dirname, 'src/'),
         files: {
             main: 'index.js'
         }

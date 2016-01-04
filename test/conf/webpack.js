@@ -15,7 +15,7 @@ export default {
                 query: {
                     layers: [
                         {
-                            path: path.resolve('./'),
+                            module: require('../../'),
                             mode: 'src'
                         }
                     ],

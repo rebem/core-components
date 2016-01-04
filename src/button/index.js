@@ -33,6 +33,13 @@ export default class extends Component {
             hovered: false,
             pressed: false
         };
+
+        this._onInputFocus = this._onInputFocus.bind(this);
+        this._onInputBlur = this._onInputBlur.bind(this);
+        this._onInputMouseLeave = this._onInputMouseLeave.bind(this);
+        this._onInputMouseEnter = this._onInputMouseEnter.bind(this);
+        this._onInputMouseDown = this._onInputMouseDown.bind(this);
+        this._onInputMouseUp = this._onInputMouseUp.bind(this);
     }
 
     _onInputFocus(e) {
@@ -114,12 +121,12 @@ export default class extends Component {
                         type: 'button',
                         ...this.props,
                         value: this.state.value,
-                        onFocus: ::this._onInputFocus,
-                        onBlur: ::this._onInputBlur,
-                        onMouseLeave: ::this._onInputMouseLeave,
-                        onMouseEnter: ::this._onInputMouseEnter,
-                        onMouseDown: ::this._onInputMouseDown,
-                        onMouseUp: ::this._onInputMouseUp,
+                        onFocus: this._onInputFocus,
+                        onBlur: this._onInputBlur,
+                        onMouseLeave: this._onInputMouseLeave,
+                        onMouseEnter: this._onInputMouseEnter,
+                        onMouseDown: this._onInputMouseDown,
+                        onMouseUp: this._onInputMouseUp,
                         ref: 'control',
                         key: 'control'
                     }

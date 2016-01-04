@@ -21,6 +21,9 @@ export default class extends Component {
         this.state = {
             visibility: false
         };
+
+        this._onChange = this._onChange.bind(this);
+        this._onKeyUp = this._onKeyUp.bind(this);
     }
 
     _onKeyUp(e) {
@@ -64,7 +67,7 @@ export default class extends Component {
             block: 'popup',
             props: {
                 tabIndex: -1,
-                onKeyUp: ::this._onKeyUp,
+                onKeyUp: this._onKeyUp,
                 ref: 'popup'
             },
             content: [
@@ -75,7 +78,7 @@ export default class extends Component {
                         type: 'checkbox',
                         id: popupID,
                         checked: this.state.visibility,
-                        onChange: ::this._onChange,
+                        onChange: this._onChange,
                         key: 'switcher'
                     }
                 },

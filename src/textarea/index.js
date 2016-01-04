@@ -31,6 +31,12 @@ export default class extends Component {
             focused: false,
             hovered: false
         };
+
+        this._onInputChange = this._onInputChange.bind(this);
+        this._onInputFocus = this._onInputFocus.bind(this);
+        this._onInputBlur = this._onInputBlur.bind(this);
+        this._onInputMouseLeave = this._onInputMouseLeave.bind(this);
+        this._onInputMouseEnter = this._onInputMouseEnter.bind(this);
     }
 
     componentWillReceiveProps({ value }) {
@@ -112,11 +118,11 @@ export default class extends Component {
                         type: 'text',
                         ...this.props,
                         value: this.state.value,
-                        onChange: ::this._onInputChange,
-                        onFocus: ::this._onInputFocus,
-                        onBlur: ::this._onInputBlur,
-                        onMouseLeave: ::this._onInputMouseLeave,
-                        onMouseEnter: ::this._onInputMouseEnter,
+                        onChange: this._onInputChange,
+                        onFocus: this._onInputFocus,
+                        onBlur: this._onInputBlur,
+                        onMouseLeave: this._onInputMouseLeave,
+                        onMouseEnter: this._onInputMouseEnter,
                         ref: 'control',
                         key: 'control'
                     }

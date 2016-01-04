@@ -30,6 +30,14 @@ export default class extends Component {
             hovered: false,
             value: null
         };
+
+        this._onInputChange = this._onInputChange.bind(this);
+        this._onInputFocus = this._onInputFocus.bind(this);
+        this._onInputBlur = this._onInputBlur.bind(this);
+        this._onInputMouseDown = this._onInputMouseDown.bind(this);
+        this._onInputMouseUp = this._onInputMouseUp.bind(this);
+        this._onInputMouseLeave = this._onInputMouseLeave.bind(this);
+        this._onInputMouseEnter = this._onInputMouseEnter.bind(this);
     }
 
     // file input doesn't allow to change it's value programmatically
@@ -147,13 +155,13 @@ export default class extends Component {
                         type: 'file',
                         ...this.props,
                         value: this.state.value,
-                        onChange: ::this._onInputChange,
-                        onFocus: ::this._onInputFocus,
-                        onBlur: ::this._onInputBlur,
-                        onMouseDown: ::this._onInputMouseDown,
-                        onMouseUp: ::this._onInputMouseUp,
-                        onMouseLeave: ::this._onInputMouseLeave,
-                        onMouseEnter: ::this._onInputMouseEnter,
+                        onChange: this._onInputChange,
+                        onFocus: this._onInputFocus,
+                        onBlur: this._onInputBlur,
+                        onMouseDown: this._onInputMouseDown,
+                        onMouseUp: this._onInputMouseUp,
+                        onMouseLeave: this._onInputMouseLeave,
+                        onMouseEnter: this._onInputMouseEnter,
                         ref: 'control',
                         key: 'control'
                     }

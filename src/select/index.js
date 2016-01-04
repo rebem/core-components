@@ -45,6 +45,12 @@ export default class extends Component {
             hovered: false,
             focused: false
         };
+
+        this._onSelectChange = this._onSelectChange.bind(this);
+        this._onSelectFocus = this._onSelectFocus.bind(this);
+        this._onSelectBlur = this._onSelectBlur.bind(this);
+        this._onSelectMouseLeave = this._onSelectMouseLeave.bind(this);
+        this._onSelectMouseEnter = this._onSelectMouseEnter.bind(this);
     }
 
     componentWillReceiveProps({ value }) {
@@ -139,11 +145,11 @@ export default class extends Component {
                     props: {
                         ...this.props,
                         value: this.state.value,
-                        onChange: ::this._onSelectChange,
-                        onFocus: ::this._onSelectFocus,
-                        onBlur: ::this._onSelectBlur,
-                        onMouseLeave: ::this._onSelectMouseLeave,
-                        onMouseEnter: ::this._onSelectMouseEnter,
+                        onChange: this._onSelectChange,
+                        onFocus: this._onSelectFocus,
+                        onBlur: this._onSelectBlur,
+                        onMouseLeave: this._onSelectMouseLeave,
+                        onMouseEnter: this._onSelectMouseEnter,
                         key: 'control'
                     },
                     content: this._renderOptions()

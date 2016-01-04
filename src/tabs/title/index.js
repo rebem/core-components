@@ -13,6 +13,12 @@ export default class extends Component {
         ])
     };
 
+    constructor(props, context) {
+        super(props, context);
+
+        this.selectTab = this.selectTab.bind(this);
+    }
+
     selectTab() {
         if ('onTabChange' in this.props) {
             this.props.onTabChange(this.props.index);
@@ -24,7 +30,7 @@ export default class extends Component {
             block: 'tabs',
             elem: 'title',
             props: {
-                onClick: ::this.selectTab
+                onClick: this.selectTab
             },
             mods: {
                 selected: this.props.selected === this.props.index

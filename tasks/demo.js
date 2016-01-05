@@ -30,16 +30,20 @@ export function demo() {
                     query: {
                         layers: [
                             {
-                                module: require('../'),
-                                mode: 'src'
+                                path: path.resolve('src/'),
+                                files: {
+                                    main: 'index.js'
+                                }
                             },
                             {
-                                module: require('../demo/layer'),
-                                mode: 'src'
+                                path: path.resolve('demo/components/'),
+                                files: {
+                                    main: 'index.js'
+                                }
                             }
                         ],
                         include: [
-                            path.resolve('./demo/index')
+                            path.resolve('demo/index')
                         ]
                     }
                 },

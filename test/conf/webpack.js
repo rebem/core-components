@@ -15,8 +15,10 @@ export default {
                 query: {
                     layers: [
                         {
-                            module: require('../../'),
-                            mode: 'src'
+                            path: path.resolve('src/'),
+                            files: {
+                                main: 'index.js'
+                            }
                         }
                     ],
                     include: [

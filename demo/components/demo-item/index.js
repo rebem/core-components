@@ -5,15 +5,21 @@ export default class extends Component {
     static propTypes = {
         title: PropTypes.oneOfType([
             PropTypes.node,
-            PropTypes.arrayOf(PropTypes.node)
+            PropTypes.arrayOf(PropTypes.node),
+            PropTypes.object,
+            PropTypes.arrayOf(PropTypes.object)
         ]),
         description: PropTypes.oneOfType([
             PropTypes.node,
-            PropTypes.arrayOf(PropTypes.node)
+            PropTypes.arrayOf(PropTypes.node),
+            PropTypes.object,
+            PropTypes.arrayOf(PropTypes.object)
         ]),
         children: PropTypes.oneOfType([
             PropTypes.node,
-            PropTypes.arrayOf(PropTypes.node)
+            PropTypes.arrayOf(PropTypes.node),
+            PropTypes.object,
+            PropTypes.arrayOf(PropTypes.object)
         ])
     };
 

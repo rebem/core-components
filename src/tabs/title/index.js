@@ -9,7 +9,9 @@ export default class extends Component {
         onTabChange: PropTypes.func,
         children: PropTypes.oneOfType([
             PropTypes.node,
-            PropTypes.arrayOf(PropTypes.node)
+            PropTypes.arrayOf(PropTypes.node),
+            PropTypes.object,
+            PropTypes.arrayOf(PropTypes.object)
         ])
     };
 

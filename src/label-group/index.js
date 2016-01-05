@@ -13,7 +13,9 @@ export default class extends Component {
         ]),
         children: PropTypes.oneOfType([
             PropTypes.node,
-            PropTypes.arrayOf(PropTypes.node)
+            PropTypes.arrayOf(PropTypes.node),
+            PropTypes.object,
+            PropTypes.arrayOf(PropTypes.object)
         ])
     };
     static defaultProps = {

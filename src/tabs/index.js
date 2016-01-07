@@ -9,7 +9,7 @@ export default class extends Component {
             if (
                 typeof props.selected !== 'number' ||
                 props.selected < 0 ||
-                props.selected >= props.tabs.length
+                (props.selected !== 0 && props.selected >= props.tabs.length)
             ) {
                 return new Error(`Invalid prop \`${propName}\` of type \`${typeof props[propName]}\` supplied to \`${componentName}\`, expected to be a tab index within given \`props.tabs\` range`);
             }

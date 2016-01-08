@@ -19,7 +19,7 @@ export default class extends Component {
                     PropTypes.number
                 ])
             })
-        ),
+        ).isRequired,
         disabled: PropTypes.bool,
         onChange: PropTypes.func,
         onFocus: PropTypes.func,

@@ -44,7 +44,7 @@
     "react-addons-test-utils": "0.14.x",
     "legit-tests": "0.6.x",
 
-    "webpack": "1.12.x",
+    "webpack": "1.12.9",
     "webpack-dev-server": "1.14.x",
     "html-webpack-plugin": "1.7.x",
     "json-loader": "0.5.x",

@@ -25,6 +25,7 @@ export default class extends Component {
                 ])
             })
         ).isRequired,
+        onTabChange: PropTypes.func,
         renderTitles: PropTypes.func
     };
     static defaultProps = {

@@ -5,20 +5,20 @@ import { renderOnce } from 'test/helpers/render';
 
 import Tabs from '#tabs';
 
-describe('tabs', () => {
-    describe('basic', () => {
-        it('exists', () => {
+describe('tabs', function() {
+    describe('basic', function() {
+        it('exists', function() {
             expect(Tabs).to.exist;
         });
 
-        it('is a component', () => {
+        it('is a component', function() {
             const Component = Tabs();
 
             expect(TestUtils.isCompositeComponent(renderOnce(Component))).to.be.true;
         });
     });
 
-    describe('render', () => {
+    describe('render', function() {
         beforeEach(function() {
             this.renderWithProps = props => {
                 this.rootComponent = renderOnce(Tabs(props));
@@ -27,7 +27,7 @@ describe('tabs', () => {
                 this.panelsDOMNode = this.rootComponentDOMNode.children[1];
             };
 
-            this.renderWithProps({
+            this.props = {
                 tabs: [
                     {
                         title: 'first',
@@ -38,10 +38,12 @@ describe('tabs', () => {
                         content: '2'
                     }
                 ]
-            });
+            };
+
+            this.renderWithProps(this.props);
         });
 
-        describe('DOM', () => {
+        describe('DOM', function() {
             it('initial', function() {
                 expect(this.rootComponentDOMNode).to.be.a.block('tabs');
                 expect(this.titlesDOMNode).to.be.an.elem({
@@ -54,7 +56,7 @@ describe('tabs', () => {
                 });
             });
 
-            describe('with tabs', () => {
+            describe('with tabs', function() {
                 it('titles', function() {
                     const firstTitle = this.titlesDOMNode.children[0];
                     const secondTitle = this.titlesDOMNode.children[1];
@@ -89,7 +91,7 @@ describe('tabs', () => {
                     expect(secondPanel.textContent).to.be.equal('2');
                 });
 
-                it.skip('selected', function() {
+                it('selected', function() {
                     expect(this.titlesDOMNode.children[0]).to.have.mods({
                         selected: true
                     });
@@ -101,35 +103,35 @@ describe('tabs', () => {
             });
         });
 
-        describe('API', () => {
-            it.skip('selectTab', function() {
-                this.rootComponent.selectTab(1);
+        describe('API', function() {
+            it('selectTab', function() {
+                this.props.selected = 1;
+                this.renderWithProps(this.props);
+                expect(this.panelsDOMNode.children[1]).to.have.mods({
+                    selected: true
+                });
 
-                expect(this.rootComponent.state.selected).to.be.equal(1);
-
-                this.rootComponent.selectTab(0);
-
-                expect(this.rootComponent.state.selected).to.be.equal(0);
+                this.props.selected = 0;
+                this.renderWithProps(this.props);
+                expect(this.panelsDOMNode.children[0]).to.have.mods({
+                    selected: true
+                });
             });
         });
 
-        describe('callbacks', () => {
-            it.skip('onTabChange', function() {
+        describe('callbacks', function() {
+            it('onTabChange', function() {
                 const spy = chai.spy();
 
-                this.renderWithProps({
-                    onTabChange: spy
-                });
+                this.props.onTabChange = spy;
+                this.props.selected = 0;
+                this.renderWithProps(this.props);
 
-                this.rootComponent.selectTab(1);
+                TestUtils.Simulate.click(this.titlesDOMNode.children[1]);
+                TestUtils.Simulate.click(this.titlesDOMNode.children[0]);
 
-                expect(spy).to.have.been.called.once;
-                expect(spy).to.have.been.called.with(1);
-
-                this.renderWithProps();
-
-                expect(spy).to.have.been.called.once;
-                expect(spy).to.have.been.called.with(1);
+                expect(spy).to.have.been.called.twice;
+                expect(spy).to.have.been.called.with(0);
             });
         });
     });

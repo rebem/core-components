@@ -4,7 +4,7 @@ export default class extends Component {
     static displayName = 'core: select';
     static propTypes = {
         value: (props, propName, componentName) => {
-            if (!props.options.some(option => props.value === option.value)) {
+            if (props.options.length > 0 && !props.options.some(option => props.value === option.value)) {
                 return new Error(`Invalid prop \`${propName}\` of type \`${typeof props[propName]}\` supplied to \`${componentName}\`, expected to be equal to one of the \`value\` fields from \`props.options\``);
             }
         },

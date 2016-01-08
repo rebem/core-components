@@ -168,5 +168,15 @@ describe('colorpicker', () => {
                 expect(component.state.value).to.be.equal('#00ff00');
             });
         });
+
+        describe('propTypes', function() {
+            it('throws error if incorrect value format', function() {
+                const incorrectRender = () => {
+                    this.renderWithProps({ value: '#000' });
+                };
+
+                expect(incorrectRender).to.throw(Error);
+            });
+        });
     });
 });

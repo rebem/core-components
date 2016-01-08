@@ -100,6 +100,22 @@ describe('tabs', function() {
                         selected: true
                     });
                 });
+
+                it('with custom titles', function() {
+                    this.renderWithProps({
+                        ...this.props,
+                        renderTitles({ tabs, key }) {
+                            return {
+                                block: 'test',
+                                content: tabs[1].title,
+                                props: { key }
+                            };
+                        }
+                    });
+
+                    expect(this.titlesDOMNode).to.be.a.block('test');
+                    expect(this.titlesDOMNode.innerHTML).to.be.equal(this.props.tabs[1].title);
+                });
             });
         });
 
@@ -123,15 +139,31 @@ describe('tabs', function() {
             it('onTabChange', function() {
                 const spy = chai.spy();
 
-                this.props.onTabChange = spy;
-                this.props.selected = 0;
                 this.renderWithProps(this.props);
+                TestUtils.Simulate.click(this.titlesDOMNode.children[1]);
+                TestUtils.Simulate.click(this.titlesDOMNode.children[0]);
 
+                this.renderWithProps({
+                    ...this.props,
+                    selected: 0,
+                    onTabChange: spy
+                });
                 TestUtils.Simulate.click(this.titlesDOMNode.children[1]);
                 TestUtils.Simulate.click(this.titlesDOMNode.children[0]);
 
                 expect(spy).to.have.been.called.twice;
                 expect(spy).to.have.been.called.with(0);
+            });
+        });
+
+        describe('propTypes', function() {
+            it('throws error if incorrect selected value', function() {
+                const incorrectRender = () => {
+                    this.props.selected = 3;
+                    this.renderWithProps(this.props);
+                };
+
+                expect(incorrectRender).to.throw(Error);
             });
         });
     });

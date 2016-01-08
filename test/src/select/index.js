@@ -179,5 +179,21 @@ describe('select', () => {
                 expect(component.state.value).to.be.equal('test2');
             });
         });
+
+        describe('propTypes', function() {
+            it('throws error if incorrect value', function() {
+                const incorrectRender = () => {
+                    this.renderWithProps({
+                        value: 'test',
+                        options: [
+                            { text: 'test1', value: 'test1' },
+                            { text: 'test2', value: 'test2' }
+                        ]
+                    });
+                };
+
+                expect(incorrectRender).to.throw(Error);
+            });
+        });
     });
 });

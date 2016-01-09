@@ -1,7 +1,8 @@
-import Yummies from '@yummies/yummies';
-import YummiesDOM from '@yummies/dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import chai, { expect } from 'chai';
+
 import { createRender, renderOnce } from 'test/helpers/render';
 
 import Select from '#select';
@@ -23,7 +24,7 @@ describe('select', () => {
         beforeEach(function() {
             this.renderWithProps = props => {
                 this.rootComponent = renderOnce(Select(props));
-                this.rootComponentDOMNode = YummiesDOM.findDOMNode(this.rootComponent);
+                this.rootComponentDOMNode = ReactDOM.findDOMNode(this.rootComponent);
                 this.inputControlDOMNode = TestUtils.findRenderedDOMComponentWithClass(this.rootComponent, 'select__control');
             };
 
@@ -63,7 +64,7 @@ describe('select', () => {
 
             it('children', function() {
                 this.renderWithProps({
-                    children: Yummies.createElement('div', {
+                    children: React.createElement('div', {
                         key: 'test',
                         className: 'test-children'
                     })

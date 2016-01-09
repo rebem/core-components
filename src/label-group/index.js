@@ -1,4 +1,5 @@
-import { Component, PropTypes } from '@yummies/yummies';
+import { Component, PropTypes } from 'react';
+import Yummies from '@yummies/yummies';
 
 export default class extends Component {
     static displayName = 'core: label-group';
@@ -43,11 +44,13 @@ export default class extends Component {
     }
 
     render() {
-        return {
+        return Yummies({
             block: 'label-group',
             mods: {
-                'control-position': this.props.controlPosition
+                'control-position': this.props.controlPosition,
+                ...this.props.mods
             },
+            mix: this.props.mix,
             tag: 'label',
             content: this.props.controlPosition === 'right' ?
                 [
@@ -58,6 +61,6 @@ export default class extends Component {
                     this._renderControl(),
                     this._renderLabel()
                 ]
-        };
+        });
     }
 }

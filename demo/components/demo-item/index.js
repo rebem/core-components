@@ -1,4 +1,5 @@
-import { Component, PropTypes } from '@yummies/yummies';
+import { Component, PropTypes } from 'react';
+import Yummies from '@yummies/yummies';
 
 export default class extends Component {
     static displayName = 'DemoItem';
@@ -52,8 +53,11 @@ export default class extends Component {
     }
 
     render() {
-        return {
+        return Yummies({
             block: 'demo-item',
+            mods: this.props.mods,
+            mix: this.props.mix,
+            props: this.props,
             content: [
                 this._renderTitle(),
                 this._renderDescription(),
@@ -65,6 +69,6 @@ export default class extends Component {
                     content: this.props.children
                 }
             ]
-        };
+        });
     }
 }

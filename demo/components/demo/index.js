@@ -1,4 +1,5 @@
-import { Component } from '@yummies/yummies';
+import { Component, PropTypes } from 'react';
+import Yummies from '@yummies/yummies';
 
 import DemoItem from '#demo-item';
 import Attach from '#attach';
@@ -35,8 +36,11 @@ export default class extends Component {
     }
 
     render() {
-        return {
+        return Yummies({
             block: 'demo',
+            mods: this.props.mods,
+            mix: this.props.mix,
+            props: this.props,
             content: [
                 DemoItem(
                     {
@@ -206,6 +210,6 @@ export default class extends Component {
                     })
                 )
             ]
-        };
+        });
     }
 }

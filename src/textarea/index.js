@@ -1,4 +1,5 @@
-import { Component, PropTypes } from '@yummies/yummies';
+import { Component, PropTypes } from 'react';
+import Yummies from '@yummies/yummies';
 
 export default class extends Component {
     static displayName = 'core: textarea';
@@ -104,14 +105,16 @@ export default class extends Component {
     }
 
     render() {
-        return {
+        return Yummies({
             block: 'textarea',
             tag: 'label',
             mods: {
                 focused: this.state.focused,
                 hovered: this.state.hovered,
-                disabled: this.props.disabled
+                disabled: this.props.disabled,
+                ...this.props.mods
             },
+            mix: this.props.mix,
             content: [
                 {
                     elem: 'control',
@@ -131,6 +134,6 @@ export default class extends Component {
                 },
                 ...[ this.props.children ]
             ]
-        };
+        });
     }
 }

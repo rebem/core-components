@@ -1,5 +1,5 @@
-import Yummies from '@yummies/yummies';
-import YummiesDOM from '@yummies/dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import Test from 'legit-tests/no-dom';
 
 import * as middleware from 'test/helpers/middleware';
@@ -8,7 +8,7 @@ export function createRender(containerTag = 'div') {
     const dummy = document.createElement(containerTag);
 
     return function(instance) {
-        return YummiesDOM.render(instance, dummy);
+        return ReactDOM.render(instance, dummy);
     };
 }
 
@@ -17,7 +17,7 @@ export function renderOnce(instance, containerTag) {
 }
 
 function createWrapper(Component, props) {
-    class WrapperClass extends Yummies.Component {
+    class WrapperClass extends React.Component {
         constructor(...args) {
             super(...args);
 
@@ -29,7 +29,7 @@ function createWrapper(Component, props) {
         }
     }
 
-    return Yummies.createElement(WrapperClass);
+    return React.createElement(WrapperClass);
 }
 
 export function render(Component, props) {

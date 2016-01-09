@@ -1,4 +1,6 @@
-import { Component, PropTypes } from '@yummies/yummies';
+import { Component, PropTypes } from 'react';
+import Yummies from '@yummies/yummies';
+
 import Titles from '#tabs/titles';
 import Title from '#tabs/title';
 
@@ -70,8 +72,11 @@ export default class extends Component {
     }
 
     render() {
-        return {
+        return Yummies({
             block: 'tabs',
+            mods: this.props.mods,
+            mix: this.props.mix,
+            props: this.props,
             content: [
                 this.renderTitles(),
                 {
@@ -82,6 +87,6 @@ export default class extends Component {
                     content: this.renderPanels()
                 }
             ]
-        };
+        });
     }
 }

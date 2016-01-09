@@ -1,4 +1,5 @@
-import { Component, PropTypes } from '@yummies/yummies';
+import { Component, PropTypes } from 'react';
+import Yummies from '@yummies/yummies';
 
 export default class extends Component {
     static displayName = 'core: attach';
@@ -140,15 +141,17 @@ export default class extends Component {
     }
 
     render() {
-        return {
+        return Yummies({
             block: 'attach',
             tag: 'label',
             mods: {
                 focused: this.state.focused,
                 hovered: this.state.hovered,
                 pressed: this.state.pressed,
-                disabled: this.props.disabled
+                disabled: this.props.disabled,
+                ...this.props.mods
             },
+            mix: this.props.mix,
             content: [
                 {
                     elem: 'control',
@@ -171,6 +174,6 @@ export default class extends Component {
                 this._renderValue(),
                 ...this._renderChildren()
             ]
-        };
+        });
     }
 }

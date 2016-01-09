@@ -1,7 +1,8 @@
-import Yummies from '@yummies/yummies';
-import YummiesDOM from '@yummies/dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import { expect } from 'chai';
+
 import { renderOnce } from 'test/helpers/render';
 
 import TableTbody from '#table/tbody';
@@ -21,7 +22,7 @@ describe('table/tbody', () => {
         beforeEach(function() {
             this.renderWithProps = props => {
                 this.rootComponent = renderOnce(TableTbody(props), 'table');
-                this.rootComponentDOMNode = YummiesDOM.findDOMNode(this.rootComponent);
+                this.rootComponentDOMNode = ReactDOM.findDOMNode(this.rootComponent);
             };
 
             this.renderWithProps();
@@ -48,7 +49,7 @@ describe('table/tbody', () => {
 
             it('children', function() {
                 this.renderWithProps({
-                    children: Yummies.createElement('tr', {
+                    children: React.createElement('tr', {
                         key: 'test',
                         className: 'test-children'
                     })

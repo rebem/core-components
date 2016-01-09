@@ -2,7 +2,7 @@ import { Component, PropTypes } from 'react';
 import Yummies from '@yummies/yummies';
 
 export default class extends Component {
-    static displayName = 'DemoItem';
+    static displayName = 'demo: demo-item';
     static propTypes = {
         title: PropTypes.oneOfType([
             PropTypes.node,

@@ -1,4 +1,5 @@
-import { Component, PropTypes } from '@yummies/yummies';
+import { Component, PropTypes } from 'react';
+import BEM from '@yummies/bem';
 
 export default class extends Component {
     static displayName = 'core: table';
@@ -12,11 +13,13 @@ export default class extends Component {
     };
 
     render() {
-        return {
+        return BEM({
             block: 'table',
+            mods: this.props.mods,
+            mix: this.props.mix,
             tag: 'table',
             props: this.props,
             content: this.props.children
-        };
+        });
     }
 }

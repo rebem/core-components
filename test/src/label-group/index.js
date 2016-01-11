@@ -1,6 +1,6 @@
 import TestUtils from 'react-addons-test-utils';
-import Yummies from '@yummies/yummies';
-import YummiesDOM from '@yummies/dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { expect } from 'chai';
 import { renderOnce } from 'test/helpers/render';
 
@@ -21,7 +21,7 @@ describe('labelGroup', () => {
         beforeEach(function() {
             this.renderWithProps = props => {
                 this.rootComponent = renderOnce(LabelGroup(props));
-                this.rootComponentDOMNode = YummiesDOM.findDOMNode(this.rootComponent);
+                this.rootComponentDOMNode = ReactDOM.findDOMNode(this.rootComponent);
             };
         });
 
@@ -29,7 +29,7 @@ describe('labelGroup', () => {
             it('initial', function() {
                 this.renderWithProps({
                     labelText: 'test label',
-                    children: Yummies.createElement('div', {
+                    children: React.createElement('div', {
                         key: 'test',
                         className: 'test-children'
                     })
@@ -63,7 +63,7 @@ describe('labelGroup', () => {
                 this.renderWithProps({
                     labelText: 'test label',
                     controlPosition: 'left',
-                    children: Yummies.createElement('div', {
+                    children: React.createElement('div', {
                         key: 'test',
                         className: 'test-children'
                     })

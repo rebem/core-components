@@ -1,7 +1,8 @@
-import Yummies from '@yummies/yummies';
-import YummiesDOM from '@yummies/dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import chai, { expect } from 'chai';
+
 import { createRender, renderOnce } from 'test/helpers/render';
 
 import Radio from '#radio';
@@ -21,7 +22,7 @@ describe('radio', () => {
         beforeEach(function() {
             this.renderWithProps = props => {
                 this.rootComponent = renderOnce(Radio(props));
-                this.rootComponentDOMNode = YummiesDOM.findDOMNode(this.rootComponent);
+                this.rootComponentDOMNode = ReactDOM.findDOMNode(this.rootComponent);
                 this.inputControlDOMNode = TestUtils.findRenderedDOMComponentWithClass(this.rootComponent, 'radio__control');
             };
 
@@ -62,11 +63,11 @@ describe('radio', () => {
 
             it('radio group', function() {
                 const radio1 = renderOnce(Radio({ name: 'group1' }));
-                const radio1DOMNode = YummiesDOM.findDOMNode(radio1);
+                const radio1DOMNode = ReactDOM.findDOMNode(radio1);
                 const radio1InputControlDOMNode = TestUtils.findRenderedDOMComponentWithClass(radio1, 'radio__control');
 
                 const radio2 = renderOnce(Radio({ name: 'group1', checked: true }));
-                const radio2DOMNode = YummiesDOM.findDOMNode(radio2);
+                const radio2DOMNode = ReactDOM.findDOMNode(radio2);
 
                 expect(radio1DOMNode).to.not.has.mods({ checked: true });
                 expect(radio2DOMNode).to.has.mods({ checked: true });
@@ -79,7 +80,7 @@ describe('radio', () => {
 
             it('children', function() {
                 this.renderWithProps({
-                    children: Yummies.createElement('div', {
+                    children: React.createElement('div', {
                         key: 'test',
                         className: 'test-children'
                     })
@@ -177,13 +178,13 @@ describe('radio', () => {
         describe('componentWillUnmount', () => {
             it('remove radio from existing group', function() {
                 const radio1 = renderOnce(Radio({ name: 'group2' }));
-                const radio1DOMNode = YummiesDOM.findDOMNode(radio1);
+                const radio1DOMNode = ReactDOM.findDOMNode(radio1);
                 const radio1InputControlDOMNode = TestUtils.findRenderedDOMComponentWithClass(radio1, 'radio__control');
 
                 const radio2 = renderOnce(Radio({ name: 'group2', checked: true }));
-                const radio2DOMNode = YummiesDOM.findDOMNode(radio2);
+                const radio2DOMNode = ReactDOM.findDOMNode(radio2);
 
-                YummiesDOM.unmountComponentAtNode(radio2DOMNode.parentNode);
+                ReactDOM.unmountComponentAtNode(radio2DOMNode.parentNode);
                 TestUtils.Simulate.change(radio1InputControlDOMNode, { target: { checked: true } });
 
                 expect(radio1DOMNode).to.has.mods({ checked: true });

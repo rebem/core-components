@@ -1,4 +1,5 @@
-import { Component, PropTypes } from '@yummies/yummies';
+import { Component, PropTypes } from 'react';
+import BEM from '@yummies/bem';
 
 export default class extends Component {
     static displayName = 'core: tabs/title';
@@ -28,15 +29,18 @@ export default class extends Component {
     }
 
     render() {
-        return {
+        return BEM({
             block: 'tabs',
             elem: 'title',
             props: {
+                ...this.props,
                 onClick: this.selectTab
             },
             mods: {
-                selected: this.props.selected === this.props.index
+                selected: this.props.selected === this.props.index,
+                ...this.props.mods
             },
+            mix: this.props.mix,
             content: [
                 {
                     elem: 'title-inner',
@@ -47,6 +51,6 @@ export default class extends Component {
                 },
                 ...[].concat(this.props.children)
             ]
-        };
+        });
     }
 }

@@ -1,5 +1,5 @@
-import YummiesDOM from '@yummies/dom';
+import ReactDOM from 'react-dom';
 
 import Demo from '#demo';
 
-YummiesDOM.render(Demo(), document.getElementById('demo'));
+ReactDOM.render(Demo(), document.getElementById('demo'));

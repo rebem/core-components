@@ -1,4 +1,4 @@
-import { Component } from '@yummies/yummies';
+import { Component } from 'react';
 
 import Input from '#input';
 
@@ -7,15 +7,17 @@ export default class extends Component {
 
     render() {
         return Input({
+            ...this.props,
             type: 'search',
+            mods: {
+                type: 'search',
+                ...this.props.mods
+            },
+            mix: this.props.mix,
             autoComplete: 'off',
             autoCapitalize: 'off',
             autoCorrect: 'off',
-            spellCheck: 'off',
-            mods: {
-                type: 'search'
-            },
-            ...this.props
+            spellCheck: 'off'
         });
     }
 }

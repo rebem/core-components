@@ -1,4 +1,5 @@
-import { Component, PropTypes } from '@yummies/yummies';
+import { Component, PropTypes } from 'react';
+import BEM from '@yummies/bem';
 import UID from 'component-uid';
 
 const ESC_KEYCODE = 27;
@@ -65,9 +66,12 @@ export default class extends Component {
     render() {
         const popupID = 'popup-' + UID(UID_LENGTH);
 
-        return {
+        return BEM({
             block: 'popup',
+            mods: this.props.mods,
+            mix: this.props.mix,
             props: {
+                ...this.props,
                 tabIndex: -1,
                 onKeyUp: this._onKeyUp,
                 ref: 'popup'
@@ -111,6 +115,6 @@ export default class extends Component {
                     ]
                 }
             ]
-        };
+        });
     }
 }

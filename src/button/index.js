@@ -1,4 +1,5 @@
-import { Component, PropTypes } from '@yummies/yummies';
+import { Component, PropTypes } from 'react';
+import BEM from '@yummies/bem';
 
 export default class extends Component {
     static displayName = 'core: button';
@@ -106,15 +107,17 @@ export default class extends Component {
     }
 
     render() {
-        return {
+        return BEM({
             block: 'button',
             tag: 'span',
             mods: {
                 focused: this.state.focused,
                 hovered: this.state.hovered,
                 disabled: this.props.disabled,
-                pressed: this.state.pressed
+                pressed: this.state.pressed,
+                ...this.props.mods
             },
+            mix: this.props.mix,
             content: [
                 {
                     elem: 'control',
@@ -135,6 +138,6 @@ export default class extends Component {
                 },
                 ...[ this.props.children ]
             ]
-        };
+        });
     }
 }

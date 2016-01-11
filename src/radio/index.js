@@ -1,4 +1,5 @@
-import { Component, PropTypes } from '@yummies/yummies';
+import { Component, PropTypes } from 'react';
+import BEM from '@yummies/bem';
 import UID from 'component-uid';
 import EventEmitter from 'eventemitter3';
 
@@ -123,15 +124,17 @@ export default class extends Component {
     }
 
     render() {
-        return {
+        return BEM({
             block: 'radio',
             tag: 'label',
             mods: {
                 focused: this.state.focused,
                 hovered: this.state.hovered,
                 checked: this.state.checked,
-                disabled: this.props.disabled
+                disabled: this.props.disabled,
+                ...this.props.mods
             },
+            mix: this.props.mods,
             content: [
                 {
                     elem: 'control',
@@ -151,6 +154,6 @@ export default class extends Component {
                 },
                 ...[ this.props.children ]
             ]
-        };
+        });
     }
 }

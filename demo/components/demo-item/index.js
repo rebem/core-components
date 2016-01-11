@@ -1,7 +1,8 @@
-import { Component, PropTypes } from '@yummies/yummies';
+import { Component, PropTypes } from 'react';
+import BEM from '@yummies/bem';
 
 export default class extends Component {
-    static displayName = 'DemoItem';
+    static displayName = 'demo: demo-item';
     static propTypes = {
         title: PropTypes.oneOfType([
             PropTypes.node,
@@ -52,8 +53,11 @@ export default class extends Component {
     }
 
     render() {
-        return {
+        return BEM({
             block: 'demo-item',
+            mods: this.props.mods,
+            mix: this.props.mix,
+            props: this.props,
             content: [
                 this._renderTitle(),
                 this._renderDescription(),
@@ -65,6 +69,6 @@ export default class extends Component {
                     content: this.props.children
                 }
             ]
-        };
+        });
     }
 }

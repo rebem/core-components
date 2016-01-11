@@ -1,4 +1,5 @@
-import { Component } from '@yummies/yummies';
+import { Component } from 'react';
+import BEM from '@yummies/bem';
 
 import DemoItem from '#demo-item';
 import Attach from '#attach';
@@ -16,7 +17,7 @@ import Tabs from '#tabs';
 import Textarea from '#textarea';
 
 export default class extends Component {
-    static displayName = 'Demo';
+    static displayName = 'demo: demo';
 
     constructor(props, context) {
         super(props, context);
@@ -35,8 +36,11 @@ export default class extends Component {
     }
 
     render() {
-        return {
+        return BEM({
             block: 'demo',
+            mods: this.props.mods,
+            mix: this.props.mix,
+            props: this.props,
             content: [
                 DemoItem(
                     {
@@ -206,6 +210,6 @@ export default class extends Component {
                     })
                 )
             ]
-        };
+        });
     }
 }

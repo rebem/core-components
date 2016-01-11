@@ -1,6 +1,7 @@
+import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
-import YummiesDOM from '@yummies/dom';
 import chai, { expect } from 'chai';
+
 import { renderOnce } from 'test/helpers/render';
 
 import Tabs from '#tabs';
@@ -22,7 +23,7 @@ describe('tabs', function() {
         beforeEach(function() {
             this.renderWithProps = props => {
                 this.rootComponent = renderOnce(Tabs(props));
-                this.rootComponentDOMNode = YummiesDOM.findDOMNode(this.rootComponent);
+                this.rootComponentDOMNode = ReactDOM.findDOMNode(this.rootComponent);
                 this.titlesDOMNode = this.rootComponentDOMNode.children[0];
                 this.panelsDOMNode = this.rootComponentDOMNode.children[1];
             };

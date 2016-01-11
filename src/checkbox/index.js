@@ -1,4 +1,5 @@
-import { Component, PropTypes } from '@yummies/yummies';
+import { Component, PropTypes } from 'react';
+import BEM from '@yummies/bem';
 
 export default class extends Component {
     static displayName = 'core: checkbox';
@@ -100,15 +101,17 @@ export default class extends Component {
     }
 
     render() {
-        return {
+        return BEM({
             block: 'checkbox',
             tag: 'label',
             mods: {
                 focused: this.state.focused,
                 hovered: this.state.hovered,
                 checked: this.state.checked,
-                disabled: this.props.disabled
+                disabled: this.props.disabled,
+                ...this.props.mods
             },
+            mix: this.props.mix,
             content: [
                 {
                     elem: 'control',
@@ -128,6 +131,6 @@ export default class extends Component {
                 },
                 ...[ this.props.children ]
             ]
-        };
+        });
     }
 }

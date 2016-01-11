@@ -1,5 +1,5 @@
 import { Component, PropTypes } from 'react';
-import Yummies from '@yummies/yummies';
+import BEM from '@yummies/bem';
 import UID from 'component-uid';
 
 const ESC_KEYCODE = 27;
@@ -66,7 +66,7 @@ export default class extends Component {
     render() {
         const popupID = 'popup-' + UID(UID_LENGTH);
 
-        return Yummies({
+        return BEM({
             block: 'popup',
             mods: this.props.mods,
             mix: this.props.mix,

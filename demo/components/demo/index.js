@@ -1,5 +1,5 @@
-import { Component, PropTypes } from 'react';
-import Yummies from '@yummies/yummies';
+import { Component } from 'react';
+import BEM from '@yummies/bem';
 
 import DemoItem from '#demo-item';
 import Attach from '#attach';
@@ -36,7 +36,7 @@ export default class extends Component {
     }
 
     render() {
-        return Yummies({
+        return BEM({
             block: 'demo',
             mods: this.props.mods,
             mix: this.props.mix,

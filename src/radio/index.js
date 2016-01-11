@@ -1,5 +1,5 @@
 import { Component, PropTypes } from 'react';
-import Yummies from '@yummies/yummies';
+import BEM from '@yummies/bem';
 import UID from 'component-uid';
 import EventEmitter from 'eventemitter3';
 
@@ -124,7 +124,7 @@ export default class extends Component {
     }
 
     render() {
-        return Yummies({
+        return BEM({
             block: 'radio',
             tag: 'label',
             mods: {

@@ -1,5 +1,5 @@
 import { Component, PropTypes } from 'react';
-import Yummies from '@yummies/yummies';
+import BEM from '@yummies/bem';
 
 export default class extends Component {
     static displayName = 'core: checkbox';
@@ -101,7 +101,7 @@ export default class extends Component {
     }
 
     render() {
-        return Yummies({
+        return BEM({
             block: 'checkbox',
             tag: 'label',
             mods: {

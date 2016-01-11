@@ -1,11 +1,11 @@
 import { Component } from 'react';
-import Yummies from '@yummies/yummies';
+import BEM from '@yummies/bem';
 
 export default class extends Component {
     static displayName = 'core: img';
 
     render() {
-        return Yummies({
+        return BEM({
             block: 'img',
             mods: this.props.mods,
             mix: this.props.mix,

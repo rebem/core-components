@@ -17,7 +17,7 @@
   "main": "index.js",
   "dependencies": {
     "react": "0.14.x",
-    "@yummies/yummies": ">=3.0.0-alpha.1",
+    "@yummies/bem": "0.0.x",
     "component-uid": "0.0.x",
     "eventemitter3": "1.1.x"
   },

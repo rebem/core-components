@@ -5,6 +5,10 @@ import Input from '#input';
 export default class extends Component {
     static displayName = 'core: input/_type/search';
 
+    val() {
+        return this.refs.input.val();
+    }
+
     render() {
         return Input({
             ...this.props,
@@ -17,7 +21,8 @@ export default class extends Component {
             autoComplete: 'off',
             autoCapitalize: 'off',
             autoCorrect: 'off',
-            spellCheck: 'off'
+            spellCheck: 'off',
+            ref: 'input'
         });
     }
 }

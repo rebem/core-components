@@ -133,7 +133,7 @@ export default class extends Component {
                         key: 'control'
                     }
                 },
-                ...[ this.props.children ]
+                ...[].concat(this.props.children)
             ]
         });
     }

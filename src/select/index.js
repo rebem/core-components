@@ -160,7 +160,7 @@ export default class extends Component {
                     },
                     content: this._renderOptions()
                 },
-                ...[ this.props.children ]
+                ...[].concat(this.props.children)
             ]
         });
     }

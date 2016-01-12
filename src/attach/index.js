@@ -133,10 +133,6 @@ export default class extends Component {
         });
     }
 
-    _renderChildren() {
-        return [].concat(this.props.children);
-    }
-
     val() {
         return this.state.value;
     }
@@ -173,7 +169,7 @@ export default class extends Component {
                     }
                 },
                 this._renderValue(),
-                ...this._renderChildren()
+                ...[].concat(this.props.children)
             ]
         });
     }

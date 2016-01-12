@@ -30,7 +30,7 @@
 
     "eslint": "1.10.x",
     "eslint-plugin-babel": "3.0.x",
-    "eslint-plugin-react": "3.14.x",
+    "eslint-plugin-react": "3.15.x",
     "babel-eslint": ">5.0.0-beta1",
 
     "babel-core": "6.4.x",
@@ -45,7 +45,7 @@
     "react-addons-test-utils": "0.14.x",
     "legit-tests": "0.6.x",
 
-    "webpack": "1.12.9",
+    "webpack": "1.12.x",
     "webpack-dev-server": "1.14.x",
     "html-webpack-plugin": "1.7.x",
     "json-loader": "0.5.x",

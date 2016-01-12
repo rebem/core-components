@@ -24,23 +24,25 @@ export default class extends Component {
     };
 
     _renderLabel() {
-        return {
+        return BEM({
+            block: 'label-group',
             elem: 'label',
             props: {
                 key: 'label'
             },
             content: this.props.labelText
-        };
+        });
     }
 
     _renderControl() {
-        return {
+        return BEM({
+            block: 'label-group',
             elem: 'control',
             props: {
                 key: 'control'
             },
             content: this.props.children
-        };
+        });
     }
 
     render() {

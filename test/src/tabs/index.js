@@ -1,4 +1,5 @@
 import ReactDOM from 'react-dom';
+import BEM from '@yummies/bem';
 import TestUtils from 'react-addons-test-utils';
 import chai, { expect } from 'chai';
 
@@ -106,16 +107,32 @@ describe('tabs', function() {
                     this.renderWithProps({
                         ...this.props,
                         renderTitles({ tabs, key }) {
-                            return {
+                            return BEM({
                                 block: 'test',
                                 content: tabs[1].title,
                                 props: { key }
-                            };
+                            });
                         }
                     });
 
                     expect(this.titlesDOMNode).to.be.a.block('test');
                     expect(this.titlesDOMNode.innerHTML).to.be.equal(this.props.tabs[1].title);
+                });
+
+                it('with custom panels', function() {
+                    this.renderWithProps({
+                        ...this.props,
+                        renderPanels({ tabs, key }) {
+                            return BEM({
+                                block: 'test',
+                                content: tabs[1].title,
+                                props: { key }
+                            });
+                        }
+                    });
+
+                    expect(this.panelsDOMNode).to.be.a.block('test');
+                    expect(this.panelsDOMNode.innerHTML).to.be.equal(this.props.tabs[1].title);
                 });
             });
         });

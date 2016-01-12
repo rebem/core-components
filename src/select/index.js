@@ -116,14 +116,15 @@ export default class extends Component {
 
     _renderOptions() {
         return this.props.options.map(option => {
-            return {
+            return BEM({
+                block: 'select',
                 tag: 'option',
                 content: option.text,
                 props: {
                     value: option.value,
                     key: 'option-' + option.value
                 }
-            };
+            });
         });
     }
 

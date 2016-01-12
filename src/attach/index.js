@@ -122,14 +122,15 @@ export default class extends Component {
             return null;
         }
 
-        return {
+        return BEM({
+            block: 'attach',
             elem: 'value',
             tag: 'span',
             props: {
                 key: 'value'
             },
             content: this.props.value
-        };
+        });
     }
 
     _renderChildren() {

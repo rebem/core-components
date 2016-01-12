@@ -3,6 +3,8 @@ import BEM from '@yummies/bem';
 
 import Titles from '#tabs/titles';
 import Title from '#tabs/title';
+import Panels from '#tabs/panels';
+import Panel from '#tabs/panel';
 
 export default class extends Component {
     static displayName = 'core: tabs';
@@ -28,7 +30,8 @@ export default class extends Component {
             })
         ).isRequired,
         onTabChange: PropTypes.func,
-        renderTitles: PropTypes.func
+        renderTitles: PropTypes.func,
+        renderPanels: PropTypes.func
     };
     static defaultProps = {
         selected: 0,
@@ -57,18 +60,23 @@ export default class extends Component {
     }
 
     renderPanels() {
-        return this.props.tabs.map((tab, index) => {
-            return {
-                elem: 'panel',
-                props: {
-                    key: 'panel' + index
-                },
-                mods: {
-                    selected: this.props.selected === index
-                },
-                content: tab.content
-            };
-        });
+        if ('renderPanels' in this.props) {
+            return this.props.renderPanels({ ...this.props, key: 'panels' });
+        }
+
+        return Panels(
+            {
+                ...this.props,
+                key: 'panels'
+            },
+            this.props.tabs.map((tab, index) => {
+                return Panel({
+                    index,
+                    ...this.props,
+                    key: index
+                }, tab.content);
+            })
+        );
     }
 
     render() {
@@ -79,13 +87,7 @@ export default class extends Component {
             props: this.props,
             content: [
                 this.renderTitles(),
-                {
-                    elem: 'panels',
-                    props: {
-                        key: 'panels'
-                    },
-                    content: this.renderPanels()
-                }
+                this.renderPanels()
             ]
         });
     }

@@ -61,7 +61,7 @@
     "karma-webpack": "1.7.x",
     "karma-coverage": "0.5.x",
     "karma-clear-screen-reporter": "1.0.x",
-    "coveralls": "2.11.x"
+    "codecov": "1.0.x"
   },
   "scripts": {
     "task": "babel-node node_modules/.bin/start tasks/",

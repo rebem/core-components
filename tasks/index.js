@@ -2,7 +2,7 @@ export { cleanBuild, cleanCoverage } from './clean';
 export { babelBuild } from './build';
 export { karmaBuild, karmaDev, karmaTravis } from './karma';
 export { eslint } from './lint';
-export { coveralls } from './coveralls';
+export { coverage } from './coverage';
 export { demo } from './demo';
 
 export const test = [
@@ -20,7 +20,7 @@ export const travis = [
     exports.eslint,
     exports.cleanCoverage,
     exports.karmaTravis,
-    exports.coveralls
+    exports.coverage
 ];
 
 export const build = [

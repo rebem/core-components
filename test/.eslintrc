@@ -4,3 +4,5 @@
 
   rules:
     max-nested-callbacks: 0
+    max-len: 0
+    no-console: 0

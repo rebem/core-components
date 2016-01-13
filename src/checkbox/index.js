@@ -1,5 +1,26 @@
-export default Base => class extends Base {
+import { Component, PropTypes } from 'react';
+import BEM from '@yummies/bem';
+
+export default class extends Component {
     static displayName = 'core: checkbox';
+    static propTypes = {
+        checked: PropTypes.bool,
+        disabled: PropTypes.bool,
+        onChange: PropTypes.func,
+        onFocus: PropTypes.func,
+        onBlur: PropTypes.func,
+        onMouseEnter: PropTypes.func,
+        onMouseLeave: PropTypes.func,
+        children: PropTypes.oneOfType([
+            PropTypes.node,
+            PropTypes.arrayOf(PropTypes.node),
+            PropTypes.object,
+            PropTypes.arrayOf(PropTypes.object)
+        ])
+    };
+    static defaultProps = {
+        disabled: false
+    };
 
     constructor(props, context) {
         super(props, context);
@@ -9,6 +30,12 @@ export default Base => class extends Base {
             hovered: false,
             checked: props.checked
         };
+
+        this._onInputChange = this._onInputChange.bind(this);
+        this._onInputFocus = this._onInputFocus.bind(this);
+        this._onInputBlur = this._onInputBlur.bind(this);
+        this._onInputMouseLeave = this._onInputMouseLeave.bind(this);
+        this._onInputMouseEnter = this._onInputMouseEnter.bind(this);
     }
 
     componentWillReceiveProps({ checked }) {
@@ -74,15 +101,17 @@ export default Base => class extends Base {
     }
 
     render() {
-        return {
+        return BEM({
             block: 'checkbox',
             tag: 'label',
             mods: {
                 focused: this.state.focused,
                 hovered: this.state.hovered,
                 checked: this.state.checked,
-                disabled: this.props.disabled || false
+                disabled: this.props.disabled,
+                ...this.props.mods
             },
+            mix: this.props.mix,
             content: [
                 {
                     elem: 'control',
@@ -91,17 +120,17 @@ export default Base => class extends Base {
                         type: 'checkbox',
                         ...this.props,
                         checked: this.state.checked,
-                        onChange: ::this._onInputChange,
-                        onFocus: ::this._onInputFocus,
-                        onBlur: ::this._onInputBlur,
-                        onMouseLeave: ::this._onInputMouseLeave,
-                        onMouseEnter: ::this._onInputMouseEnter,
+                        onChange: this._onInputChange,
+                        onFocus: this._onInputFocus,
+                        onBlur: this._onInputBlur,
+                        onMouseLeave: this._onInputMouseLeave,
+                        onMouseEnter: this._onInputMouseEnter,
                         ref: 'control',
                         key: 'control'
                     }
                 },
-                ...[ this.props.children ]
+                ...[].concat(this.props.children)
             ]
-        };
+        });
     }
-};
+}

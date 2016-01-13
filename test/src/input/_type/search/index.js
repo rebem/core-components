@@ -1,11 +1,11 @@
 import TestUtils from 'react-addons-test-utils';
-import YummiesDOM from '@yummies/dom';
+import ReactDOM from 'react-dom';
 import { expect } from 'chai';
 import { renderOnce } from 'test/helpers/render';
 
-import Input from '#input?_type=search';
+import Input from '#input/_type/search';
 
-describe('input_type_search', () => {
+describe('input/_type/search', () => {
     describe('basic', () => {
         it('exists', () => {
             expect(Input).to.exist;
@@ -20,7 +20,7 @@ describe('input_type_search', () => {
         describe('DOM', () => {
             it('initial', function() {
                 const rootComponent = renderOnce(Input());
-                const rootComponentDOMNode = YummiesDOM.findDOMNode(rootComponent);
+                const rootComponentDOMNode = ReactDOM.findDOMNode(rootComponent);
                 const inputControlDOMNode = TestUtils.findRenderedDOMComponentWithClass(rootComponent, 'input__control');
 
                 expect(rootComponentDOMNode).to.have.mods({ type: 'search' });

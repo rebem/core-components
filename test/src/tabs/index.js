@@ -1,33 +1,35 @@
+import ReactDOM from 'react-dom';
+import BEM from '@yummies/bem';
 import TestUtils from 'react-addons-test-utils';
-import YummiesDOM from '@yummies/dom';
 import chai, { expect } from 'chai';
+
 import { renderOnce } from 'test/helpers/render';
 
 import Tabs from '#tabs';
 
-describe('tabs', () => {
-    describe('basic', () => {
-        it('exists', () => {
+describe('tabs', function() {
+    describe('basic', function() {
+        it('exists', function() {
             expect(Tabs).to.exist;
         });
 
-        it('is a component', () => {
+        it('is a component', function() {
             const Component = Tabs();
 
             expect(TestUtils.isCompositeComponent(renderOnce(Component))).to.be.true;
         });
     });
 
-    describe('render', () => {
+    describe('render', function() {
         beforeEach(function() {
             this.renderWithProps = props => {
                 this.rootComponent = renderOnce(Tabs(props));
-                this.rootComponentDOMNode = YummiesDOM.findDOMNode(this.rootComponent);
+                this.rootComponentDOMNode = ReactDOM.findDOMNode(this.rootComponent);
                 this.titlesDOMNode = this.rootComponentDOMNode.children[0];
                 this.panelsDOMNode = this.rootComponentDOMNode.children[1];
             };
 
-            this.renderWithProps({
+            this.props = {
                 tabs: [
                     {
                         title: 'first',
@@ -38,10 +40,12 @@ describe('tabs', () => {
                         content: '2'
                     }
                 ]
-            });
+            };
+
+            this.renderWithProps(this.props);
         });
 
-        describe('DOM', () => {
+        describe('DOM', function() {
             it('initial', function() {
                 expect(this.rootComponentDOMNode).to.be.a.block('tabs');
                 expect(this.titlesDOMNode).to.be.an.elem({
@@ -54,7 +58,7 @@ describe('tabs', () => {
                 });
             });
 
-            describe('with tabs', () => {
+            describe('with tabs', function() {
                 it('titles', function() {
                     const firstTitle = this.titlesDOMNode.children[0];
                     const secondTitle = this.titlesDOMNode.children[1];
@@ -98,38 +102,86 @@ describe('tabs', () => {
                         selected: true
                     });
                 });
+
+                it('with custom titles', function() {
+                    this.renderWithProps({
+                        ...this.props,
+                        renderTitles({ tabs, key }) {
+                            return BEM({
+                                block: 'test',
+                                content: tabs[1].title,
+                                props: { key }
+                            });
+                        }
+                    });
+
+                    expect(this.titlesDOMNode).to.be.a.block('test');
+                    expect(this.titlesDOMNode.innerHTML).to.be.equal(this.props.tabs[1].title);
+                });
+
+                it('with custom panels', function() {
+                    this.renderWithProps({
+                        ...this.props,
+                        renderPanels({ tabs, key }) {
+                            return BEM({
+                                block: 'test',
+                                content: tabs[1].title,
+                                props: { key }
+                            });
+                        }
+                    });
+
+                    expect(this.panelsDOMNode).to.be.a.block('test');
+                    expect(this.panelsDOMNode.innerHTML).to.be.equal(this.props.tabs[1].title);
+                });
             });
         });
 
-        describe('API', () => {
+        describe('API', function() {
             it('selectTab', function() {
-                this.rootComponent.selectTab(1);
+                this.props.selected = 1;
+                this.renderWithProps(this.props);
+                expect(this.panelsDOMNode.children[1]).to.have.mods({
+                    selected: true
+                });
 
-                expect(this.rootComponent.state.selected).to.be.equal(1);
-
-                this.rootComponent.selectTab(0);
-
-                expect(this.rootComponent.state.selected).to.be.equal(0);
+                this.props.selected = 0;
+                this.renderWithProps(this.props);
+                expect(this.panelsDOMNode.children[0]).to.have.mods({
+                    selected: true
+                });
             });
         });
 
-        describe('callbacks', () => {
+        describe('callbacks', function() {
             it('onTabChange', function() {
                 const spy = chai.spy();
 
+                this.renderWithProps(this.props);
+                TestUtils.Simulate.click(this.titlesDOMNode.children[1]);
+                TestUtils.Simulate.click(this.titlesDOMNode.children[0]);
+
                 this.renderWithProps({
+                    ...this.props,
+                    selected: 0,
                     onTabChange: spy
                 });
+                TestUtils.Simulate.click(this.titlesDOMNode.children[1]);
+                TestUtils.Simulate.click(this.titlesDOMNode.children[0]);
 
-                this.rootComponent.selectTab(1);
+                expect(spy).to.have.been.called.twice;
+                expect(spy).to.have.been.called.with(0);
+            });
+        });
 
-                expect(spy).to.have.been.called.once;
-                expect(spy).to.have.been.called.with(1);
+        describe('propTypes', function() {
+            it('throws error if incorrect selected value', function() {
+                const incorrectRender = () => {
+                    this.props.selected = 3;
+                    this.renderWithProps(this.props);
+                };
 
-                this.renderWithProps();
-
-                expect(spy).to.have.been.called.once;
-                expect(spy).to.have.been.called.with(1);
+                expect(incorrectRender).to.throw(Error);
             });
         });
     });

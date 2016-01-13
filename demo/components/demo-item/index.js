@@ -1,14 +1,37 @@
-export default Base => class extends Base {
-    static displayName = 'DemoItem';
+import { Component, PropTypes } from 'react';
+import BEM from '@yummies/bem';
+
+export default class extends Component {
+    static displayName = 'demo: demo-item';
+    static propTypes = {
+        title: PropTypes.oneOfType([
+            PropTypes.node,
+            PropTypes.arrayOf(PropTypes.node),
+            PropTypes.object,
+            PropTypes.arrayOf(PropTypes.object)
+        ]),
+        description: PropTypes.oneOfType([
+            PropTypes.node,
+            PropTypes.arrayOf(PropTypes.node),
+            PropTypes.object,
+            PropTypes.arrayOf(PropTypes.object)
+        ]),
+        children: PropTypes.oneOfType([
+            PropTypes.node,
+            PropTypes.arrayOf(PropTypes.node),
+            PropTypes.object,
+            PropTypes.arrayOf(PropTypes.object)
+        ])
+    };
 
     _renderDescription() {
-        if ('_description' in this.props) {
+        if ('description' in this.props) {
             return {
                 elem: 'description',
                 props: {
                     key: 'description'
                 },
-                content: this.props._description
+                content: this.props.description
             };
         }
 
@@ -16,13 +39,13 @@ export default Base => class extends Base {
     }
 
     _renderTitle() {
-        if ('_title' in this.props) {
+        if ('title' in this.props) {
             return {
                 elem: 'title',
                 props: {
                     key: 'title'
                 },
-                content: this.props._title
+                content: this.props.title
             };
         }
 
@@ -30,8 +53,11 @@ export default Base => class extends Base {
     }
 
     render() {
-        return {
+        return BEM({
             block: 'demo-item',
+            mods: this.props.mods,
+            mix: this.props.mix,
+            props: this.props,
             content: [
                 this._renderTitle(),
                 this._renderDescription(),
@@ -43,6 +69,6 @@ export default Base => class extends Base {
                     content: this.props.children
                 }
             ]
-        };
+        });
     }
-};
+}

@@ -1,5 +1,5 @@
-import Yummies from '@yummies/yummies';
-import YummiesDOM from '@yummies/dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import chai, { expect } from 'chai';
 import { createRender, renderOnce } from 'test/helpers/render';
@@ -21,7 +21,7 @@ describe('checkbox', () => {
         beforeEach(function() {
             this.renderWithProps = props => {
                 this.rootComponent = renderOnce(Checkbox(props));
-                this.rootComponentDOMNode = YummiesDOM.findDOMNode(this.rootComponent);
+                this.rootComponentDOMNode = ReactDOM.findDOMNode(this.rootComponent);
                 this.inputControlDOMNode = TestUtils.findRenderedDOMComponentWithClass(this.rootComponent, 'checkbox__control');
             };
 
@@ -62,7 +62,7 @@ describe('checkbox', () => {
 
             it('children', function() {
                 this.renderWithProps({
-                    children: Yummies.createElement('div', {
+                    children: React.createElement('div', {
                         key: 'test',
                         className: 'test-children'
                     })

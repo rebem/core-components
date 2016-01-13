@@ -1,5 +1,25 @@
-export default Base => class extends Base {
+import { Component, PropTypes } from 'react';
+import BEM from '@yummies/bem';
+
+export default class extends Component {
     static displayName = 'core: attach';
+    static propTypes = {
+        value: PropTypes.string,
+        disabled: PropTypes.bool,
+        onChange: PropTypes.func,
+        onFocus: PropTypes.func,
+        onBlur: PropTypes.func,
+        onMouseEnter: PropTypes.func,
+        onMouseLeave: PropTypes.func,
+        onMouseDown: PropTypes.func,
+        onMouseUp: PropTypes.func,
+        children: PropTypes.oneOfType([
+            PropTypes.node,
+            PropTypes.arrayOf(PropTypes.node),
+            PropTypes.object,
+            PropTypes.arrayOf(PropTypes.object)
+        ])
+    };
     static defaultProps = {
         disabled: false
     };
@@ -13,6 +33,14 @@ export default Base => class extends Base {
             hovered: false,
             value: null
         };
+
+        this._onInputChange = this._onInputChange.bind(this);
+        this._onInputFocus = this._onInputFocus.bind(this);
+        this._onInputBlur = this._onInputBlur.bind(this);
+        this._onInputMouseDown = this._onInputMouseDown.bind(this);
+        this._onInputMouseUp = this._onInputMouseUp.bind(this);
+        this._onInputMouseLeave = this._onInputMouseLeave.bind(this);
+        this._onInputMouseEnter = this._onInputMouseEnter.bind(this);
     }
 
     // file input doesn't allow to change it's value programmatically
@@ -94,18 +122,15 @@ export default Base => class extends Base {
             return null;
         }
 
-        return {
+        return BEM({
+            block: 'attach',
             elem: 'value',
             tag: 'span',
             props: {
                 key: 'value'
             },
             content: this.props.value
-        };
-    }
-
-    _renderChildren() {
-        return [].concat(this.props.children);
+        });
     }
 
     val() {
@@ -113,15 +138,17 @@ export default Base => class extends Base {
     }
 
     render() {
-        return {
+        return BEM({
             block: 'attach',
             tag: 'label',
             mods: {
                 focused: this.state.focused,
                 hovered: this.state.hovered,
                 pressed: this.state.pressed,
-                disabled: this.props.disabled
+                disabled: this.props.disabled,
+                ...this.props.mods
             },
+            mix: this.props.mix,
             content: [
                 {
                     elem: 'control',
@@ -130,20 +157,20 @@ export default Base => class extends Base {
                         type: 'file',
                         ...this.props,
                         value: this.state.value,
-                        onChange: ::this._onInputChange,
-                        onFocus: ::this._onInputFocus,
-                        onBlur: ::this._onInputBlur,
-                        onMouseDown: ::this._onInputMouseDown,
-                        onMouseUp: ::this._onInputMouseUp,
-                        onMouseLeave: ::this._onInputMouseLeave,
-                        onMouseEnter: ::this._onInputMouseEnter,
+                        onChange: this._onInputChange,
+                        onFocus: this._onInputFocus,
+                        onBlur: this._onInputBlur,
+                        onMouseDown: this._onInputMouseDown,
+                        onMouseUp: this._onInputMouseUp,
+                        onMouseLeave: this._onInputMouseLeave,
+                        onMouseEnter: this._onInputMouseEnter,
                         ref: 'control',
                         key: 'control'
                     }
                 },
                 this._renderValue(),
-                ...this._renderChildren()
+                ...[].concat(this.props.children)
             ]
-        };
+        });
     }
-};
+}

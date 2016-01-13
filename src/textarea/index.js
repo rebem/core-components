@@ -1,14 +1,45 @@
-export default Base => class extends Base {
+import { Component, PropTypes } from 'react';
+import BEM from '@yummies/bem';
+
+export default class extends Component {
     static displayName = 'core: textarea';
+    static propTypes = {
+        value: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ]),
+        disabled: PropTypes.bool,
+        onChange: PropTypes.func,
+        onFocus: PropTypes.func,
+        onBlur: PropTypes.func,
+        onMouseEnter: PropTypes.func,
+        onMouseLeave: PropTypes.func,
+        children: PropTypes.oneOfType([
+            PropTypes.node,
+            PropTypes.arrayOf(PropTypes.node),
+            PropTypes.object,
+            PropTypes.arrayOf(PropTypes.object)
+        ])
+    };
+    static defaultProps = {
+        value: '',
+        disabled: false
+    };
 
     constructor(props, context) {
         super(props, context);
 
         this.state = {
-            value: props.value || '',
+            value: props.value,
             focused: false,
             hovered: false
         };
+
+        this._onInputChange = this._onInputChange.bind(this);
+        this._onInputFocus = this._onInputFocus.bind(this);
+        this._onInputBlur = this._onInputBlur.bind(this);
+        this._onInputMouseLeave = this._onInputMouseLeave.bind(this);
+        this._onInputMouseEnter = this._onInputMouseEnter.bind(this);
     }
 
     componentWillReceiveProps({ value }) {
@@ -74,14 +105,16 @@ export default Base => class extends Base {
     }
 
     render() {
-        return {
+        return BEM({
             block: 'textarea',
             tag: 'label',
             mods: {
                 focused: this.state.focused,
                 hovered: this.state.hovered,
-                disabled: this.props.disabled || false
+                disabled: this.props.disabled,
+                ...this.props.mods
             },
+            mix: this.props.mix,
             content: [
                 {
                     elem: 'control',
@@ -90,17 +123,17 @@ export default Base => class extends Base {
                         type: 'text',
                         ...this.props,
                         value: this.state.value,
-                        onChange: ::this._onInputChange,
-                        onFocus: ::this._onInputFocus,
-                        onBlur: ::this._onInputBlur,
-                        onMouseLeave: ::this._onInputMouseLeave,
-                        onMouseEnter: ::this._onInputMouseEnter,
+                        onChange: this._onInputChange,
+                        onFocus: this._onInputFocus,
+                        onBlur: this._onInputBlur,
+                        onMouseLeave: this._onInputMouseLeave,
+                        onMouseEnter: this._onInputMouseEnter,
                         ref: 'control',
                         key: 'control'
                     }
                 },
-                ...[ this.props.children ]
+                ...[].concat(this.props.children)
             ]
-        };
+        });
     }
-};
+}

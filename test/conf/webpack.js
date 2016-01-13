@@ -11,12 +11,14 @@ export default {
         preLoaders: [
             {
                 test: /\.js$/,
-                loader: '@yummies/inheritance-loader',
+                loader: '@yummies/layers-loader',
                 query: {
                     layers: [
                         {
-                            path: path.resolve('./'),
-                            mode: 'src'
+                            path: path.resolve('src/'),
+                            files: {
+                                main: 'index.js'
+                            }
                         }
                     ],
                     include: [

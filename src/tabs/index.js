@@ -1,81 +1,94 @@
-export default Base => class extends Base {
+import { Component, PropTypes } from 'react';
+import BEM from '@yummies/bem';
+
+import Titles from '#tabs/titles';
+import Title from '#tabs/title';
+import Panels from '#tabs/panels';
+import Panel from '#tabs/panel';
+
+export default class extends Component {
     static displayName = 'core: tabs';
+    static propTypes = {
+        selected: (props, propName, componentName, ...rest) => {
+            if (
+                typeof props.selected !== 'number' ||
+                props.selected < 0 ||
+                (props.selected !== 0 && props.selected >= props.tabs.length)
+            ) {
+                return new Error(`Invalid prop \`${propName}\` of type \`${typeof props[propName]}\` supplied to \`${componentName}\`, expected to be a tab index within given \`props.tabs\` range`);
+            }
+        },
+        tabs: PropTypes.arrayOf(
+            PropTypes.shape({
+                title: PropTypes.node,
+                content: PropTypes.oneOfType([
+                    PropTypes.node,
+                    PropTypes.arrayOf(PropTypes.node),
+                    PropTypes.object,
+                    PropTypes.arrayOf(PropTypes.object)
+                ])
+            })
+        ).isRequired,
+        onTabChange: PropTypes.func,
+        renderTitles: PropTypes.func,
+        renderPanels: PropTypes.func
+    };
     static defaultProps = {
         selected: 0,
         tabs: []
     };
 
-    constructor(props, context) {
-        super(props, context);
+    renderTitles() {
+        if ('renderTitles' in this.props) {
+            return this.props.renderTitles({ ...this.props, key: 'titles' });
+        }
 
-        this.state = {
-            selected: this.props.selected
-        };
+        return Titles(
+            {
+                ...this.props,
+                key: 'titles'
+            },
+            this.props.tabs.map((tab, index) => {
+                return Title({
+                    title: tab.title,
+                    index,
+                    ...this.props,
+                    key: index
+                });
+            })
+        );
     }
 
-    _renderTitles() {
-        return this.props.tabs.map((child, i) => {
-            return {
-                elem: 'title',
-                props: {
-                    onClick: this.selectTab.bind(this, i),
-                    key: 'title' + i
-                },
-                mods: {
-                    selected: this.state.selected === i
-                },
-                content: {
-                    elem: 'title-inner',
-                    content: child.title
-                }
-            };
-        });
-    }
+    renderPanels() {
+        if ('renderPanels' in this.props) {
+            return this.props.renderPanels({ ...this.props, key: 'panels' });
+        }
 
-    _renderPanels() {
-        return this.props.tabs.map((child, i) => {
-            return {
-                elem: 'panel',
-                props: {
-                    key: 'panel' + i
-                },
-                mods: {
-                    selected: this.state.selected === i
-                },
-                content: child.content
-            };
-        });
-    }
-
-    selectTab(i) {
-        this.setState({
-            selected: i
-        }, () => {
-            if (this.props.onTabChange) {
-                this.props.onTabChange(i);
-            }
-        });
+        return Panels(
+            {
+                ...this.props,
+                key: 'panels'
+            },
+            this.props.tabs.map((tab, index) => {
+                return Panel({
+                    index,
+                    ...this.props,
+                    key: index
+                }, tab.content);
+            })
+        );
     }
 
     render() {
-        return {
+        return BEM({
             block: 'tabs',
+            mods: this.props.mods,
+            mix: this.props.mix,
+            props: this.props,
             content: [
-                {
-                    elem: 'titles',
-                    props: {
-                        key: 'titles'
-                    },
-                    content: this._renderTitles()
-                },
-                {
-                    elem: 'panels',
-                    props: {
-                        key: 'panels'
-                    },
-                    content: this._renderPanels()
-                }
+                this.renderTitles(),
+                this.renderPanels()
             ]
-        };
+        });
     }
-};
+}

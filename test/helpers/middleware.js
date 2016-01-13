@@ -1,4 +1,4 @@
-import YummiesDOM from '@yummies/dom';
+import ReactDOM from 'react-dom';
 import {
     scryRenderedDOMComponentsWithClass,
     scryRenderedDOMComponentsWithTag
@@ -9,7 +9,7 @@ export function setProps(props) {
 }
 
 export function extractRootDOMNode() {
-    this.elements.rootDOMNode = YummiesDOM.findDOMNode(this.instance);
+    this.elements.rootDOMNode = ReactDOM.findDOMNode(this.instance);
 }
 
 export function findClass(className) {

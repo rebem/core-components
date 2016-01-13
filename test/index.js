@@ -10,3 +10,10 @@ const testsContext = require.context('./src/', true, /index\.js$/);
 
 componentsContext.keys().forEach(componentsContext);
 testsContext.keys().forEach(testsContext);
+
+// catch react warnings to be able to test PropTypes
+before(function() {
+    console.error = error => {
+        throw Error(error);
+    };
+});

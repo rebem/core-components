@@ -1,13 +1,26 @@
-export default Base => class extends Base {
-    static displayName = 'core: TableRow';
+import { Component, PropTypes } from 'react';
+import BEM from '@yummies/bem';
+
+export default class extends Component {
+    static displayName = 'core: table/row';
+    static propTypes = {
+        children: PropTypes.oneOfType([
+            PropTypes.node,
+            PropTypes.arrayOf(PropTypes.node),
+            PropTypes.object,
+            PropTypes.arrayOf(PropTypes.object)
+        ])
+    };
 
     render() {
-        return {
+        return BEM({
             block: 'table',
             elem: 'row',
+            mods: this.props.mods,
+            mix: this.props.mix,
             tag: 'tr',
             props: this.props,
             content: this.props.children
-        };
+        });
     }
-};
+}

@@ -1,62 +1,34 @@
+import { Component } from 'react';
+import BEM from '@yummies/bem';
+
 import DemoItem from '#demo-item';
 import Attach from '#attach';
 import Button from '#button';
 import Checkbox from '#checkbox';
 import ColorPicker from '#colorpicker';
 import Input from '#input';
-import InputSearch from '#input?_type=search';
+import InputSearch from '#input/_type/search';
 import LabelGroup from '#label-group';
 import Link from '#link';
 import Popup from '#popup';
 import Radio from '#radio';
 import Select from '#select';
 import Tabs from '#tabs';
-import TabsDynamic from '#tabs?_type=dynamic';
 import Textarea from '#textarea';
 
-export default Base => class extends Base {
-    static displayName = 'Demo';
+export default class extends Component {
+    static displayName = 'demo: demo';
 
-    constructor(props) {
-        super(props);
+    constructor(props, context) {
+        super(props, context);
 
         this.state = {
-            dynamicTabs: [
-                {
-                    id: 1,
-                    title: 'tab 1',
-                    content: 'tab 1 content'
-                },
-                {
-                    id: 2,
-                    title: 'tab 2',
-                    content: 'tab 2 content'
-                }
-            ]
+            selectedTabIndex: 0
         };
     }
 
-    _onNewTab() {
-        const tabs = this.state.dynamicTabs;
-        const id = tabs[tabs.length - 1].id + 1;
-
-        this.setState({
-            dynamicTabs: tabs.concat({
-                id,
-                title: `tab ${id}`,
-                content: `tab ${id} content`
-            })
-        });
-    }
-
-    _onDeleteTab(index) {
-        const tabs = this.state.dynamicTabs;
-
-        tabs.splice(index, 1);
-
-        this.setState({
-            dynamicTabs: tabs
-        });
+    onTabChange(selectedTabIndex) {
+        this.setState({ selectedTabIndex });
     }
 
     _showPopup() {
@@ -64,12 +36,15 @@ export default Base => class extends Base {
     }
 
     render() {
-        return {
+        return BEM({
             block: 'demo',
+            mods: this.props.mods,
+            mix: this.props.mix,
+            props: this.props,
             content: [
                 DemoItem(
                     {
-                        _title: 'Attach input',
+                        title: 'Attach input',
                         key: 'attach'
                     },
                     Attach({
@@ -78,7 +53,7 @@ export default Base => class extends Base {
                 ),
                 DemoItem(
                     {
-                        _title: 'Button',
+                        title: 'Button',
                         key: 'button'
                     },
                     Button({
@@ -87,7 +62,7 @@ export default Base => class extends Base {
                 ),
                 DemoItem(
                     {
-                        _title: 'Checkbox',
+                        title: 'Checkbox',
                         key: 'checkbox'
                     },
                     Checkbox({
@@ -96,16 +71,16 @@ export default Base => class extends Base {
                 ),
                 DemoItem(
                     {
-                        _title: 'Color picker',
+                        title: 'Color picker',
                         key: 'colorpicker'
                     },
                     ColorPicker({
-                        value: '#000000'
+                        value: '#ff0000'
                     })
                 ),
                 DemoItem(
                     {
-                        _title: 'Text input',
+                        title: 'Text input',
                         key: 'input'
                     },
                     Input({
@@ -115,7 +90,7 @@ export default Base => class extends Base {
                 ),
                 DemoItem(
                     {
-                        _title: 'Search input',
+                        title: 'Search input',
                         key: 'input-search'
                     },
                     InputSearch({
@@ -124,7 +99,7 @@ export default Base => class extends Base {
                 ),
                 DemoItem(
                     {
-                        _title: 'Label group',
+                        title: 'Label group',
                         key: 'labelgroup'
                     },
                     LabelGroup(
@@ -139,7 +114,7 @@ export default Base => class extends Base {
                 ),
                 DemoItem(
                     {
-                        _title: 'Link',
+                        title: 'Link',
                         key: 'link'
                     },
                     Link({
@@ -149,7 +124,7 @@ export default Base => class extends Base {
                 ),
                 DemoItem(
                     {
-                        _title: 'Popup',
+                        title: 'Popup',
                         key: 'popup'
                     },
                     Popup({
@@ -163,7 +138,7 @@ export default Base => class extends Base {
                 ),
                 DemoItem(
                     {
-                        _title: 'Radio input',
+                        title: 'Radio input',
                         key: 'radio'
                     },
                     Radio({
@@ -181,11 +156,11 @@ export default Base => class extends Base {
                 ),
                 DemoItem(
                     {
-                        _title: 'Select',
+                        title: 'Select',
                         key: 'select'
                     },
                     Select({
-                        _options: [
+                        options: [
                             {
                                 value: 'be',
                                 text: 'To be?'
@@ -200,11 +175,11 @@ export default Base => class extends Base {
                 ),
                 DemoItem(
                     {
-                        _title: 'Tabs',
+                        title: 'Tabs',
                         key: 'tabs'
                     },
                     Tabs({
-                        _tabs: [
+                        tabs: [
                             {
                                 id: 1,
                                 title: 'tab 1',
@@ -220,25 +195,14 @@ export default Base => class extends Base {
                                 title: 'tab 3',
                                 content: 'tab 3 content'
                             }
-                        ]
+                        ],
+                        selected: this.state.selectedTabIndex,
+                        onTabChange: ::this.onTabChange
                     })
                 ),
                 DemoItem(
                     {
-                        _title: 'Dynamic tabs',
-                        key: 'tabs-dynamic'
-                    },
-                    TabsDynamic({
-                        _tabs: this.state.dynamicTabs.map(
-                            ({ id, title, content }) => ({ id, title, content })
-                        ),
-                        _onNewTab: ::this._onNewTab,
-                        _onDeleteTab: ::this._onDeleteTab
-                    })
-                ),
-                DemoItem(
-                    {
-                        _title: 'Textarea',
+                        title: 'Textarea',
                         key: 'textarea'
                     },
                     Textarea({
@@ -246,6 +210,6 @@ export default Base => class extends Base {
                     })
                 )
             ]
-        };
+        });
     }
-};
+}

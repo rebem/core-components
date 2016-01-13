@@ -1,10 +1,22 @@
+import { Component, PropTypes } from 'react';
+import BEM from '@yummies/bem';
 import UID from 'component-uid';
 
 const ESC_KEYCODE = 27;
 const UID_LENGTH = 20;
 
-export default Base => class extends Base {
+export default class extends Component {
     static displayName = 'core: popup';
+    static propTypes = {
+        onShow: PropTypes.func,
+        onHide: PropTypes.func,
+        children: PropTypes.oneOfType([
+            PropTypes.node,
+            PropTypes.arrayOf(PropTypes.node),
+            PropTypes.object,
+            PropTypes.arrayOf(PropTypes.object)
+        ])
+    };
 
     constructor(props, context) {
         super(props, context);
@@ -12,6 +24,9 @@ export default Base => class extends Base {
         this.state = {
             visibility: false
         };
+
+        this._onChange = this._onChange.bind(this);
+        this._onKeyUp = this._onKeyUp.bind(this);
     }
 
     _onKeyUp(e) {
@@ -51,11 +66,14 @@ export default Base => class extends Base {
     render() {
         const popupID = 'popup-' + UID(UID_LENGTH);
 
-        return {
+        return BEM({
             block: 'popup',
+            mods: this.props.mods,
+            mix: this.props.mix,
             props: {
+                ...this.props,
                 tabIndex: -1,
-                onKeyUp: ::this._onKeyUp,
+                onKeyUp: this._onKeyUp,
                 ref: 'popup'
             },
             content: [
@@ -66,7 +84,7 @@ export default Base => class extends Base {
                         type: 'checkbox',
                         id: popupID,
                         checked: this.state.visibility,
-                        onChange: ::this._onChange,
+                        onChange: this._onChange,
                         key: 'switcher'
                     }
                 },
@@ -97,6 +115,6 @@ export default Base => class extends Base {
                     ]
                 }
             ]
-        };
+        });
     }
-};
+}

@@ -2,23 +2,22 @@ import { Component, PropTypes } from 'react';
 import BEM from '@yummies/bem';
 
 export default class extends Component {
-    static displayName = 'core: table/thead';
+    static displayName = 'tabs/panels';
     static propTypes = {
         children: PropTypes.oneOfType([
             PropTypes.node,
             PropTypes.arrayOf(PropTypes.node),
             PropTypes.object,
             PropTypes.arrayOf(PropTypes.object)
-        ])
+        ]).isRequired
     };
 
     render() {
         return BEM({
-            block: 'table',
-            elem: 'head',
+            block: 'tabs',
+            elem: 'panels',
             mods: this.props.mods,
             mix: this.props.mix,
-            tag: 'thead',
             props: this.props,
             content: this.props.children
         });

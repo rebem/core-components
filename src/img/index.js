@@ -1,11 +1,16 @@
-export default Base => class extends Base {
+import { Component } from 'react';
+import BEM from '@yummies/bem';
+
+export default class extends Component {
     static displayName = 'core: img';
 
     render() {
-        return {
+        return BEM({
             block: 'img',
+            mods: this.props.mods,
+            mix: this.props.mix,
             tag: 'img',
             props: this.props
-        };
+        });
     }
-};
+}

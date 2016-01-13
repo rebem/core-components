@@ -1,11 +1,28 @@
+import { Component, PropTypes } from 'react';
+import BEM from '@yummies/bem';
 import UID from 'component-uid';
 import EventEmitter from 'eventemitter3';
 
 const UID_LENGTH = 20;
 const radioGroup = new EventEmitter();
 
-export default Base => class extends Base {
+export default class extends Component {
     static displayName = 'core: radio';
+    static propTypes = {
+        checked: PropTypes.bool,
+        disabled: PropTypes.bool,
+        onChange: PropTypes.func,
+        onFocus: PropTypes.func,
+        onBlur: PropTypes.func,
+        onMouseEnter: PropTypes.func,
+        onMouseLeave: PropTypes.func,
+        children: PropTypes.oneOfType([
+            PropTypes.node,
+            PropTypes.arrayOf(PropTypes.node),
+            PropTypes.object,
+            PropTypes.arrayOf(PropTypes.object)
+        ])
+    };
     static defaultProps = {
         checked: false
     };
@@ -19,6 +36,11 @@ export default Base => class extends Base {
             checked: props.checked
         };
 
+        this._onInputChange = this._onInputChange.bind(this);
+        this._onInputFocus = this._onInputFocus.bind(this);
+        this._onInputBlur = this._onInputBlur.bind(this);
+        this._onInputMouseLeave = this._onInputMouseLeave.bind(this);
+        this._onInputMouseEnter = this._onInputMouseEnter.bind(this);
         this._onRadioGroupChange = this._onRadioGroupChange.bind(this);
     }
 
@@ -102,15 +124,17 @@ export default Base => class extends Base {
     }
 
     render() {
-        return {
+        return BEM({
             block: 'radio',
             tag: 'label',
             mods: {
                 focused: this.state.focused,
                 hovered: this.state.hovered,
                 checked: this.state.checked,
-                disabled: this.props.disabled
+                disabled: this.props.disabled,
+                ...this.props.mods
             },
+            mix: this.props.mods,
             content: [
                 {
                     elem: 'control',
@@ -119,17 +143,17 @@ export default Base => class extends Base {
                         type: 'radio',
                         ...this.props,
                         checked: this.state.checked,
-                        onChange: ::this._onInputChange,
-                        onFocus: ::this._onInputFocus,
-                        onBlur: ::this._onInputBlur,
-                        onMouseLeave: ::this._onInputMouseLeave,
-                        onMouseEnter: ::this._onInputMouseEnter,
+                        onChange: this._onInputChange,
+                        onFocus: this._onInputFocus,
+                        onBlur: this._onInputBlur,
+                        onMouseLeave: this._onInputMouseLeave,
+                        onMouseEnter: this._onInputMouseEnter,
                         ref: 'control',
                         key: 'control'
                     }
                 },
-                ...[ this.props.children ]
+                ...[].concat(this.props.children)
             ]
-        };
+        });
     }
-};
+}

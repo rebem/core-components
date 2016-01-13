@@ -1,23 +1,28 @@
-export default Base => class extends Base {
+import { Component } from 'react';
+
+import Input from '#input';
+
+export default class extends Component {
     static displayName = 'core: input/_type/search';
 
+    val() {
+        return this.refs.input.val();
+    }
+
     render() {
-        const template = super.render();
-
-        template.mods = {
-            ...template.mods,
-            type: 'search'
-        };
-
-        template.content[0].props = {
-            ...template.content[0].props,
+        return Input({
+            ...this.props,
             type: 'search',
+            mods: {
+                type: 'search',
+                ...this.props.mods
+            },
+            mix: this.props.mix,
             autoComplete: 'off',
             autoCapitalize: 'off',
             autoCorrect: 'off',
-            spellCheck: 'off'
-        };
-
-        return template;
+            spellCheck: 'off',
+            ref: 'input'
+        });
     }
-};
+}

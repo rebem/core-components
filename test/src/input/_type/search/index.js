@@ -17,18 +17,31 @@ describe('input/_type/search', () => {
     });
 
     describe('render', () => {
+        beforeEach(function() {
+            this.renderWithProps = props => {
+                this.rootComponent = renderOnce(Input(props));
+                this.rootComponentDOMNode = ReactDOM.findDOMNode(this.rootComponent);
+                this.inputControlDOMNode = TestUtils.findRenderedDOMComponentWithClass(this.rootComponent, 'input__control');
+            };
+
+            this.renderWithProps();
+        });
+
         describe('DOM', () => {
             it('initial', function() {
-                const rootComponent = renderOnce(Input());
-                const rootComponentDOMNode = ReactDOM.findDOMNode(rootComponent);
-                const inputControlDOMNode = TestUtils.findRenderedDOMComponentWithClass(rootComponent, 'input__control');
+                expect(this.rootComponentDOMNode).to.have.mods({ type: 'search' });
+                expect(this.inputControlDOMNode.type).to.be.equal('search');
+                expect(this.inputControlDOMNode.getAttribute('autocomplete')).to.be.equal('off');
+                expect(this.inputControlDOMNode.getAttribute('autocapitalize')).to.be.equal('off');
+                expect(this.inputControlDOMNode.getAttribute('autocorrect')).to.be.equal('off');
+                expect(this.inputControlDOMNode.getAttribute('spellcheck')).to.be.equal('off');
+            });
+        });
 
-                expect(rootComponentDOMNode).to.have.mods({ type: 'search' });
-                expect(inputControlDOMNode.type).to.be.equal('search');
-                expect(inputControlDOMNode.getAttribute('autocomplete')).to.be.equal('off');
-                expect(inputControlDOMNode.getAttribute('autocapitalize')).to.be.equal('off');
-                expect(inputControlDOMNode.getAttribute('autocorrect')).to.be.equal('off');
-                expect(inputControlDOMNode.getAttribute('spellcheck')).to.be.equal('off');
+        describe('API', () => {
+            it('val()', function() {
+                TestUtils.Simulate.change(this.inputControlDOMNode, { target: { value: 'test' } });
+                expect(this.rootComponent.val()).to.be.equal('test');
             });
         });
     });

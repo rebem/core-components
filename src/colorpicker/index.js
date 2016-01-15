@@ -1,5 +1,7 @@
 import { Component, PropTypes } from 'react';
-import BEM from '@yummies/bem';
+import { BEM } from '@yummies/bem';
+
+const block = 'colorpicker';
 
 export default class extends Component {
     static displayName = 'core: colorpicker';
@@ -106,35 +108,31 @@ export default class extends Component {
     }
 
     render() {
-        return BEM({
-            block: 'colorpicker',
-            tag: 'label',
-            mods: {
-                focused: this.state.focused,
-                hovered: this.state.hovered,
-                disabled: this.props.disabled,
-                ...this.props.mods
+        return BEM(
+            {
+                block,
+                tag: 'label',
+                mods: {
+                    focused: this.state.focused,
+                    hovered: this.state.hovered,
+                    disabled: this.props.disabled,
+                    ...this.props.mods
+                }
             },
-            mix: this.props.mix,
-            content: [
-                {
-                    elem: 'control',
-                    tag: 'input',
-                    props: {
-                        type: 'color',
-                        ...this.props,
-                        value: this.state.value,
-                        onChange: this._onInputChange,
-                        onFocus: this._onInputFocus,
-                        onBlur: this._onInputBlur,
-                        onMouseLeave: this._onInputMouseLeave,
-                        onMouseEnter: this._onInputMouseEnter,
-                        ref: 'control',
-                        key: 'control'
-                    }
-                },
-                ...[].concat(this.props.children)
-            ]
-        });
+            BEM({
+                ...this.props,
+                block,
+                elem: 'control',
+                tag: 'input',
+                type: 'color',
+                value: this.state.value,
+                onChange: this._onInputChange,
+                onFocus: this._onInputFocus,
+                onBlur: this._onInputBlur,
+                onMouseLeave: this._onInputMouseLeave,
+                onMouseEnter: this._onInputMouseEnter
+            }),
+            this.props.children
+        );
     }
 }

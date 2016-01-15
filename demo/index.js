@@ -1,5 +1,5 @@
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 
 import Demo from '#demo';
 
-ReactDOM.render(Demo(), document.getElementById('demo'));
+render(Demo(), document.getElementById('demo'));

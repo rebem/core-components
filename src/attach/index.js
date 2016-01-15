@@ -1,8 +1,10 @@
 import { Component, PropTypes } from 'react';
-import BEM from '@yummies/bem';
+import { BEM } from '@yummies/bem';
+
+const block = 'attach';
 
 export default class extends Component {
-    static displayName = 'core: attach';
+    static displayName = `core: ${block}`;
     static propTypes = {
         value: PropTypes.string,
         disabled: PropTypes.bool,
@@ -117,60 +119,39 @@ export default class extends Component {
         }
     }
 
-    _renderValue() {
-        if (!('value' in this.props)) {
-            return null;
-        }
-
-        return BEM({
-            block: 'attach',
-            elem: 'value',
-            tag: 'span',
-            props: {
-                key: 'value'
-            },
-            content: this.props.value
-        });
-    }
-
     val() {
         return this.state.value;
     }
 
     render() {
-        return BEM({
-            block: 'attach',
-            tag: 'label',
-            mods: {
-                focused: this.state.focused,
-                hovered: this.state.hovered,
-                pressed: this.state.pressed,
-                disabled: this.props.disabled,
-                ...this.props.mods
+        return BEM(
+            {
+                block,
+                tag: 'label',
+                mods: {
+                    focused: this.state.focused,
+                    hovered: this.state.hovered,
+                    pressed: this.state.pressed,
+                    disabled: this.props.disabled,
+                    ...this.props.mods
+                }
             },
-            mix: this.props.mix,
-            content: [
-                {
-                    elem: 'control',
-                    tag: 'input',
-                    props: {
-                        type: 'file',
-                        ...this.props,
-                        value: this.state.value,
-                        onChange: this._onInputChange,
-                        onFocus: this._onInputFocus,
-                        onBlur: this._onInputBlur,
-                        onMouseDown: this._onInputMouseDown,
-                        onMouseUp: this._onInputMouseUp,
-                        onMouseLeave: this._onInputMouseLeave,
-                        onMouseEnter: this._onInputMouseEnter,
-                        ref: 'control',
-                        key: 'control'
-                    }
-                },
-                this._renderValue(),
-                ...[].concat(this.props.children)
-            ]
-        });
+            BEM({
+                ...this.props,
+                block,
+                elem: 'control',
+                tag: 'input',
+                type: 'file',
+                value: this.state.value,
+                onChange: this._onInputChange,
+                onFocus: this._onInputFocus,
+                onBlur: this._onInputBlur,
+                onMouseDown: this._onInputMouseDown,
+                onMouseUp: this._onInputMouseUp,
+                onMouseLeave: this._onInputMouseLeave,
+                onMouseEnter: this._onInputMouseEnter
+            }),
+            this.props.children
+        );
     }
 }

@@ -1,5 +1,5 @@
 import { Component, PropTypes } from 'react';
-import BEM from '@yummies/bem';
+import { BEM } from '@yummies/bem';
 
 export default class extends Component {
     static displayName = 'core: link';
@@ -13,11 +13,13 @@ export default class extends Component {
     };
 
     render() {
-        return BEM({
-            block: 'link',
-            tag: 'a',
-            props: this.props,
-            content: this.props.children
-        });
+        return BEM(
+            {
+                ...this.props,
+                block: 'link',
+                tag: 'a'
+            },
+            this.props.children
+        );
     }
 }

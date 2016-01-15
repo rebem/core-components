@@ -1,4 +1,4 @@
-import { LOG_DISABLE } from 'karma/lib/constants';
+import { LOG_WARN } from 'karma/lib/constants';
 
 import webpackConfig from './webpack';
 
@@ -34,7 +34,7 @@ export default {
             }
         ]
     },
-    logLevel: LOG_DISABLE,
+    logLevel: LOG_WARN,
     browserNoActivityTimeout: 60 * 1000, // default 10 * 1000
     browserDisconnectTimeout: 10 * 1000, // default 2 * 1000
     browserDisconnectTolerance: 2, // default 0

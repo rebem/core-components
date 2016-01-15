@@ -29,11 +29,3 @@ export function karmaDev() {
 
     return runKarma(karmaConfig);
 }
-
-export function karmaTravis() {
-    process.env.NODE_ENV = 'development';
-
-    const karmaConfig = require('../test/conf/karma.travis');
-
-    return runKarma(karmaConfig);
-}

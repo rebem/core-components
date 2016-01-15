@@ -34,6 +34,7 @@ export default {
             }
         ]
     },
+    browsers: [ 'jsdom' ],
     logLevel: LOG_WARN,
     browserNoActivityTimeout: 60 * 1000, // default 10 * 1000
     browserDisconnectTimeout: 10 * 1000, // default 2 * 1000

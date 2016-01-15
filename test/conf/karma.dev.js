@@ -8,12 +8,5 @@ export default {
         'clear-screen',
         'progress',
         'coverage'
-    ],
-    customLaunchers: {
-        ChromeBackground: {
-            base: 'Chrome',
-            flags: [ '--disable-background-timer-throttling' ]
-        }
-    },
-    browsers: [ 'ChromeBackground' ]
+    ]
 };

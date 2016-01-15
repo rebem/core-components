@@ -1,6 +1,6 @@
 export { cleanBuild, cleanCoverage } from './clean';
 export { babelBuild } from './build';
-export { karmaBuild, karmaDev, karmaTravis } from './karma';
+export { karmaBuild, karmaDev } from './karma';
 export { eslint } from './lint';
 export { coverage } from './coverage';
 export { demo } from './demo';
@@ -19,7 +19,7 @@ export const tdd = [
 export const travis = [
     exports.eslint,
     exports.cleanCoverage,
-    exports.karmaTravis,
+    exports.karmaBuild,
     exports.coverage
 ];
 

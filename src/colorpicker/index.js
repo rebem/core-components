@@ -7,7 +7,7 @@ export default class extends Component {
     static displayName = 'core: colorpicker';
     static propTypes = {
         value: (props, propName, componentName) => {
-            if (!/#([A-Fa-f0-9]{6})$/.test(props[propName])) {
+            if (!/^#([A-Fa-f0-9]{6})$/.test(props[propName])) {
                 return new Error(`Invalid prop \`${propName}\` of type \`${typeof props[propName]}\` supplied to \`${componentName}\`, expected \`valid simple color\` (http://www.w3.org/TR/html5/infrastructure.html#valid-simple-color)`);
             }
         },
@@ -16,13 +16,7 @@ export default class extends Component {
         onFocus: PropTypes.func,
         onBlur: PropTypes.func,
         onMouseEnter: PropTypes.func,
-        onMouseLeave: PropTypes.func,
-        children: PropTypes.oneOfType([
-            PropTypes.node,
-            PropTypes.arrayOf(PropTypes.node),
-            PropTypes.object,
-            PropTypes.arrayOf(PropTypes.object)
-        ])
+        onMouseLeave: PropTypes.func
     };
     static defaultProps = {
         value: '#000000',

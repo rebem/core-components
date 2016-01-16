@@ -14,13 +14,7 @@ export default class extends Component {
         onMouseEnter: PropTypes.func,
         onMouseLeave: PropTypes.func,
         onMouseDown: PropTypes.func,
-        onMouseUp: PropTypes.func,
-        children: PropTypes.oneOfType([
-            PropTypes.node,
-            PropTypes.arrayOf(PropTypes.node),
-            PropTypes.object,
-            PropTypes.arrayOf(PropTypes.object)
-        ])
+        onMouseUp: PropTypes.func
     };
     static defaultProps = {
         disabled: false

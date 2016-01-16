@@ -12,13 +12,7 @@ export default class extends Component {
         onFocus: PropTypes.func,
         onBlur: PropTypes.func,
         onMouseEnter: PropTypes.func,
-        onMouseLeave: PropTypes.func,
-        children: PropTypes.oneOfType([
-            PropTypes.node,
-            PropTypes.arrayOf(PropTypes.node),
-            PropTypes.object,
-            PropTypes.arrayOf(PropTypes.object)
-        ])
+        onMouseLeave: PropTypes.func
     };
     static defaultProps = {
         disabled: false

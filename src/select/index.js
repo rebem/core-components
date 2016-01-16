@@ -13,14 +13,8 @@ export default class extends Component {
         },
         options: PropTypes.arrayOf(
             PropTypes.shape({
-                text: PropTypes.oneOfType([
-                    PropTypes.string,
-                    PropTypes.number
-                ]),
-                value: PropTypes.oneOfType([
-                    PropTypes.string,
-                    PropTypes.number
-                ])
+                text: PropTypes.string,
+                value: PropTypes.string
             })
         ).isRequired,
         disabled: PropTypes.bool,
@@ -28,13 +22,7 @@ export default class extends Component {
         onFocus: PropTypes.func,
         onBlur: PropTypes.func,
         onMouseEnter: PropTypes.func,
-        onMouseLeave: PropTypes.func,
-        children: PropTypes.oneOfType([
-            PropTypes.node,
-            PropTypes.arrayOf(PropTypes.node),
-            PropTypes.object,
-            PropTypes.arrayOf(PropTypes.object)
-        ])
+        onMouseLeave: PropTypes.func
     };
     static defaultProps = {
         value: null,

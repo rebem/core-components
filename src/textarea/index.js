@@ -6,22 +6,13 @@ const block = 'textarea';
 export default class extends Component {
     static displayName = `core: ${block}`;
     static propTypes = {
-        value: PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.number
-        ]),
+        value: PropTypes.string,
         disabled: PropTypes.bool,
         onChange: PropTypes.func,
         onFocus: PropTypes.func,
         onBlur: PropTypes.func,
         onMouseEnter: PropTypes.func,
-        onMouseLeave: PropTypes.func,
-        children: PropTypes.oneOfType([
-            PropTypes.node,
-            PropTypes.arrayOf(PropTypes.node),
-            PropTypes.object,
-            PropTypes.arrayOf(PropTypes.object)
-        ])
+        onMouseLeave: PropTypes.func
     };
     static defaultProps = {
         value: '',

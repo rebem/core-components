@@ -6,23 +6,14 @@ const block = 'button';
 export default class extends Component {
     static displayName = `core: ${block}`;
     static propTypes = {
-        value: PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.number
-        ]),
+        value: PropTypes.string,
         disabled: PropTypes.bool,
         onFocus: PropTypes.func,
         onBlur: PropTypes.func,
         onMouseEnter: PropTypes.func,
         onMouseLeave: PropTypes.func,
         onMouseDown: PropTypes.func,
-        onMouseUp: PropTypes.func,
-        children: PropTypes.oneOfType([
-            PropTypes.node,
-            PropTypes.arrayOf(PropTypes.node),
-            PropTypes.object,
-            PropTypes.arrayOf(PropTypes.object)
-        ])
+        onMouseUp: PropTypes.func
     };
     static defaultProps = {
         value: '',

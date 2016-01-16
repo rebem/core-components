@@ -9,13 +9,7 @@ export default class extends Component {
         title: PropTypes.node.isRequired,
         index: PropTypes.number.isRequired,
         selected: PropTypes.number,
-        onTabChange: PropTypes.func,
-        children: PropTypes.oneOfType([
-            PropTypes.node,
-            PropTypes.arrayOf(PropTypes.node),
-            PropTypes.object,
-            PropTypes.arrayOf(PropTypes.object)
-        ])
+        onTabChange: PropTypes.func
     };
 
     constructor(props, context) {

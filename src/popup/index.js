@@ -10,13 +10,7 @@ export default class extends Component {
     static displayName = `core: ${block}`;
     static propTypes = {
         onShow: PropTypes.func,
-        onHide: PropTypes.func,
-        children: PropTypes.oneOfType([
-            PropTypes.node,
-            PropTypes.arrayOf(PropTypes.node),
-            PropTypes.object,
-            PropTypes.arrayOf(PropTypes.object)
-        ])
+        onHide: PropTypes.func
     };
 
     constructor(props, context) {

@@ -39,6 +39,7 @@
     "babel-preset-stage-1": "6.3.x",
     "babel-plugin-add-module-exports": "0.1.x",
     "babel-loader": "6.2.x",
+    "babel-preset-react-hmre": "1.0.x",
 
     "react-dom": "0.14.x",
     "@yummies/layers-loader": "0.0.x",

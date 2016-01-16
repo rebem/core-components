@@ -223,6 +223,23 @@ export default class extends Component {
                     title: 'Tabs'
                 },
                 Tabs({
+                    tabs: [
+                        {
+                            id: 1,
+                            title: 'tab 1',
+                            content: 'tab 1 content'
+                        },
+                        {
+                            id: 2,
+                            title: 'tab 2',
+                            content: 'tab 2 content'
+                        },
+                        {
+                            id: 3,
+                            title: 'tab 3',
+                            content: 'tab 3 content'
+                        }
+                    ],
                     selected: this.state.selectedTabIndex,
                     onTabChange: this._onTabChange
                 })

@@ -9,13 +9,20 @@ import ColorPicker from '#colorpicker';
 import Img from '#img';
 import Input from '#input';
 import InputSearch from '#input/_type/search';
-// import LabelGroup from '#label-group';
+import LabelGroup from '#label-group';
 import Link from '#link';
-// import Popup from '#popup';
-// import Radio from '#radio';
-// import Select from '#select';
-// import Tabs from '#tabs';
-// import Textarea from '#textarea';
+import Popup from '#popup';
+import Radio from '#radio';
+import Select from '#select';
+import Table from '#table';
+import TableHead from '#table/head';
+import TableHeaderCell from '#table/header-cell';
+import TableBody from '#table/body';
+import TableRow from '#table/row';
+import TableCell from '#table/cell';
+import TableFoot from '#table/foot';
+import Tabs from '#tabs';
+import Textarea from '#textarea';
 
 export default class extends Component {
     static displayName = 'demo: demo';
@@ -26,15 +33,18 @@ export default class extends Component {
         this.state = {
             selectedTabIndex: 0
         };
+
+        this._showPopup = this._showPopup.bind(this);
+        this._onTabChange = this._onTabChange.bind(this);
     }
 
-    // onTabChange(selectedTabIndex) {
-    //     this.setState({ selectedTabIndex });
-    // }
-    //
-    // _showPopup() {
-    //     this.refs.popup.show();
-    // }
+    _onTabChange(selectedTabIndex) {
+        this.setState({ selectedTabIndex });
+    }
+
+    _showPopup() {
+        this.refs.popup.show();
+    }
 
     render() {
         return BEM(
@@ -99,25 +109,23 @@ export default class extends Component {
                     placeholder: 'search'
                 })
             ),
-                // DemoItem(
-                //     {
-                //         title: 'Label group',
-                //         key: 'labelgroup'
-                //     },
-                //     LabelGroup(
-                //         {
-                //             _labelText: 'field title'
-                //         },
-                //         Input({
-                //             placeholder: 'field control',
-                //             value: ''
-                //         })
-                //     )
-                // ),
             DemoItem(
                 {
-                    title: 'Link',
-                    key: 'link'
+                    title: 'Label group',
+                    key: 'labelgroup'
+                },
+                LabelGroup(
+                    {
+                        labelText: 'field title'
+                    },
+                    Input({
+                        placeholder: 'field control'
+                    })
+                )
+            ),
+            DemoItem(
+                {
+                    title: 'Link'
                 },
                 Link(
                     {
@@ -127,94 +135,106 @@ export default class extends Component {
                     'link'
                 )
             ),
-                // DemoItem(
-                //     {
-                //         title: 'Popup',
-                //         key: 'popup'
-                //     },
-                //     Popup({
-                //         ref: 'popup',
-                //         key: 'popup'
-                //     }, 'holy shit!'),
-                //     Button({
-                //         onClick: ::this._showPopup,
-                //         value: 'show popup!'
-                //     })
-                // ),
-                // DemoItem(
-                //     {
-                //         title: 'Radio input',
-                //         key: 'radio'
-                //     },
-                //     Radio({
-                //         name: 'radio-test',
-                //         value: 'radio1',
-                //         checked: false,
-                //         key: 'radio1'
-                //     }),
-                //     Radio({
-                //         name: 'radio-test',
-                //         value: 'radio2',
-                //         checked: true,
-                //         key: 'radio2'
-                //     })
-                // ),
-                // DemoItem(
-                //     {
-                //         title: 'Select',
-                //         key: 'select'
-                //     },
-                //     Select({
-                //         options: [
-                //             {
-                //                 value: 'be',
-                //                 text: 'To be?'
-                //             },
-                //             {
-                //                 value: 'not-be',
-                //                 text: 'Not to be?'
-                //             }
-                //         ],
-                //         value: 'be'
-                //     }),
-                // ),
-                // DemoItem(
-                //     {
-                //         title: 'Tabs',
-                //         key: 'tabs'
-                //     },
-                //     Tabs({
-                //         tabs: [
-                //             {
-                //                 id: 1,
-                //                 title: 'tab 1',
-                //                 content: 'tab 1 content'
-                //             },
-                //             {
-                //                 id: 2,
-                //                 title: 'tab 2',
-                //                 content: 'tab 2 content'
-                //             },
-                //             {
-                //                 id: 3,
-                //                 title: 'tab 3',
-                //                 content: 'tab 3 content'
-                //             }
-                //         ],
-                //         selected: this.state.selectedTabIndex,
-                //         onTabChange: ::this.onTabChange
-                //     })
-                // ),
-                // DemoItem(
-                //     {
-                //         title: 'Textarea',
-                //         key: 'textarea'
-                //     },
-                //     Textarea({
-                //         value: 'tell me a story'
-                //     })
-                // )
-            // ]
+            DemoItem(
+                {
+                    title: 'Popup'
+                },
+                Popup({
+                    ref: 'popup',
+                    key: 'popup'
+                }, 'holy shit!'),
+                Button({
+                    onClick: this._showPopup,
+                    value: 'show popup!'
+                })
+            ),
+            DemoItem(
+                {
+                    title: 'Radio input'
+                },
+                BEM(
+                    {
+                        tag: 'form'
+                    },
+                    Radio({
+                        name: 'radio-test',
+                        value: 'radio1',
+                        checked: false
+                    }),
+                    Radio({
+                        name: 'radio-test',
+                        value: 'radio2',
+                        checked: true
+                    })
+                )
+            ),
+            DemoItem(
+                {
+                    title: 'Select'
+                },
+                Select({
+                    options: [
+                        {
+                            value: 'option-1',
+                            text: 'option 1'
+                        },
+                        {
+                            value: 'option-2',
+                            text: 'option 2'
+                        }
+                    ],
+                    value: 'option-2'
+                }),
+            ),
+            DemoItem(
+                {
+                    title: 'Table'
+                },
+                Table(
+                    null,
+                    TableHead(
+                        null,
+                        TableRow(
+                            null,
+                            TableHeaderCell(null, 'header cell 1'),
+                            TableHeaderCell(null, 'header cell 2')
+                        )
+                    ),
+                    TableBody(
+                        null,
+                        TableRow(
+                            null,
+                            TableCell(null, 'body cell 1'),
+                            TableCell(null, 'body cell 2')
+                        )
+                    ),
+                    TableFoot(
+                        null,
+                        TableRow(
+                            null,
+                            TableCell(null, 'footer cell 1'),
+                            TableCell(null, 'footer cell 2')
+                        )
+                    )
+                )
+            ),
+            DemoItem(
+                {
+                    title: 'Tabs'
+                },
+                Tabs({
+                    selected: this.state.selectedTabIndex,
+                    onTabChange: this._onTabChange
+                })
+            ),
+            DemoItem(
+                {
+                    title: 'Textarea'
+                },
+                Textarea({
+                    value: 'text'
+                })
+            )
         );
     }
 }

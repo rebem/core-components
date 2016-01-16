@@ -1,13 +1,14 @@
 import { Component, PropTypes } from 'react';
-import BEM from '@yummies/bem';
+import { BEM } from '@yummies/bem';
 import UID from 'component-uid';
 import EventEmitter from 'eventemitter3';
 
+const block = 'radio';
 const UID_LENGTH = 20;
 const radioGroup = new EventEmitter();
 
 export default class extends Component {
-    static displayName = 'core: radio';
+    static displayName = `core: ${block}`;
     static propTypes = {
         checked: PropTypes.bool,
         disabled: PropTypes.bool,
@@ -124,36 +125,33 @@ export default class extends Component {
     }
 
     render() {
-        return BEM({
-            block: 'radio',
-            tag: 'label',
-            mods: {
-                focused: this.state.focused,
-                hovered: this.state.hovered,
-                checked: this.state.checked,
-                disabled: this.props.disabled,
-                ...this.props.mods
+        return BEM(
+            {
+                block,
+                tag: 'label',
+                mods: {
+                    focused: this.state.focused,
+                    hovered: this.state.hovered,
+                    checked: this.state.checked,
+                    disabled: this.props.disabled,
+                    ...this.props.mods
+                }
             },
-            mix: this.props.mods,
-            content: [
-                {
-                    elem: 'control',
-                    tag: 'input',
-                    props: {
-                        type: 'radio',
-                        ...this.props,
-                        checked: this.state.checked,
-                        onChange: this._onInputChange,
-                        onFocus: this._onInputFocus,
-                        onBlur: this._onInputBlur,
-                        onMouseLeave: this._onInputMouseLeave,
-                        onMouseEnter: this._onInputMouseEnter,
-                        ref: 'control',
-                        key: 'control'
-                    }
-                },
-                ...[].concat(this.props.children)
-            ]
-        });
+            BEM({
+                ...this.props,
+                block,
+                elem: 'control',
+                tag: 'input',
+                type: 'radio',
+                checked: this.state.checked,
+                onChange: this._onInputChange,
+                onFocus: this._onInputFocus,
+                onBlur: this._onInputBlur,
+                onMouseLeave: this._onInputMouseLeave,
+                onMouseEnter: this._onInputMouseEnter,
+                ref: 'control'
+            }),
+            this.props.children
+        );
     }
 }

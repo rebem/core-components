@@ -1,12 +1,13 @@
 import { Component, PropTypes } from 'react';
-import BEM from '@yummies/bem';
+import { BEM } from '@yummies/bem';
 import UID from 'component-uid';
 
+const block = 'popup';
 const ESC_KEYCODE = 27;
 const UID_LENGTH = 20;
 
 export default class extends Component {
-    static displayName = 'core: popup';
+    static displayName = `core: ${block}`;
     static propTypes = {
         onShow: PropTypes.func,
         onHide: PropTypes.func,
@@ -46,75 +47,71 @@ export default class extends Component {
 
         this.setState({
             visibility: true
-        }, () => {
-            if (this.props.onShow) {
-                this.props.onShow();
-            }
         });
+
+        if (this.props.onShow) {
+            this.props.onShow();
+        }
     }
 
     hide() {
         this.setState({
             visibility: false
-        }, () => {
-            if (this.props.onHide) {
-                this.props.onHide();
-            }
         });
+
+        if (this.props.onHide) {
+            this.props.onHide();
+        }
     }
 
     render() {
         const popupID = 'popup-' + UID(UID_LENGTH);
 
-        return BEM({
-            block: 'popup',
-            mods: this.props.mods,
-            mix: this.props.mix,
-            props: {
+        return BEM(
+            {
                 ...this.props,
+                block,
+                mods: {
+                    visible: this.state.visibility
+                },
                 tabIndex: -1,
                 onKeyUp: this._onKeyUp,
                 ref: 'popup'
             },
-            content: [
+            BEM({
+                block,
+                elem: 'switcher',
+                tag: 'input',
+                type: 'checkbox',
+                id: popupID,
+                checked: this.state.visibility,
+                onChange: this._onChange
+            }),
+            BEM(
                 {
-                    elem: 'switcher',
-                    tag: 'input',
-                    props: {
-                        type: 'checkbox',
-                        id: popupID,
-                        checked: this.state.visibility,
-                        onChange: this._onChange,
-                        key: 'switcher'
-                    }
+                    block,
+                    elem: 'wrapper'
                 },
-                {
-                    elem: 'wrapper',
-                    props: {
-                        key: 'wrapper'
+                BEM({
+                    block,
+                    elem: 'overlay',
+                    tag: 'label',
+                    htmlFor: popupID
+                }),
+                BEM(
+                    {
+                        block,
+                        elem: 'inner'
                     },
-                    content: [
+                    BEM(
                         {
-                            elem: 'overlay',
-                            tag: 'label',
-                            props: {
-                                htmlFor: popupID,
-                                key: 'overlay'
-                            }
+                            block,
+                            elem: 'content'
                         },
-                        {
-                            elem: 'inner',
-                            props: {
-                                key: 'inner'
-                            },
-                            content: {
-                                elem: 'content',
-                                content: this.props.children
-                            }
-                        }
-                    ]
-                }
-            ]
-        });
+                        this.props.children
+                    )
+                )
+            )
+        );
     }
 }

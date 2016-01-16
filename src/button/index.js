@@ -1,8 +1,6 @@
 import { Component, PropTypes } from 'react';
 import { BEM } from '@yummies/bem';
 
-import ButtonControl from '#button/control';
-
 const block = 'button';
 
 export default class extends Component {
@@ -123,7 +121,7 @@ export default class extends Component {
                     ...this.props.mods
                 }
             },
-            ButtonControl({
+            BEM({
                 ...this.props,
                 block,
                 elem: 'control',

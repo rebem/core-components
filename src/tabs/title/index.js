@@ -1,8 +1,10 @@
 import { Component, PropTypes } from 'react';
-import BEM from '@yummies/bem';
+import { BEM } from '@yummies/bem';
+
+const block = 'tabs';
 
 export default class extends Component {
-    static displayName = 'core: tabs/title';
+    static displayName = `core: ${block}/title`;
     static propTypes = {
         title: PropTypes.node.isRequired,
         index: PropTypes.number.isRequired,
@@ -29,28 +31,24 @@ export default class extends Component {
     }
 
     render() {
-        return BEM({
-            block: 'tabs',
-            elem: 'title',
-            props: {
+        return BEM(
+            {
                 ...this.props,
-                onClick: this.selectTab
+                block,
+                elem: 'title',
+                onClick: this.selectTab,
+                mods: {
+                    selected: this.props.selected === this.props.index,
+                    ...this.props.mods
+                }
             },
-            mods: {
-                selected: this.props.selected === this.props.index,
-                ...this.props.mods
-            },
-            mix: this.props.mix,
-            content: [
+            BEM(
                 {
-                    elem: 'title-inner',
-                    props: {
-                        key: 'title'
-                    },
-                    content: this.props.title
+                    block,
+                    elem: 'title-inner'
                 },
-                ...[].concat(this.props.children)
-            ]
-        });
+                this.props.title
+            )
+        );
     }
 }

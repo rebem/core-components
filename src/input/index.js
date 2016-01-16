@@ -123,6 +123,7 @@ export default class extends Component {
                 block,
                 elem: 'control',
                 tag: 'input',
+                type: 'text',
                 value: this.state.value,
                 onChange: this._onInputChange,
                 onFocus: this._onInputFocus,

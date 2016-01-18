@@ -8,5 +8,6 @@ export default {
         'clear-screen',
         'progress',
         'coverage'
-    ]
+    ],
+    browsers: [ 'Firefox' ],
 };

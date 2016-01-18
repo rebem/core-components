@@ -1,5 +1,7 @@
 import { Component, PropTypes } from 'react';
-import BEM from '@yummies/bem';
+import { BEM } from '@yummies/bem';
+
+const block = 'demo-item';
 
 export default class extends Component {
     static displayName = 'demo: demo-item';
@@ -24,51 +26,49 @@ export default class extends Component {
         ])
     };
 
-    _renderDescription() {
-        if ('description' in this.props) {
-            return {
-                elem: 'description',
-                props: {
-                    key: 'description'
+    renderTitle() {
+        if ('title' in this.props) {
+            return BEM(
+                {
+                    block,
+                    elem: 'title'
                 },
-                content: this.props.description
-            };
+                this.props.title
+            );
         }
 
         return null;
     }
 
-    _renderTitle() {
-        if ('title' in this.props) {
-            return {
-                elem: 'title',
-                props: {
-                    key: 'title'
+    renderDescription() {
+        if ('description' in this.props) {
+            return BEM(
+                {
+                    block,
+                    elem: 'description'
                 },
-                content: this.props.title
-            };
+                this.props.description
+            );
         }
 
         return null;
     }
 
     render() {
-        return BEM({
-            block: 'demo-item',
-            mods: this.props.mods,
-            mix: this.props.mix,
-            props: this.props,
-            content: [
-                this._renderTitle(),
-                this._renderDescription(),
+        return BEM(
+            {
+                ...this.props,
+                block
+            },
+            this.renderTitle(),
+            this.renderDescription(),
+            BEM(
                 {
-                    elem: 'content',
-                    props: {
-                        key: 'content'
-                    },
-                    content: this.props.children
-                }
-            ]
-        });
+                    block,
+                    elem: 'content'
+                },
+                this.props.children
+            )
+        );
     }
 }

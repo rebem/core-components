@@ -1,8 +1,10 @@
 import { Component, PropTypes } from 'react';
-import BEM from '@yummies/bem';
+import { BEM } from '@yummies/bem';
+
+const block = 'select';
 
 export default class extends Component {
-    static displayName = 'core: select';
+    static displayName = `core: ${block}`;
     static propTypes = {
         value: (props, propName, componentName) => {
             if (props.options.length > 0 && !props.options.some(option => props.value === option.value)) {
@@ -11,14 +13,8 @@ export default class extends Component {
         },
         options: PropTypes.arrayOf(
             PropTypes.shape({
-                text: PropTypes.oneOfType([
-                    PropTypes.string,
-                    PropTypes.number
-                ]),
-                value: PropTypes.oneOfType([
-                    PropTypes.string,
-                    PropTypes.number
-                ])
+                text: PropTypes.string,
+                value: PropTypes.string
             })
         ).isRequired,
         disabled: PropTypes.bool,
@@ -26,13 +22,7 @@ export default class extends Component {
         onFocus: PropTypes.func,
         onBlur: PropTypes.func,
         onMouseEnter: PropTypes.func,
-        onMouseLeave: PropTypes.func,
-        children: PropTypes.oneOfType([
-            PropTypes.node,
-            PropTypes.arrayOf(PropTypes.node),
-            PropTypes.object,
-            PropTypes.arrayOf(PropTypes.object)
-        ])
+        onMouseLeave: PropTypes.func
     };
     static defaultProps = {
         value: null,
@@ -114,17 +104,17 @@ export default class extends Component {
         }
     }
 
-    _renderOptions() {
-        return this.props.options.map(option => {
-            return BEM({
-                block: 'select',
-                tag: 'option',
-                content: option.text,
-                props: {
+    renderOptions() {
+        return this.props.options.map(function(option) {
+            return BEM(
+                {
+                    block,
+                    tag: 'option',
                     value: option.value,
-                    key: 'option-' + option.value
-                }
-            });
+                    key: option.value
+                },
+                option.text
+            );
         });
     }
 
@@ -133,35 +123,33 @@ export default class extends Component {
     }
 
     render() {
-        return BEM({
-            block: 'select',
-            tag: 'label',
-            mods: {
-                focused: this.state.focused,
-                hovered: this.state.hovered,
-                disabled: this.props.disabled,
-                ...this.props.mods
+        return BEM(
+            {
+                block,
+                tag: 'label',
+                mods: {
+                    focused: this.state.focused,
+                    hovered: this.state.hovered,
+                    disabled: this.props.disabled,
+                    ...this.props.mods
+                }
             },
-            mix: this.props.mix,
-            content: [
+            BEM(
                 {
+                    ...this.props,
+                    block,
                     elem: 'control',
                     tag: 'select',
-                    ref: 'control',
-                    props: {
-                        ...this.props,
-                        value: this.state.value,
-                        onChange: this._onSelectChange,
-                        onFocus: this._onSelectFocus,
-                        onBlur: this._onSelectBlur,
-                        onMouseLeave: this._onSelectMouseLeave,
-                        onMouseEnter: this._onSelectMouseEnter,
-                        key: 'control'
-                    },
-                    content: this._renderOptions()
+                    value: this.state.value,
+                    onChange: this._onSelectChange,
+                    onFocus: this._onSelectFocus,
+                    onBlur: this._onSelectBlur,
+                    onMouseLeave: this._onSelectMouseLeave,
+                    onMouseEnter: this._onSelectMouseEnter
                 },
-                ...[].concat(this.props.children)
-            ]
-        });
+                this.renderOptions()
+            ),
+            this.props.children
+        );
     }
 }

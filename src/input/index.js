@@ -1,25 +1,18 @@
 import { Component, PropTypes } from 'react';
-import BEM from '@yummies/bem';
+import { BEM } from '@yummies/bem';
+
+const block = 'input';
 
 export default class extends Component {
-    static displayName = 'core: input';
+    static displayName = `core: ${block}`;
     static propTypes = {
-        value: PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.number
-        ]),
+        value: PropTypes.string,
         disabled: PropTypes.bool,
         onChange: PropTypes.func,
         onFocus: PropTypes.func,
         onBlur: PropTypes.func,
         onMouseEnter: PropTypes.func,
-        onMouseLeave: PropTypes.func,
-        children: PropTypes.oneOfType([
-            PropTypes.node,
-            PropTypes.arrayOf(PropTypes.node),
-            PropTypes.object,
-            PropTypes.arrayOf(PropTypes.object)
-        ])
+        onMouseLeave: PropTypes.func
     };
     static defaultProps = {
         disabled: false,
@@ -105,35 +98,31 @@ export default class extends Component {
     }
 
     render() {
-        return BEM({
-            block: 'input',
-            tag: 'label',
-            mods: {
-                focused: this.state.focused,
-                hovered: this.state.hovered,
-                disabled: this.props.disabled,
-                ...this.props.mods
+        return BEM(
+            {
+                block,
+                tag: 'label',
+                mods: {
+                    focused: this.state.focused,
+                    hovered: this.state.hovered,
+                    disabled: this.props.disabled,
+                    ...this.props.mods
+                }
             },
-            mix: this.props.mix,
-            content: [
-                {
-                    elem: 'control',
-                    tag: 'input',
-                    props: {
-                        type: 'text',
-                        ...this.props,
-                        value: this.state.value,
-                        onChange: this._onInputChange,
-                        onFocus: this._onInputFocus,
-                        onBlur: this._onInputBlur,
-                        onMouseLeave: this._onInputMouseLeave,
-                        onMouseEnter: this._onInputMouseEnter,
-                        ref: 'control',
-                        key: 'control'
-                    }
-                },
-                ...[].concat(this.props.children)
-            ]
-        });
+            BEM({
+                ...this.props,
+                block,
+                elem: 'control',
+                tag: 'input',
+                type: 'text',
+                value: this.state.value,
+                onChange: this._onInputChange,
+                onFocus: this._onInputFocus,
+                onBlur: this._onInputBlur,
+                onMouseLeave: this._onInputMouseLeave,
+                onMouseEnter: this._onInputMouseEnter
+            }),
+            this.props.children
+        );
     }
 }

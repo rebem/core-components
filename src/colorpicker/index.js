@@ -1,11 +1,13 @@
 import { Component, PropTypes } from 'react';
-import BEM from '@yummies/bem';
+import { BEM } from '@yummies/bem';
+
+const block = 'colorpicker';
 
 export default class extends Component {
     static displayName = 'core: colorpicker';
     static propTypes = {
         value: (props, propName, componentName) => {
-            if (!/#([A-Fa-f0-9]{6})$/.test(props[propName])) {
+            if (!/^#([A-Fa-f0-9]{6})$/.test(props[propName])) {
                 return new Error(`Invalid prop \`${propName}\` of type \`${typeof props[propName]}\` supplied to \`${componentName}\`, expected \`valid simple color\` (http://www.w3.org/TR/html5/infrastructure.html#valid-simple-color)`);
             }
         },
@@ -14,13 +16,7 @@ export default class extends Component {
         onFocus: PropTypes.func,
         onBlur: PropTypes.func,
         onMouseEnter: PropTypes.func,
-        onMouseLeave: PropTypes.func,
-        children: PropTypes.oneOfType([
-            PropTypes.node,
-            PropTypes.arrayOf(PropTypes.node),
-            PropTypes.object,
-            PropTypes.arrayOf(PropTypes.object)
-        ])
+        onMouseLeave: PropTypes.func
     };
     static defaultProps = {
         value: '#000000',
@@ -106,35 +102,31 @@ export default class extends Component {
     }
 
     render() {
-        return BEM({
-            block: 'colorpicker',
-            tag: 'label',
-            mods: {
-                focused: this.state.focused,
-                hovered: this.state.hovered,
-                disabled: this.props.disabled,
-                ...this.props.mods
+        return BEM(
+            {
+                block,
+                tag: 'label',
+                mods: {
+                    focused: this.state.focused,
+                    hovered: this.state.hovered,
+                    disabled: this.props.disabled,
+                    ...this.props.mods
+                }
             },
-            mix: this.props.mix,
-            content: [
-                {
-                    elem: 'control',
-                    tag: 'input',
-                    props: {
-                        type: 'color',
-                        ...this.props,
-                        value: this.state.value,
-                        onChange: this._onInputChange,
-                        onFocus: this._onInputFocus,
-                        onBlur: this._onInputBlur,
-                        onMouseLeave: this._onInputMouseLeave,
-                        onMouseEnter: this._onInputMouseEnter,
-                        ref: 'control',
-                        key: 'control'
-                    }
-                },
-                ...[].concat(this.props.children)
-            ]
-        });
+            BEM({
+                ...this.props,
+                block,
+                elem: 'control',
+                tag: 'input',
+                type: 'color',
+                value: this.state.value,
+                onChange: this._onInputChange,
+                onFocus: this._onInputFocus,
+                onBlur: this._onInputBlur,
+                onMouseLeave: this._onInputMouseLeave,
+                onMouseEnter: this._onInputMouseEnter
+            }),
+            this.props.children
+        );
     }
 }

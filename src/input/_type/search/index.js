@@ -17,7 +17,6 @@ export default class extends Component {
                 type: 'search',
                 ...this.props.mods
             },
-            mix: this.props.mix,
             autoComplete: 'off',
             autoCapitalize: 'off',
             autoCorrect: 'off',

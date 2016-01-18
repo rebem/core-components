@@ -1,68 +1,40 @@
 import { Component, PropTypes } from 'react';
-import BEM from '@yummies/bem';
+import { BEM } from '@yummies/bem';
 
-export default class extends Component {
-    static displayName = 'core: label-group';
-    static propTypes = {
-        controlPosition: PropTypes.oneOf([
-            'left',
-            'right'
-        ]),
-        labelText: PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.number
-        ]),
-        children: PropTypes.oneOfType([
-            PropTypes.node,
-            PropTypes.arrayOf(PropTypes.node),
-            PropTypes.object,
-            PropTypes.arrayOf(PropTypes.object)
-        ])
-    };
-    static defaultProps = {
-        controlPosition: 'right'
-    };
+import Label from '#label-group/label';
+import Control from '#label-group/control';
 
-    _renderLabel() {
-        return BEM({
-            block: 'label-group',
-            elem: 'label',
-            props: {
-                key: 'label'
-            },
-            content: this.props.labelText
-        });
+function renderChildren(props) {
+    const label = Label({ ...props, key: 'label' });
+    const control = Control({ ...props, key: 'control' });
+
+    if (props.controlPosition === 'right') {
+        return [ label, control ];
     }
 
-    _renderControl() {
-        return BEM({
-            block: 'label-group',
-            elem: 'control',
-            props: {
-                key: 'control'
-            },
-            content: this.props.children
-        });
-    }
+    return [ control, label ];
+}
 
-    render() {
-        return BEM({
+export default function LabelGroup(props) {
+    return BEM(
+        {
+            ...props,
             block: 'label-group',
             mods: {
-                'control-position': this.props.controlPosition,
-                ...this.props.mods
+                'control-position': props.controlPosition,
+                ...props.mods
             },
-            mix: this.props.mix,
-            tag: 'label',
-            content: this.props.controlPosition === 'right' ?
-                [
-                    this._renderLabel(),
-                    this._renderControl()
-                ] :
-                [
-                    this._renderControl(),
-                    this._renderLabel()
-                ]
-        });
-    }
+            tag: 'label'
+        },
+        renderChildren(props)
+    );
 }
+
+LabelGroup.propTypes = {
+    controlPosition: PropTypes.oneOf([ 'left', 'right' ]),
+    labelText: PropTypes.string
+};
+
+LabelGroup.defaultProps = {
+    controlPosition: 'right'
+};

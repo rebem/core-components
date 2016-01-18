@@ -9,11 +9,7 @@
     "Kir Belevich <kir@soulshine.in> (https://github.com/deepsweet)",
     "Denis Koltsov <iam@mistadikay.com> (https://github.com/mistadikay)"
   ],
-  "files": [
-    "build/",
-    "index.js",
-    "LICENSE"
-  ],
+  "files": [ "build/", "index.js" ],
   "main": "index.js",
   "dependencies": {
     "react": "0.14.x",
@@ -39,6 +35,7 @@
     "babel-preset-stage-1": "6.3.x",
     "babel-plugin-add-module-exports": "0.1.x",
     "babel-loader": "6.2.x",
+    "babel-preset-react-hmre": "1.0.x",
 
     "react-dom": "0.14.x",
     "@yummies/layers-loader": "0.0.x",
@@ -74,7 +71,6 @@
     "start": "npm run task demo",
     "travis": "npm run task travis",
 
-    "prepush": "npm test",
     "prepublish": "npm run build"
   },
   "engines": {

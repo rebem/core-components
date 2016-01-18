@@ -4,8 +4,9 @@ export default function(props) {
     return BEM(
         {
             ...props,
-            block: 'tabs',
-            elem: 'panels'
+            block: 'table',
+            elem: 'cell',
+            tag: 'td'
         },
         props.children
     );

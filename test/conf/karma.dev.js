@@ -9,5 +9,5 @@ export default {
         'progress',
         'coverage'
     ],
-    browsers: [ 'Firefox' ],
+    browsers: [ 'Firefox' ]
 };

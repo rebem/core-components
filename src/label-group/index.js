@@ -1,4 +1,4 @@
-import { Component, PropTypes } from 'react';
+import { PropTypes } from 'react';
 import { BEM } from 'rebem';
 
 import Label from '#label-group/label';

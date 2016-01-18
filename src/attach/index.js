@@ -50,7 +50,7 @@ export default class extends Component {
             value: e.target.value
         });
 
-        if (this.props.onChange) {
+        if (typeof this.props.onChange === 'function') {
             this.props.onChange(e);
         }
     }
@@ -60,7 +60,7 @@ export default class extends Component {
             focused: true
         });
 
-        if (this.props.onFocus) {
+        if (typeof this.props.onFocus === 'function') {
             this.props.onFocus(e);
         }
     }
@@ -70,7 +70,7 @@ export default class extends Component {
             focused: false
         });
 
-        if (this.props.onBlur) {
+        if (typeof this.props.onBlur === 'function') {
             this.props.onBlur(e);
         }
     }
@@ -80,7 +80,7 @@ export default class extends Component {
             pressed: true
         });
 
-        if (this.props.onMouseDown) {
+        if (typeof this.props.onMouseDown === 'function') {
             this.props.onMouseDown(e);
         }
     }
@@ -90,7 +90,7 @@ export default class extends Component {
             pressed: false
         });
 
-        if (this.props.onMouseUp) {
+        if (typeof this.props.onMouseUp === 'function') {
             this.props.onMouseUp(e);
         }
     }
@@ -100,7 +100,7 @@ export default class extends Component {
             hovered: true
         });
 
-        if (this.props.onMouseEnter) {
+        if (typeof this.props.onMouseEnter === 'function') {
             this.props.onMouseEnter(e);
         }
     }
@@ -111,7 +111,7 @@ export default class extends Component {
             pressed: false
         });
 
-        if (this.props.onMouseLeave) {
+        if (typeof this.props.onMouseLeave === 'function') {
             this.props.onMouseLeave(e);
         }
     }

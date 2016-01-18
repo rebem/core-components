@@ -2,7 +2,7 @@
   "name": "rebem-core-components",
   "version": "0.1.0",
   "description": "reBEM Core Components",
-  "keywords": [ "yummies", "react", "components" ],
+  "keywords": [ "rebem", "react", "bem", "components" ],
   "homepage": "https://github.com/rebem/rebem-core-components",
   "repository": "rebem/rebem-core-components",
   "contributors": [
@@ -13,7 +13,7 @@
   "main": "index.js",
   "dependencies": {
     "react": "0.14.x",
-    "@yummies/bem": "0.0.x",
+    "rebem": "0.1.x",
     "component-uid": "0.0.x",
     "eventemitter3": "1.1.x"
   },
@@ -38,7 +38,7 @@
     "babel-preset-react-hmre": "1.0.x",
 
     "react-dom": "0.14.x",
-    "@yummies/layers-loader": "0.0.x",
+    "rebem-layers-loader": "0.1.x",
     "react-addons-test-utils": "0.14.x",
     "legit-tests": "0.6.x",
 

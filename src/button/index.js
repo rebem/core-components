@@ -6,7 +6,10 @@ const block = 'button';
 export default class extends Component {
     static displayName = `core: ${block}`;
     static propTypes = {
-        value: PropTypes.string,
+        value: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ]),
         disabled: PropTypes.bool,
         onFocus: PropTypes.func,
         onBlur: PropTypes.func,

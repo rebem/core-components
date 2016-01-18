@@ -6,7 +6,10 @@ const block = 'attach';
 export default class extends Component {
     static displayName = `core: ${block}`;
     static propTypes = {
-        value: PropTypes.string,
+        value: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ]),
         disabled: PropTypes.bool,
         onChange: PropTypes.func,
         onFocus: PropTypes.func,

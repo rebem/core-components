@@ -13,8 +13,14 @@ export default class extends Component {
         },
         options: PropTypes.arrayOf(
             PropTypes.shape({
-                text: PropTypes.string,
-                value: PropTypes.string
+                text: PropTypes.oneOfType([
+                    PropTypes.string,
+                    PropTypes.number
+                ]),
+                value: PropTypes.oneOfType([
+                    PropTypes.string,
+                    PropTypes.number
+                ])
             })
         ).isRequired,
         disabled: PropTypes.bool,

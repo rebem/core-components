@@ -1,193 +1,172 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import { createElement } from 'react';
 import TestUtils from 'react-addons-test-utils';
 import chai, { expect } from 'chai';
-import { renderOnce } from 'test/helpers/render';
+import { shallow } from 'enzyme';
 
 import Attach from '#attach';
 
-describe('attach', () => {
-    describe('basic', () => {
-        it('exists', () => {
+describe('attach', function() {
+    describe('basic', function() {
+        it('exists', function() {
             expect(Attach).to.exist;
         });
 
-        it('is a component', () => {
-            expect(TestUtils.isCompositeComponent(renderOnce(Attach()))).to.be.true;
+        it('is a component', function() {
+            expect(TestUtils.isElement(Attach())).to.be.true;
         });
     });
 
-    describe('render', () => {
+    describe('render', function() {
         beforeEach(function() {
-            this.renderWithProps = props => {
-                this.rootComponent = renderOnce(Attach(props));
-                this.rootComponentDOMNode = ReactDOM.findDOMNode(this.rootComponent);
-                this.inputControlDOMNode = TestUtils.findRenderedDOMComponentWithClass(this.rootComponent, 'attach__control');
-            };
-
-            this.renderWithProps();
+            this.component = shallow(Attach());
+            this.control = this.component.find('.attach__control');
         });
 
-        describe('DOM', () => {
-            it('initial without value', function() {
-                expect(this.inputControlDOMNode.tagName).to.be.equal('INPUT');
-                expect(this.inputControlDOMNode.type).to.be.equal('file');
-                expect(this.rootComponentDOMNode).to.be.a.block('attach');
-                expect(this.inputControlDOMNode).to.be.an.elem({
+        describe('DOM', function() {
+            it('initial', function() {
+                expect(this.control).to.have.tagName('input');
+                expect(this.control).to.have.attr('type', 'file');
+                expect(this.component).to.be.a.block('attach');
+                expect(this.control).to.be.an.elem({
                     block: 'attach',
                     elem: 'control'
                 });
             });
 
-            it.skip('initial with value', function() {
-                this.renderWithProps({ value: 'test' });
-
-                const inputValueDOMNode = TestUtils.findRenderedDOMComponentWithClass(this.rootComponent, 'attach__value');
-
-                expect(inputValueDOMNode).to.be.an.elem({
-                    block: 'attach',
-                    elem: 'value'
-                });
-
-                expect(inputValueDOMNode.textContent).to.be.equal('test');
-            });
-
             it('hover', function() {
-                TestUtils.Simulate.mouseEnter(this.inputControlDOMNode);
-                expect(this.rootComponentDOMNode).to.have.mods({ hovered: true });
+                this.control.simulate('mouseEnter');
+                expect(this.component).to.have.mods({ hovered: true });
 
-                TestUtils.Simulate.mouseLeave(this.inputControlDOMNode);
-                expect(this.rootComponentDOMNode).to.not.have.mods({ hovered: true });
+                this.control.simulate('mouseLeave');
+                expect(this.component).to.not.have.mods({ hovered: true });
             });
 
             it('focus/blur', function() {
-                TestUtils.Simulate.focus(this.inputControlDOMNode);
-                expect(this.rootComponentDOMNode).to.have.mods({ focused: true });
+                this.control.simulate('focus');
+                expect(this.component).to.have.mods({ focused: true });
 
-                TestUtils.Simulate.blur(this.inputControlDOMNode);
-                expect(this.rootComponentDOMNode).to.not.have.mods({ focused: true });
+                this.control.simulate('blur');
+                expect(this.component).to.not.have.mods({ focused: true });
             });
 
             it('pressed', function() {
-                TestUtils.Simulate.mouseDown(this.inputControlDOMNode);
-                expect(this.rootComponentDOMNode).to.have.mods({ pressed: true });
+                this.control.simulate('mouseDown');
+                expect(this.component).to.have.mods({ pressed: true });
 
-                TestUtils.Simulate.mouseUp(this.inputControlDOMNode);
-                expect(this.rootComponentDOMNode).to.not.have.mods({ pressed: true });
+                this.control.simulate('mouseUp');
+                expect(this.component).to.not.have.mods({ pressed: true });
             });
 
             it('disabled', function() {
-                this.renderWithProps({ disabled: true });
-                expect(this.rootComponentDOMNode).to.have.mods({ disabled: true });
+                this.component.setProps({ disabled: true });
+                expect(this.component).to.have.mods({ disabled: true });
             });
 
-            it.skip('children', function() {
-                this.renderWithProps({
-                    children: React.createElement('div', {
+            it('children', function() {
+                this.component.setProps({
+                    children: createElement('div', {
                         key: 'test',
                         className: 'test-children'
                     })
                 });
 
-                expect(
-                    TestUtils.findRenderedDOMComponentWithClass(this.rootComponent, 'test-children')
-                ).to.be.block('test-children');
+                expect(this.component.find('.test-children')).to.be.block('test-children');
             });
         });
 
-        describe('API', () => {
+        describe('API', function() {
             it('val()', function() {
-                expect(this.rootComponent.val()).to.be.equal(null);
+                expect(this.component.instance().val()).to.be.equal(null);
             });
         });
 
-        describe('callbacks', () => {
+        describe('callbacks', function() {
             it('onChange', function() {
                 const spy = chai.spy();
 
-                this.renderWithProps({
+                this.component.setProps({
                     onChange(e) {
                         spy(e.target.value);
                     }
                 });
-                TestUtils.Simulate.change(this.inputControlDOMNode, { target: { value: '' } });
-                expect(spy).to.have.been.called.with('');
+                this.control.simulate('change', { target: { value: '' } });
 
-                this.renderWithProps();
-                TestUtils.Simulate.change(this.inputControlDOMNode, { target: { value: '' } });
+                this.component.setProps({ onChange: null });
+                this.control.simulate('change', { target: { value: '' } });
+
+                expect(spy).to.have.been.called.once;
                 expect(spy).to.have.been.called.with('');
             });
 
             it('onFocus', function() {
                 const spy = chai.spy();
 
-                this.renderWithProps({ onFocus: spy });
-                TestUtils.Simulate.focus(this.inputControlDOMNode);
-                expect(spy).to.have.been.called.once;
+                this.component.setProps({ onFocus: spy });
+                this.control.simulate('focus');
 
-                this.renderWithProps();
-                TestUtils.Simulate.focus(this.inputControlDOMNode);
+                this.component.setProps({ onFocus: null });
+                this.control.simulate('focus');
+
                 expect(spy).to.have.been.called.once;
             });
 
             it('onBlur', function() {
                 const spy = chai.spy();
 
-                this.renderWithProps({ onBlur: spy });
-                TestUtils.Simulate.blur(this.inputControlDOMNode);
-                expect(spy).to.have.been.called.once;
+                this.component.setProps({ onBlur: spy });
+                this.control.simulate('blur');
 
-                this.renderWithProps();
-                TestUtils.Simulate.blur(this.inputControlDOMNode);
+                this.component.setProps({ onBlur: null });
+                this.control.simulate('blur');
+
                 expect(spy).to.have.been.called.once;
             });
 
             it('onMouseEnter', function() {
                 const spy = chai.spy();
 
-                this.renderWithProps({ onMouseEnter: spy });
-                TestUtils.Simulate.mouseEnter(this.inputControlDOMNode);
-                expect(spy).to.have.been.called.once;
+                this.component.setProps({ onMouseEnter: spy });
+                this.control.simulate('mouseEnter');
 
-                this.renderWithProps();
-                TestUtils.Simulate.mouseEnter(this.inputControlDOMNode);
+                this.component.setProps({ onMouseEnter: null });
+                this.control.simulate('mouseEnter');
+
                 expect(spy).to.have.been.called.once;
             });
 
             it('onMouseLeave', function() {
                 const spy = chai.spy();
 
-                this.renderWithProps({ onMouseLeave: spy });
-                TestUtils.Simulate.mouseLeave(this.inputControlDOMNode);
-                expect(spy).to.have.been.called.once;
+                this.component.setProps({ onMouseLeave: spy });
+                this.control.simulate('mouseLeave');
 
-                this.renderWithProps();
-                TestUtils.Simulate.mouseLeave(this.inputControlDOMNode);
+                this.component.setProps({ onMouseLeave: null });
+                this.control.simulate('mouseLeave');
+
                 expect(spy).to.have.been.called.once;
             });
 
             it('onMouseDown', function() {
                 const spy = chai.spy();
 
-                this.renderWithProps({ onMouseDown: spy });
-                TestUtils.Simulate.mouseDown(this.inputControlDOMNode);
-                expect(spy).to.have.been.called.once;
+                this.component.setProps({ onMouseDown: spy });
+                this.control.simulate('mouseDown');
 
+                this.component.setProps({ onMouseDown: null });
+                this.control.simulate('mouseDown');
 
-                this.renderWithProps();
-                TestUtils.Simulate.mouseDown(this.inputControlDOMNode);
                 expect(spy).to.have.been.called.once;
             });
 
             it('onMouseUp', function() {
                 const spy = chai.spy();
 
-                this.renderWithProps({ onMouseUp: spy });
-                TestUtils.Simulate.mouseUp(this.inputControlDOMNode);
-                expect(spy).to.have.been.called.once;
+                this.component.setProps({ onMouseUp: spy });
+                this.control.simulate('mouseUp');
 
-                this.renderWithProps();
-                TestUtils.Simulate.mouseUp(this.inputControlDOMNode);
+                this.component.setProps({ onMouseUp: null });
+                this.control.simulate('mouseUp');
+
                 expect(spy).to.have.been.called.once;
             });
         });

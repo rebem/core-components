@@ -1,10 +1,10 @@
 {
-  "name": "@yummies/core-components",
-  "version": "2.0.0-alpha.13",
-  "description": "Yummies Core Components",
+  "name": "rebem-core-components",
+  "version": "0.1.0",
+  "description": "reBEM Core Components",
   "keywords": [ "yummies", "react", "components" ],
-  "homepage": "https://github.com/yummies/core-components",
-  "repository": "yummies/core-components",
+  "homepage": "https://github.com/rebem/rebem-core-components",
+  "repository": "rebem/rebem-core-components",
   "contributors": [
     "Kir Belevich <kir@soulshine.in> (https://github.com/deepsweet)",
     "Denis Koltsov <iam@mistadikay.com> (https://github.com/mistadikay)"

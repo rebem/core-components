@@ -2,6 +2,8 @@ const inFileExtension = '.js';
 const outFileExtension = '.js';
 
 export function babelBuild() {
+    process.env.NODE_ENV = 'test';
+
     const fs = require('fs');
     const path = require('path');
     const recursiveReadDir = require('node-dir');

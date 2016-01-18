@@ -5,7 +5,8 @@ export default {
     cache: true,
     resolve: {
         alias: {
-            test: path.resolve('test/')
+            test: path.resolve('test/'),
+            sinon: 'sinon/pkg/sinon'
         }
     },
     module: {
@@ -51,6 +52,9 @@ export default {
                 test: /\.json$/,
                 loader: 'json'
             }
+        ],
+        noParse: [
+            /node_modules\/sinon\//
         ]
     },
     plugins: [
@@ -59,5 +63,10 @@ export default {
                 NODE_ENV: JSON.stringify(process.env.NODE_ENV)
             }
         })
-    ]
+    ],
+    externals: {
+        jsdom: 'window',
+        'react/lib/ExecutionEnvironment': true,
+        'react/lib/ReactContext': true
+    }
 };

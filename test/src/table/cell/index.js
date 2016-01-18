@@ -5,23 +5,23 @@ import { expect } from 'chai';
 
 import { renderOnce } from 'test/helpers/render';
 
-import TableTbody from '#table/tbody';
+import TableCell from '#table/cell';
 
-describe('table/tbody', () => {
+describe.skip('table/td', () => {
     describe('basic', () => {
         it('exists', () => {
-            expect(TableTbody).to.exist;
+            expect(TableCell).to.exist;
         });
 
         it('is a component', () => {
-            expect(TestUtils.isCompositeComponent(renderOnce(TableTbody(), 'table'))).to.be.true;
+            expect(TestUtils.isCompositeComponent(renderOnce(TableCell(), 'tr'))).to.be.true;
         });
     });
 
     describe('render', () => {
         beforeEach(function() {
             this.renderWithProps = props => {
-                this.rootComponent = renderOnce(TableTbody(props), 'table');
+                this.rootComponent = renderOnce(TableCell(props), 'tr');
                 this.rootComponentDOMNode = ReactDOM.findDOMNode(this.rootComponent);
             };
 
@@ -30,10 +30,10 @@ describe('table/tbody', () => {
 
         describe('DOM', () => {
             it('initial', function() {
-                expect(this.rootComponentDOMNode.tagName).to.be.equal('TBODY');
+                expect(this.rootComponentDOMNode.tagName).to.be.equal('TD');
                 expect(this.rootComponentDOMNode).to.be.an.elem({
                     block: 'table',
-                    elem: 'body'
+                    elem: 'cell'
                 });
             });
 
@@ -49,7 +49,7 @@ describe('table/tbody', () => {
 
             it('children', function() {
                 this.renderWithProps({
-                    children: React.createElement('tr', {
+                    children: React.createElement('div', {
                         key: 'test',
                         className: 'test-children'
                     })

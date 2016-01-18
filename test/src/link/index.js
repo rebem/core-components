@@ -6,7 +6,7 @@ import { renderOnce } from 'test/helpers/render';
 
 import Link from '#link';
 
-describe('link', () => {
+describe.skip('link', () => {
     describe('basic', () => {
         it('exists', () => {
             expect(Link).to.exist;

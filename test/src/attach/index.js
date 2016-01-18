@@ -6,7 +6,7 @@ import { renderOnce } from 'test/helpers/render';
 
 import Attach from '#attach';
 
-describe('attach', () => {
+describe.skip('attach', () => {
     describe('basic', () => {
         it('exists', () => {
             expect(Attach).to.exist;
@@ -39,7 +39,7 @@ describe('attach', () => {
                 });
             });
 
-            it('initial with value', function() {
+            it.skip('initial with value', function() {
                 this.renderWithProps({ value: 'test' });
 
                 const inputValueDOMNode = TestUtils.findRenderedDOMComponentWithClass(this.rootComponent, 'attach__value');
@@ -81,7 +81,7 @@ describe('attach', () => {
                 expect(this.rootComponentDOMNode).to.have.mods({ disabled: true });
             });
 
-            it('children', function() {
+            it.skip('children', function() {
                 this.renderWithProps({
                     children: React.createElement('div', {
                         key: 'test',

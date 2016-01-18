@@ -7,7 +7,7 @@ import { createRender, renderOnce } from 'test/helpers/render';
 
 import Radio from '#radio';
 
-describe('radio', () => {
+describe.skip('radio', () => {
     describe('basic', () => {
         it('exists', () => {
             expect(Radio).to.exist;

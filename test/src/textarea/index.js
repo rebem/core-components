@@ -7,7 +7,7 @@ import { createRender, renderOnce } from 'test/helpers/render';
 
 import Textarea from '#textarea';
 
-describe('textarea', () => {
+describe.skip('textarea', () => {
     describe('basic', () => {
         it('exists', () => {
             expect(Textarea).to.exist;

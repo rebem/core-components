@@ -6,7 +6,7 @@ import { createRender, renderOnce } from 'test/helpers/render';
 
 import Checkbox from '#checkbox';
 
-describe('checkbox', () => {
+describe.skip('checkbox', () => {
     describe('basic', () => {
         it('exists', () => {
             expect(Checkbox).to.exist;
@@ -60,7 +60,7 @@ describe('checkbox', () => {
                 expect(this.rootComponentDOMNode).to.have.mods({ disabled: true });
             });
 
-            it('children', function() {
+            it.skip('children', function() {
                 this.renderWithProps({
                     children: React.createElement('div', {
                         key: 'test',

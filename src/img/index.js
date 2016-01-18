@@ -1,4 +1,4 @@
-import { BEM } from '@yummies/bem';
+import { BEM } from 'rebem';
 
 export default function(props) {
     return BEM({

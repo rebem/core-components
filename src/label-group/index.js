@@ -1,5 +1,5 @@
 import { Component, PropTypes } from 'react';
-import { BEM } from '@yummies/bem';
+import { BEM } from 'rebem';
 
 import Label from '#label-group/label';
 import Control from '#label-group/control';

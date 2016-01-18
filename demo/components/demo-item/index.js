@@ -1,5 +1,5 @@
 import { Component, PropTypes } from 'react';
-import { BEM } from '@yummies/bem';
+import { BEM } from 'rebem';
 
 const block = 'demo-item';
 

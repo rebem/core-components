@@ -1,5 +1,5 @@
 import { Component, PropTypes } from 'react';
-import { BEM } from '@yummies/bem';
+import { BEM } from 'rebem';
 import UID from 'component-uid';
 import EventEmitter from 'eventemitter3';
 

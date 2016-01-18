@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { BEM } from '@yummies/bem';
+import { BEM } from 'rebem';
 
 import DemoItem from '#demo-item';
 import Attach from '#attach';

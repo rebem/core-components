@@ -26,7 +26,7 @@ export function demo() {
             preLoaders: [
                 {
                     test: /\.js$/,
-                    loader: '@yummies/layers-loader',
+                    loader: 'rebem-layers',
                     query: {
                         layers: [
                             {

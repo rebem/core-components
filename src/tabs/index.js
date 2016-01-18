@@ -1,5 +1,5 @@
 import { PropTypes } from 'react';
-import { BEM } from '@yummies/bem';
+import { BEM } from 'rebem';
 
 import Titles from '#tabs/titles';
 import Title from '#tabs/title';

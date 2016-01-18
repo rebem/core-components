@@ -9,11 +9,7 @@
     "Kir Belevich <kir@soulshine.in> (https://github.com/deepsweet)",
     "Denis Koltsov <iam@mistadikay.com> (https://github.com/mistadikay)"
   ],
-  "files": [
-    "build/",
-    "index.js",
-    "LICENSE"
-  ],
+  "files": [ "build/", "index.js" ],
   "main": "index.js",
   "dependencies": {
     "react": "0.14.x",

@@ -35,6 +35,7 @@ export default class extends Component {
             colorpickerValue: '#ff0000',
             inputValue: 'text',
             radioGroupValue: 'radio2',
+            selectValue: 'option2',
             selectedTabIndex: 0,
             textareaValue: 'text'
         };
@@ -43,6 +44,7 @@ export default class extends Component {
         this._onColorpickerChange = this._onColorpickerChange.bind(this);
         this._onInputChange = this._onInputChange.bind(this);
         this._onRadioGroupChange = this._onRadioGroupChange.bind(this);
+        this._onSelectChange = this._onSelectChange.bind(this);
         this._onTextareaChange = this._onTextareaChange.bind(this);
         this._onTabChange = this._onTabChange.bind(this);
         this._showPopup = this._showPopup.bind(this);
@@ -69,6 +71,12 @@ export default class extends Component {
     _onRadioGroupChange(value) {
         this.setState({
             radioGroupValue: value
+        });
+    }
+
+    _onSelectChange(e) {
+        this.setState({
+            selectValue: e.target.value
         });
     }
 
@@ -208,17 +216,18 @@ export default class extends Component {
                     title: 'Select'
                 },
                 Select({
+                    value: this.state.selectValue,
                     options: [
                         {
-                            value: 'option-1',
+                            value: 'option1',
                             text: 'option 1'
                         },
                         {
-                            value: 'option-2',
+                            value: 'option2',
                             text: 'option 2'
                         }
                     ],
-                    value: 'option-2'
+                    onChange: this._onSelectChange
                 }),
             ),
             DemoItem(

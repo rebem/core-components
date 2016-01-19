@@ -1,199 +1,73 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import { createElement } from 'react';
 import TestUtils from 'react-addons-test-utils';
-import chai, { expect } from 'chai';
-
-import { createRender, renderOnce } from 'test/helpers/render';
+import { expect } from 'chai';
+import { shallow } from 'enzyme';
 
 import Select from '#select';
 
-describe.skip('select', () => {
-    describe('basic', () => {
-        it('exists', () => {
+describe('select', function() {
+    describe('basic', function() {
+        it('exists', function() {
             expect(Select).to.exist;
         });
 
-        it('is a component', () => {
-            const Component = Select();
-
-            expect(TestUtils.isCompositeComponent(renderOnce(Component))).to.be.true;
+        it('is a component', function() {
+            expect(TestUtils.isElement(Select())).to.be.true;
         });
     });
 
-    describe('render', () => {
+    describe('render', function() {
         beforeEach(function() {
-            this.renderWithProps = props => {
-                this.rootComponent = renderOnce(Select(props));
-                this.rootComponentDOMNode = ReactDOM.findDOMNode(this.rootComponent);
-                this.inputControlDOMNode = TestUtils.findRenderedDOMComponentWithClass(this.rootComponent, 'select__control');
-            };
-
-            this.renderWithProps();
+            this.component = shallow(Select());
+            this.control = this.component.find('.select__control');
         });
 
-        describe('DOM', () => {
+        describe('DOM', function() {
             it('initial', function() {
-                expect(this.inputControlDOMNode.tagName).to.be.equal('SELECT');
-                expect(this.rootComponentDOMNode).to.be.a.block('select');
-                expect(this.inputControlDOMNode).to.be.an.elem({
+                expect(this.control).to.have.tagName('select');
+                expect(this.component).to.be.a.block('select');
+                expect(this.control).to.be.an.elem({
                     block: 'select',
                     elem: 'control'
                 });
             });
 
-            it('hover', function() {
-                TestUtils.Simulate.mouseEnter(this.inputControlDOMNode);
-                expect(this.rootComponentDOMNode).to.have.mods({ hovered: true });
+            it('props are transfered to "control"', function() {
+                this.component.setProps({
+                    'data-test': true
+                });
 
-                TestUtils.Simulate.mouseLeave(this.inputControlDOMNode);
-                expect(this.rootComponentDOMNode).to.not.have.mods({ hovered: true });
-            });
+                const control = this.component.find('.select__control');
 
-            it('focus/blur', function() {
-                TestUtils.Simulate.focus(this.inputControlDOMNode);
-                expect(this.rootComponentDOMNode).to.have.mods({ focused: true });
-
-                TestUtils.Simulate.blur(this.inputControlDOMNode);
-                expect(this.rootComponentDOMNode).to.not.have.mods({ focused: true });
-            });
-
-            it('disabled', function() {
-                this.renderWithProps({ disabled: true });
-                expect(this.rootComponentDOMNode).to.have.mods({ disabled: true });
+                expect(this.component).to.not.have.prop('data-test');
+                expect(control).to.have.prop('data-test', true);
             });
 
             it('children', function() {
-                this.renderWithProps({
-                    children: React.createElement('div', {
-                        key: 'test',
-                        className: 'test-children'
-                    })
+                const dummy = createElement('div');
+
+                this.component.setProps({
+                    children: dummy
                 });
 
-                expect(
-                    TestUtils.findRenderedDOMComponentWithClass(this.rootComponent, 'test-children')
-                ).to.be.block('test-children');
+                expect(this.component.contains(dummy)).to.true;
             });
 
             it('options', function() {
-                this.renderWithProps({
-                    value: 'test2',
+                this.component.setProps({
                     options: [
-                        { text: 'test1', value: 'test1' },
-                        { text: 'test2', value: 'test2' }
+                        { value: 'option1', text: 'option 1' },
+                        { value: 'option2', text: 'option 2' }
                     ]
                 });
 
-                const options = TestUtils.scryRenderedDOMComponentsWithTag(this.rootComponent, 'option');
+                const options = this.component.find('option');
 
-                expect(options[0].selected).to.be.false;
-                expect(options[1].selected).to.be.true;
-            });
-        });
-
-        describe('API', () => {
-            it('val()', function() {
-                TestUtils.Simulate.change(this.inputControlDOMNode, { target: { value: 'test' } });
-                expect(this.rootComponent.val()).to.be.equal('test');
-            });
-        });
-
-        describe('callbacks', () => {
-            it('onChange', function() {
-                const spy = chai.spy();
-
-                this.renderWithProps({
-                    onChange(e) {
-                        spy(e.target.value);
-                    }
-                });
-                TestUtils.Simulate.change(this.inputControlDOMNode, { target: { value: 'test' } });
-                expect(spy).to.have.been.called.with('test');
-
-                this.renderWithProps();
-                TestUtils.Simulate.change(this.inputControlDOMNode, { target: { value: 'test' } });
-                expect(spy).to.have.been.called.with('test');
-            });
-
-            it('onFocus', function() {
-                const spy = chai.spy();
-
-                this.renderWithProps({ onFocus: spy });
-                TestUtils.Simulate.focus(this.inputControlDOMNode);
-                expect(spy).to.have.been.called.once;
-
-                this.renderWithProps();
-                TestUtils.Simulate.focus(this.inputControlDOMNode);
-                expect(spy).to.have.been.called.once;
-            });
-
-            it('onBlur', function() {
-                const spy = chai.spy();
-
-                this.renderWithProps({ onBlur: spy });
-                TestUtils.Simulate.blur(this.inputControlDOMNode);
-                expect(spy).to.have.been.called.once;
-
-                this.renderWithProps();
-                TestUtils.Simulate.blur(this.inputControlDOMNode);
-                expect(spy).to.have.been.called.once;
-            });
-
-            it('onMouseEnter', function() {
-                const spy = chai.spy();
-
-                this.renderWithProps({ onMouseEnter: spy });
-                TestUtils.Simulate.mouseEnter(this.inputControlDOMNode);
-                expect(spy).to.have.been.called.once;
-
-                this.renderWithProps();
-                TestUtils.Simulate.mouseEnter(this.inputControlDOMNode);
-                expect(spy).to.have.been.called.once;
-            });
-
-            it('onMouseLeave', function() {
-                const spy = chai.spy();
-
-                this.renderWithProps({ onMouseLeave: spy });
-                TestUtils.Simulate.mouseLeave(this.inputControlDOMNode);
-                expect(spy).to.have.been.called.once;
-
-                this.renderWithProps();
-                TestUtils.Simulate.mouseLeave(this.inputControlDOMNode);
-                expect(spy).to.have.been.called.once;
-            });
-        });
-
-        describe('componentWillReceiveProps', () => {
-            it('value', function() {
-                const render = createRender();
-                let component = render(Select({ value: 'test' }));
-
-                expect(component.state.value).to.be.equal('test');
-
-                component = render(Select({ value: 'test2' }));
-
-                expect(component.state.value).to.be.equal('test2');
-
-                component = render(Select({ value: 'test2' }));
-
-                expect(component.state.value).to.be.equal('test2');
-            });
-        });
-
-        describe('propTypes', function() {
-            it('throws error if incorrect value', function() {
-                const incorrectRender = () => {
-                    this.renderWithProps({
-                        value: 'test',
-                        options: [
-                            { text: 'test1', value: 'test1' },
-                            { text: 'test2', value: 'test2' }
-                        ]
-                    });
-                };
-
-                expect(incorrectRender).to.throw(Error);
+                expect(options).to.have.length(2);
+                expect(options.at(0)).to.have.attr('value', 'option1');
+                expect(options.at(0)).to.have.text('option 1');
+                expect(options.at(1)).to.have.attr('value', 'option2');
+                expect(options.at(1)).to.have.text('option 2');
             });
         });
     });

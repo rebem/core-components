@@ -33,6 +33,17 @@ describe('attach', function() {
                 });
             });
 
+            it('props are transfered to "control"', function() {
+                this.component.setProps({
+                    'data-test': true
+                });
+
+                const control = this.component.find('.attach__control');
+
+                expect(this.component).to.not.have.prop('data-test');
+                expect(control).to.have.prop('data-test', true);
+            });
+
             it('children', function() {
                 const dummy = createElement('div');
 

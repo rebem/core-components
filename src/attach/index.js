@@ -1,4 +1,3 @@
-import { PropTypes } from 'react';
 import { BEM } from 'rebem';
 
 const block = 'attach';
@@ -7,11 +6,7 @@ export default function Attach(props) {
     return BEM(
         {
             block,
-            tag: 'label',
-            mods: {
-                disabled: props.disabled,
-                ...props.mods
-            }
+            tag: 'label'
         },
         BEM({
             ...props,
@@ -23,11 +18,3 @@ export default function Attach(props) {
         props.children
     );
 }
-
-Attach.defaultProps = {
-    disabled: false
-};
-
-Attach.propTypes = {
-    disabled: PropTypes.bool
-};

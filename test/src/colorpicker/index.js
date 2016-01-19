@@ -33,11 +33,6 @@ describe('colorpicker', function() {
                 });
             });
 
-            it('disabled', function() {
-                this.component.setProps({ disabled: true });
-                expect(this.component).to.have.mods({ disabled: true });
-            });
-
             it('children', function() {
                 this.component.setProps({
                     children: createElement('div', {

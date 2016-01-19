@@ -1,59 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import { expect } from 'chai';
-import { renderOnce } from 'test/helpers/render';
+import { shallow } from 'enzyme';
 
 import Table from '#table';
 
-describe.skip('table', () => {
-    describe('basic', () => {
-        it('exists', () => {
+describe('table', function() {
+    describe('basic', function() {
+        it('exists', function() {
             expect(Table).to.exist;
         });
 
-        it('is a component', () => {
-            expect(TestUtils.isCompositeComponent(renderOnce(Table()))).to.be.true;
+        it('is a component', function() {
+            expect(TestUtils.isElement(Table())).to.be.true;
         });
     });
 
-    describe('render', () => {
-        beforeEach(function() {
-            this.renderWithProps = props => {
-                this.rootComponent = renderOnce(Table(props));
-                this.rootComponentDOMNode = ReactDOM.findDOMNode(this.rootComponent);
-            };
-
-            this.renderWithProps();
-        });
-
-        describe('DOM', () => {
+    describe('render', function() {
+        describe('DOM', function() {
             it('initial', function() {
-                expect(this.rootComponentDOMNode.tagName).to.be.equal('TABLE');
-                expect(this.rootComponentDOMNode).to.be.a.block('table');
-            });
+                const component = shallow(Table());
 
-            it('props', function() {
-                const testCellpadding = 5;
-
-                this.renderWithProps({
-                    cellPadding: testCellpadding
-                });
-
-                expect(this.rootComponentDOMNode.cellPadding).to.be.equal(String(testCellpadding));
-            });
-
-            it('children', function() {
-                this.renderWithProps({
-                    children: React.createElement('tbody', {
-                        key: 'test',
-                        className: 'test-children'
-                    })
-                });
-
-                expect(
-                    TestUtils.findRenderedDOMComponentWithClass(this.rootComponent, 'test-children')
-                ).to.be.block('test-children');
+                expect(component.type()).to.be.equal('table');
+                expect(component).to.be.a.block('table');
             });
         });
     });

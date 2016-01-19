@@ -17,12 +17,6 @@ export default class extends Component {
             PropTypes.arrayOf(PropTypes.node),
             PropTypes.object,
             PropTypes.arrayOf(PropTypes.object)
-        ]),
-        children: PropTypes.oneOfType([
-            PropTypes.node,
-            PropTypes.arrayOf(PropTypes.node),
-            PropTypes.object,
-            PropTypes.arrayOf(PropTypes.object)
         ])
     };
 
@@ -31,7 +25,8 @@ export default class extends Component {
             return BEM(
                 {
                     block,
-                    elem: 'title'
+                    elem: 'title',
+                    tag: 'h3'
                 },
                 this.props.title
             );

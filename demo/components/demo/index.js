@@ -8,11 +8,11 @@ import Checkbox from '#checkbox';
 import ColorPicker from '#colorpicker';
 import Img from '#img';
 import Input from '#input';
-import InputSearch from '#input/_type/search';
 import LabelGroup from '#label-group';
 import Link from '#link';
 import Popup from '#popup';
 import Radio from '#radio';
+import RadioGroup from '#radio-group';
 import Select from '#select';
 import Table from '#table';
 import TableHead from '#table/head';
@@ -31,11 +31,51 @@ export default class extends Component {
         super(props, context);
 
         this.state = {
-            selectedTabIndex: 0
+            checkboxChecked: false,
+            colorpickerValue: '#ff0000',
+            inputValue: 'text',
+            radioGroupValue: 'radio2',
+            selectedTabIndex: 0,
+            textareaValue: 'text'
         };
 
-        this._showPopup = this._showPopup.bind(this);
+        this._onCheckboxChange = this._onCheckboxChange.bind(this);
+        this._onColorpickerChange = this._onColorpickerChange.bind(this);
+        this._onInputChange = this._onInputChange.bind(this);
+        this._onRadioGroupChange = this._onRadioGroupChange.bind(this);
+        this._onTextareaChange = this._onTextareaChange.bind(this);
         this._onTabChange = this._onTabChange.bind(this);
+        this._showPopup = this._showPopup.bind(this);
+    }
+
+    _onCheckboxChange(e) {
+        this.setState({
+            checkboxChecked: e.target.checked
+        });
+    }
+
+    _onColorpickerChange(e) {
+        this.setState({
+            colorpickerValue: e.target.value
+        });
+    }
+
+    _onInputChange(e) {
+        this.setState({
+            inputValue: e.target.value
+        });
+    }
+
+    _onRadioGroupChange(value) {
+        this.setState({
+            radioGroupValue: value
+        });
+    }
+
+    _onTextareaChange(e) {
+        this.setState({
+            textareaValue: e.target.value
+        });
     }
 
     _onTabChange(selectedTabIndex) {
@@ -57,7 +97,8 @@ export default class extends Component {
                     title: 'Attach input'
                 },
                 Attach({
-                    accept: 'image/jpeg,image/png'
+                    accept: 'image/jpeg,image/png',
+                    onChange() {}
                 }),
             ),
             DemoItem(
@@ -73,7 +114,8 @@ export default class extends Component {
                     title: 'Checkbox'
                 },
                 Checkbox({
-                    checked: false
+                    checked: this.state.checkboxChecked,
+                    onChange: this._onCheckboxChange
                 })
             ),
             DemoItem(
@@ -81,7 +123,8 @@ export default class extends Component {
                     title: 'Color picker'
                 },
                 ColorPicker({
-                    value: '#ff0000'
+                    value: this.state.colorpickerValue,
+                    onChange: this._onColorpickerChange
                 })
             ),
             DemoItem(
@@ -98,15 +141,8 @@ export default class extends Component {
                 },
                 Input({
                     placeholder: 'placeholder',
-                    value: 'text'
-                })
-            ),
-            DemoItem(
-                {
-                    title: 'Search input'
-                },
-                InputSearch({
-                    placeholder: 'search'
+                    value: this.state.inputValue,
+                    onChange: this._onInputChange
                 })
             ),
             DemoItem(
@@ -150,21 +186,20 @@ export default class extends Component {
             ),
             DemoItem(
                 {
-                    title: 'Radio input'
+                    title: 'Radio Group'
                 },
-                BEM(
+                RadioGroup(
                     {
-                        tag: 'form'
+                        value: this.state.radioGroupValue,
+                        onChange: this._onRadioGroupChange
                     },
                     Radio({
                         name: 'radio-test',
-                        value: 'radio1',
-                        checked: false
+                        value: 'radio1'
                     }),
                     Radio({
                         name: 'radio-test',
-                        value: 'radio2',
-                        checked: true
+                        value: 'radio2'
                     })
                 )
             ),
@@ -249,7 +284,8 @@ export default class extends Component {
                     title: 'Textarea'
                 },
                 Textarea({
-                    value: 'text'
+                    value: this.state.textareaValue,
+                    onChange: this._onTextareaChange
                 })
             )
         );

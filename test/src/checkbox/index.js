@@ -1,6 +1,6 @@
 import { createElement } from 'react';
 import TestUtils from 'react-addons-test-utils';
-import chai, { expect } from 'chai';
+import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
 import Checkbox from '#checkbox';

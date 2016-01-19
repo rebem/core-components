@@ -1,63 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import { expect } from 'chai';
-
-import { renderOnce } from 'test/helpers/render';
+import { shallow } from 'enzyme';
 
 import TableBody from '#table/body';
 
-describe.skip('table/tbody', () => {
-    describe('basic', () => {
-        it('exists', () => {
+describe('table/body', function() {
+    describe('basic', function() {
+        it('exists', function() {
             expect(TableBody).to.exist;
         });
 
-        it('is a component', () => {
-            expect(TestUtils.isCompositeComponent(renderOnce(TableBody(), 'table'))).to.be.true;
+        it('is a component', function() {
+            expect(TestUtils.isElement(TableBody())).to.be.true;
         });
     });
 
-    describe('render', () => {
-        beforeEach(function() {
-            this.renderWithProps = props => {
-                this.rootComponent = renderOnce(TableBody(props), 'table');
-                this.rootComponentDOMNode = ReactDOM.findDOMNode(this.rootComponent);
-            };
-
-            this.renderWithProps();
-        });
-
-        describe('DOM', () => {
+    describe('render', function() {
+        describe('DOM', function() {
             it('initial', function() {
-                expect(this.rootComponentDOMNode.tagName).to.be.equal('TBODY');
-                expect(this.rootComponentDOMNode).to.be.an.elem({
-                    block: 'table',
-                    elem: 'body'
-                });
-            });
+                const component = shallow(TableBody());
 
-            it('props', function() {
-                const testAttr = 'test';
-
-                this.renderWithProps({
-                    'data-test-attr': testAttr
-                });
-
-                expect(this.rootComponentDOMNode.getAttribute('data-test-attr')).to.be.equal(testAttr);
-            });
-
-            it('children', function() {
-                this.renderWithProps({
-                    children: React.createElement('tr', {
-                        key: 'test',
-                        className: 'test-children'
-                    })
-                });
-
-                expect(
-                    TestUtils.findRenderedDOMComponentWithClass(this.rootComponent, 'test-children')
-                ).to.be.block('test-children');
+                expect(component.type()).to.be.equal('tbody');
+                expect(component).to.be.an.elem({ block: 'table', elem: 'body' });
             });
         });
     });

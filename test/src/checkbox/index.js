@@ -34,14 +34,13 @@ describe('checkbox', function() {
             });
 
             it('children', function() {
+                const dummy = createElement('div');
+
                 this.component.setProps({
-                    children: createElement('div', {
-                        key: 'test',
-                        className: 'test-children'
-                    })
+                    children: dummy
                 });
 
-                expect(this.component.find('.test-children')).to.be.block('test-children');
+                expect(this.component.contains(dummy)).to.true;
             });
         });
     });

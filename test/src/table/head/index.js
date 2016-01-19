@@ -20,7 +20,7 @@ describe('table/head', function() {
             it('initial', function() {
                 const component = shallow(TableHead());
 
-                expect(component.type()).to.be.equal('thead');
+                expect(component).to.have.tagName('thead');
                 expect(component).to.be.an.elem({ block: 'table', elem: 'head' });
             });
         });

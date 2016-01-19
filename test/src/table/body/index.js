@@ -20,7 +20,7 @@ describe('table/body', function() {
             it('initial', function() {
                 const component = shallow(TableBody());
 
-                expect(component.type()).to.be.equal('tbody');
+                expect(component).to.have.tagName('tbody');
                 expect(component).to.be.an.elem({ block: 'table', elem: 'body' });
             });
         });

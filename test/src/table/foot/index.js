@@ -20,7 +20,7 @@ describe('table/foot', function() {
             it('initial', function() {
                 const component = shallow(TableFoot());
 
-                expect(component.type()).to.be.equal('tfoot');
+                expect(component).to.have.tagName('tfoot');
                 expect(component).to.be.an.elem({ block: 'table', elem: 'foot' });
             });
         });

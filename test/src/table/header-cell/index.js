@@ -20,7 +20,7 @@ describe('table/header-cell', function() {
             it('initial', function() {
                 const component = shallow(TableHeaderCell());
 
-                expect(component.type()).to.be.equal('th');
+                expect(component).to.have.tagName('th');
                 expect(component).to.be.an.elem({ block: 'table', elem: 'header-cell' });
             });
         });

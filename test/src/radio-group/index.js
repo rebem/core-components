@@ -37,6 +37,25 @@ describe('radio-group', function() {
                 expect(component).to.be.block('radio-group');
             });
 
+            it('children', function() {
+                const component = shallow(
+                    RadioGroup(
+                        {
+                            onChange() {},
+                            value: 'radio2'
+                        },
+                        Radio({ name: 'test', value: 'radio1' }),
+                        Radio({ name: 'test', value: 'radio2' })
+                    )
+                );
+                const children = component.find(RadioClass);
+                const radio1 = children.at(0);
+                const radio2 = children.at(1);
+
+                expect(radio1).to.not.have.prop('checked', true);
+                expect(radio2).to.have.prop('checked', true);
+            });
+
             it('onChange', function(done) {
                 const component = mount(
                     RadioGroup(
@@ -57,25 +76,6 @@ describe('radio-group', function() {
                 const radio1 = children.at(0);
 
                 radio1.simulate('change', { target: { checked: true } });
-            });
-
-            it('children', function() {
-                const component = shallow(
-                    RadioGroup(
-                        {
-                            onChange() {},
-                            value: 'radio2'
-                        },
-                        Radio({ name: 'test', value: 'radio1' }),
-                        Radio({ name: 'test', value: 'radio2' })
-                    )
-                );
-                const children = component.find(RadioClass);
-                const radio1 = children.at(0);
-                const radio2 = children.at(1);
-
-                expect(radio1.props().checked).to.be.false;
-                expect(radio2.props().checked).to.be.true;
             });
         });
     });

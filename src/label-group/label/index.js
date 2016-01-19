@@ -5,7 +5,8 @@ export default function(props) {
         {
             ...props,
             block: 'label-group',
-            elem: 'label'
+            elem: 'label',
+            tag: 'label'
         },
         props.labelText
     );

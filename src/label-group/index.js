@@ -5,8 +5,8 @@ import Label from '#label-group/label';
 import Control from '#label-group/control';
 
 function renderChildren(props) {
-    const label = Label({ ...props, key: 'label' });
-    const control = Control({ ...props, key: 'control' });
+    const label = Label(props);
+    const control = Control(props);
 
     if (props.controlPosition === 'right') {
         return [ label, control ];
@@ -26,7 +26,7 @@ export default function LabelGroup(props) {
             },
             tag: 'label'
         },
-        renderChildren(props)
+        ...renderChildren(props)
     );
 }
 

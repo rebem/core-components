@@ -1,3 +1,4 @@
+import { findDOMNode } from 'react-dom';
 import chai from 'chai';
 import chaiBEM from 'chai-bem';
 import chaiSpies from 'chai-spies';
@@ -6,7 +7,12 @@ import { ReactWrapper, ShallowWrapper } from 'enzyme';
 
 chai.use(chaiBEM({
     entityHook(entity) {
-        if (entity instanceof ShallowWrapper || entity instanceof ReactWrapper) {
+        if (entity instanceof ReactWrapper) {
+            // TODO: please fix me
+            return findDOMNode(entity.component).className;
+        }
+
+        if (entity instanceof ShallowWrapper) {
             return entity.prop('className');
         }
 

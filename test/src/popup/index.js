@@ -75,7 +75,7 @@ describe('popup', function() {
                     expect(document.activeElement).to.be.block('popup');
                     expect(document.activeElement).to.have.mods({ visible: true });
 
-                    dummyDiv.remove();
+                    document.body.removeChild(dummyDiv);
                 });
 
                 it('hidden', function() {
@@ -94,7 +94,7 @@ describe('popup', function() {
 
                     expect(document.activeElement).to.be.equal(document.body);
 
-                    dummyDiv.remove();
+                    document.body.removeChild(dummyDiv);
                 });
             });
 

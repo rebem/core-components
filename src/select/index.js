@@ -35,7 +35,7 @@ export default function Select(props) {
     );
 }
 
-Select.PropTypes = {
+Select.propTypes = {
     options: PropTypes.arrayOf(
         PropTypes.shape({
             text: PropTypes.oneOfType([

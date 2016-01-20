@@ -1,167 +1,157 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import chai, { expect } from 'chai';
-
-import { renderOnce } from 'test/helpers/render';
+import { shallow } from 'enzyme';
 
 import Popup from '#popup';
 
-describe.skip('popup', () => {
-    describe('basic', () => {
-        it('exists', () => {
+describe('popup', function() {
+    describe('basic', function() {
+        it('exists', function() {
             expect(Popup).to.exist;
         });
 
-        it('is a component', () => {
-            expect(TestUtils.isCompositeComponent(renderOnce(Popup()))).to.be.true;
+        it('is a component', function() {
+            expect(
+                TestUtils.isElement(
+                    Popup({
+                        onHide() {}
+                    })
+                )
+            ).to.be.true;
         });
     });
 
-    describe('render', () => {
+    describe('render', function() {
         beforeEach(function() {
-            this.renderWithProps = props => {
-                this.rootComponent = renderOnce(Popup(props));
-                this.rootComponentDOMNode = ReactDOM.findDOMNode(this.rootComponent);
-                this.switcherDOMNode = this.rootComponentDOMNode.children[0];
-                this.wrapperDOMNode = this.rootComponentDOMNode.children[1];
-                this.overlayDOMNode = this.wrapperDOMNode.children[0];
-                this.innerDOMNode = this.wrapperDOMNode.children[1];
-                this.contentDOMNode = this.innerDOMNode.children[0];
-                this.popupID = this.switcherDOMNode.id;
-            };
-
-            this.renderWithProps();
+            this.component = shallow(
+                Popup(
+                    {
+                        visible: false,
+                        onHide() {}
+                    },
+                    'popup content'
+                )
+            );
+            this.overlay = this.component.find('.popup__overlay');
+            this.content = this.component.find('.popup__content');
         });
 
-        describe('DOM', () => {
+        describe('DOM', function() {
             it('initial', function() {
-                expect(this.rootComponentDOMNode).to.be.a.block('popup');
+                expect(this.component).to.be.a.block('popup');
+                expect(this.component).to.not.have.mods({ visible: true });
+                expect(this.overlay).to.have.length(1);
+                expect(this.content).to.have.length(1);
+            });
 
-                expect(this.switcherDOMNode.tagName).to.be.equal('INPUT');
-                expect(this.switcherDOMNode.type).to.be.equal('checkbox');
-                expect(this.switcherDOMNode).to.be.an.elem({
-                    block: 'popup',
-                    elem: 'switcher'
+            it('visible', function() {
+                this.component.setProps({
+                    visible: true
                 });
 
-                expect(this.wrapperDOMNode).to.be.an.elem({
-                    block: 'popup',
-                    elem: 'wrapper'
+                expect(this.component).to.have.mods({ visible: true });
+            });
+
+            it('content', function() {
+                expect(this.content).to.have.text('popup content');
+            });
+
+            describe('focus', function() {
+                it('visible', function() {
+                    const dummyDiv = document.createElement('div');
+                    const popup = Popup(
+                        {
+                            visible: true,
+                            onHide() {}
+                        },
+                        'popup content'
+                    );
+
+                    document.body.appendChild(dummyDiv);
+
+                    render(popup, dummyDiv);
+
+                    expect(document.activeElement).to.be.block('popup');
+                    expect(document.activeElement).to.have.mods({ visible: true });
+
+                    dummyDiv.remove();
                 });
 
-                expect(this.overlayDOMNode.tagName).to.be.equal('LABEL');
-                expect(this.overlayDOMNode.getAttribute('for')).to.be.equal(this.popupID);
-                expect(this.overlayDOMNode).to.be.an.elem({
-                    block: 'popup',
-                    elem: 'overlay'
-                });
+                it('hidden', function() {
+                    const dummyDiv = document.createElement('div');
+                    const popup = Popup(
+                        {
+                            visible: false,
+                            onHide() {}
+                        },
+                        'popup content'
+                    );
 
-                expect(this.innerDOMNode).to.be.an.elem({
-                    block: 'popup',
-                    elem: 'inner'
-                });
+                    document.body.appendChild(dummyDiv);
 
-                expect(this.contentDOMNode).to.be.an.elem({
-                    block: 'popup',
-                    elem: 'content'
+                    render(popup, dummyDiv);
+
+                    expect(document.activeElement).to.be.equal(document.body);
+
+                    dummyDiv.remove();
                 });
             });
 
-            it('children', function() {
-                this.renderWithProps({
-                    children: React.createElement('div', {
-                        key: 'test',
-                        className: 'test-children'
-                    })
+            describe('hide with Escape', function() {
+                it('onHide', function() {
+                    const spy = chai.spy();
+
+                    this.component.setProps({
+                        onHide: spy
+                    });
+
+                    this.component.simulate('keyUp', {
+                        key: 'Escape',
+                        keyCode: 27,
+                        which: 27
+                    });
+
+                    expect(spy).to.have.been.called.once();
                 });
 
-                expect(this.contentDOMNode.children[0]).to.be.a.block('test-children');
-            });
-        });
+                it('onKeyUp', function() {
+                    const escapeKey = {
+                        key: 'Escape',
+                        keyCode: 27,
+                        which: 27
+                    };
+                    const spy = chai.spy();
 
-        describe('API', () => {
-            it('show', function() {
-                this.renderWithProps();
+                    this.component.setProps({
+                        onKeyUp: spy
+                    });
 
-                this.rootComponent.show();
+                    this.component.simulate('keyUp', escapeKey);
 
-                expect(this.rootComponent.state.visibility).to.be.true;
-            });
-
-            it('hide', function() {
-                this.renderWithProps();
-
-                this.rootComponent.show();
-                this.rootComponent.hide();
-
-                expect(this.rootComponent.state.visibility).to.be.false;
-            });
-
-            it('hide with Escape', function() {
-                const spy = chai.spy();
-
-                this.renderWithProps({ onHide: spy });
-
-                this.rootComponent.show();
-
-                TestUtils.Simulate.keyUp(this.rootComponentDOMNode, {
-                    key: 'Escape',
-                    keyCode: 27,
-                    which: 27
+                    expect(spy).to.have.been.called.once();
+                    expect(spy).to.have.been.called.with(escapeKey);
                 });
 
-                TestUtils.Simulate.keyUp(this.rootComponentDOMNode, {
-                    key: 'Enter',
-                    keyCode: 13,
-                    which: 13
+                it('disabled', function() {
+                    const hideSpy = chai.spy();
+                    const keyupSpy = chai.spy();
+
+                    this.component.setProps({
+                        hideWithEsc: false,
+                        onHide: hideSpy,
+                        onKeyUp: keyupSpy
+                    });
+
+                    this.component.simulate('keyUp', {
+                        key: 'Escape',
+                        keyCode: 27,
+                        which: 27
+                    });
+
+                    expect(hideSpy).to.not.have.been.called.once();
+                    expect(keyupSpy).to.have.been.called.once();
                 });
-
-                expect(spy).to.have.been.called.once;
-            });
-
-            it('hide with outside click', function() {
-                const spy = chai.spy();
-
-                this.renderWithProps({ onHide: spy });
-
-                this.rootComponent.show();
-
-                TestUtils.Simulate.change(this.switcherDOMNode, { target: { checked: false } });
-
-                expect(spy).to.have.been.called.once;
-
-                TestUtils.Simulate.change(this.switcherDOMNode, { target: { checked: true } });
-
-                expect(spy).to.have.been.called.once;
-            });
-        });
-
-        describe('callbacks', () => {
-            it('onShow', function() {
-                const spy = chai.spy();
-
-                this.renderWithProps({ onShow: spy });
-                this.rootComponent.show();
-                expect(spy).to.have.been.called.once;
-
-                this.renderWithProps();
-                this.rootComponent.show();
-                expect(spy).to.have.been.called.once;
-            });
-
-            it('onHide', function() {
-                const spy = chai.spy();
-
-                this.renderWithProps({ onHide: spy });
-                this.rootComponent.show();
-                this.rootComponent.hide();
-                expect(spy).to.have.been.called.once;
-
-                this.renderWithProps();
-                this.rootComponent.show();
-                this.rootComponent.hide();
-                expect(spy).to.have.been.called.once;
             });
         });
     });

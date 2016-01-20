@@ -34,6 +34,7 @@ export default class extends Component {
             checkboxChecked: false,
             colorpickerValue: '#ff0000',
             inputValue: 'text',
+            popupVisibility: false,
             radioGroupValue: 'radio2',
             selectValue: 'option2',
             selectedTabIndex: 0,
@@ -43,11 +44,13 @@ export default class extends Component {
         this._onCheckboxChange = this._onCheckboxChange.bind(this);
         this._onColorpickerChange = this._onColorpickerChange.bind(this);
         this._onInputChange = this._onInputChange.bind(this);
+        this._showPopup = this._showPopup.bind(this);
+        this._hidePopup = this._hidePopup.bind(this);
+        this._onPopupHide = this._onPopupHide.bind(this);
         this._onRadioGroupChange = this._onRadioGroupChange.bind(this);
         this._onSelectChange = this._onSelectChange.bind(this);
         this._onTextareaChange = this._onTextareaChange.bind(this);
         this._onTabChange = this._onTabChange.bind(this);
-        this._showPopup = this._showPopup.bind(this);
     }
 
     _onCheckboxChange(e) {
@@ -91,7 +94,21 @@ export default class extends Component {
     }
 
     _showPopup() {
-        this.refs.popup.show();
+        this.setState({
+            popupVisibility: true
+        });
+    }
+
+    _hidePopup() {
+        this.setState({
+            popupVisibility: false
+        });
+    }
+
+    _onPopupHide() {
+        this.setState({
+            popupVisibility: false
+        });
     }
 
     render() {
@@ -183,13 +200,20 @@ export default class extends Component {
                 {
                     title: 'Popup'
                 },
-                Popup({
-                    ref: 'popup',
-                    key: 'popup'
-                }, 'holy shit!'),
+                Popup(
+                    {
+                        visible: this.state.popupVisibility,
+                        onHide: this._onPopupHide
+                    },
+                    'popup content'
+                ),
                 Button({
                     onClick: this._showPopup,
-                    value: 'show popup!'
+                    value: 'show popup'
+                }),
+                Button({
+                    onClick: this._hidePopup,
+                    value: 'hide popup'
                 })
             ),
             DemoItem(

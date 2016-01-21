@@ -1,35 +1,26 @@
-import ReactDOM from 'react-dom';
 import { BEM } from 'rebem';
 import TestUtils from 'react-addons-test-utils';
 import chai, { expect } from 'chai';
-
-import { renderOnce } from 'test/helpers/render';
+import { shallow } from 'enzyme';
 
 import Tabs from '#tabs';
+import TitlesClass from '#tabs/titles?class';
+import PanelsClass from '#tabs/panels?class';
 
-describe.skip('tabs', function() {
+describe.only('tabs', function() {
     describe('basic', function() {
         it('exists', function() {
             expect(Tabs).to.exist;
         });
 
         it('is a component', function() {
-            const Component = Tabs();
-
-            expect(TestUtils.isCompositeComponent(renderOnce(Component))).to.be.true;
+            expect(TestUtils.isElement(Tabs())).to.be.true;
         });
     });
 
     describe('render', function() {
         beforeEach(function() {
-            this.renderWithProps = props => {
-                this.rootComponent = renderOnce(Tabs(props));
-                this.rootComponentDOMNode = ReactDOM.findDOMNode(this.rootComponent);
-                this.titlesDOMNode = this.rootComponentDOMNode.children[0];
-                this.panelsDOMNode = this.rootComponentDOMNode.children[1];
-            };
-
-            this.props = {
+            this.component = shallow(Tabs({
                 tabs: [
                     {
                         title: 'first',
@@ -40,25 +31,17 @@ describe.skip('tabs', function() {
                         content: '2'
                     }
                 ]
-            };
-
-            this.renderWithProps(this.props);
+            }));
         });
 
         describe('DOM', function() {
             it('initial', function() {
-                expect(this.rootComponentDOMNode).to.be.a.block('tabs');
-                expect(this.titlesDOMNode).to.be.an.elem({
-                    block: 'tabs',
-                    elem: 'titles'
-                });
-                expect(this.panelsDOMNode).to.be.an.elem({
-                    block: 'tabs',
-                    elem: 'panels'
-                });
+                expect(this.component).to.be.a.block('tabs');
+                expect(this.component.children().at(0).type()).to.be.equal(TitlesClass);
+                expect(this.component.children().at(1).type()).to.be.equal(PanelsClass);
             });
 
-            describe('with tabs', function() {
+            describe.skip('with tabs', function() {
                 it('titles', function() {
                     const firstTitle = this.titlesDOMNode.children[0];
                     const secondTitle = this.titlesDOMNode.children[1];
@@ -141,7 +124,7 @@ describe.skip('tabs', function() {
             });
         });
 
-        describe('API', function() {
+        describe.skip('API', function() {
             it('selectTab', function() {
                 this.props.selected = 1;
                 this.renderWithProps(this.props);
@@ -157,7 +140,7 @@ describe.skip('tabs', function() {
             });
         });
 
-        describe('callbacks', function() {
+        describe.skip('callbacks', function() {
             it('onTabChange', function() {
                 const spy = chai.spy();
 
@@ -178,7 +161,7 @@ describe.skip('tabs', function() {
             });
         });
 
-        describe('propTypes', function() {
+        describe.skip('propTypes', function() {
             it('throws error if incorrect selected value', function() {
                 const incorrectRender = () => {
                     this.props.selected = 3;

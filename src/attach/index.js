@@ -1,16 +1,11 @@
-import { BEM } from 'rebem';
+import { blockFactory } from 'rebem';
 
-const block = 'attach';
+const block = blockFactory('attach');
 
 export default function Attach(props) {
-    return BEM(
-        {
-            block,
-            tag: 'label'
-        },
-        BEM({
+    return block({ tag: 'label' },
+        block({
             ...props,
-            block,
             elem: 'control',
             tag: 'input',
             type: 'file'

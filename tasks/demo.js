@@ -74,10 +74,7 @@ export function demo() {
             new webpack.HotModuleReplacementPlugin(),
             new webpack.NoErrorsPlugin(),
             new HtmlWebpackPlugin({
-                template: 'demo/assets/index.html',
-                assets: {
-                    bundle: 'bundle.js'
-                }
+                template: 'demo/assets/index.html'
             })
         ]
     };

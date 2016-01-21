@@ -68,11 +68,13 @@
     "task": "babel-node node_modules/.bin/start tasks/",
 
     "build": "npm run task build",
+    "demo": "npm run task demo",
+    "start": "npm run demo",
 
     "lint": "npm run task eslint",
     "test": "npm run task test",
     "tdd": "npm run task tdd",
-    "start": "npm run task demo",
+
     "travis": "npm run task travis",
 
     "prepush": "npm test",

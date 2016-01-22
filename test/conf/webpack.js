@@ -33,7 +33,10 @@ export default {
                 include: [
                     path.resolve('src/')
                 ],
-                loader: 'isparta'
+                loader: 'babel-istanbul',
+                query: {
+                    cacheDirectory: true
+                }
             },
             {
                 test: /\.js$/,

@@ -1,20 +1,15 @@
 import { PropTypes } from 'react';
-import { BEM } from 'rebem';
+import { blockFactory } from 'rebem';
 
 import Option from '#select/option';
 
-const block = 'select';
+const block = blockFactory('select');
 
-export default function Select(props) {
-    return BEM(
-        {
-            block,
-            tag: 'label'
-        },
-        BEM(
+export default function Select({ mods, mix, ...props }) {
+    return block({ mods, mix, tag: 'label' },
+        block(
             {
                 ...props,
-                block,
                 elem: 'control',
                 tag: 'select'
             },

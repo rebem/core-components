@@ -1,16 +1,11 @@
-import { BEM } from 'rebem';
+import { blockFactory } from 'rebem';
 
-const block = 'textarea';
+const block = blockFactory('textarea');
 
-export default function Textarea(props) {
-    return BEM(
-        {
-            block,
-            tag: 'label'
-        },
-        BEM({
+export default function Textarea({ mods, mix, ...props }) {
+    return block({ mods, mix, tag: 'label' },
+        block({
             ...props,
-            block,
             elem: 'control',
             tag: 'textarea'
         }),

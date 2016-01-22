@@ -2,8 +2,8 @@ import { blockFactory } from 'rebem';
 
 const block = blockFactory('attach');
 
-export default function Attach(props) {
-    return block({ tag: 'label' },
+export default function Attach({ mods, mix, ...props }) {
+    return block({ mods, mix, tag: 'label' },
         block({
             ...props,
             elem: 'control',

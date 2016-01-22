@@ -1,16 +1,11 @@
-import { BEM } from 'rebem';
+import { blockFactory } from 'rebem';
 
-const block = 'checkbox';
+const block = blockFactory('checkbox');
 
-export default function Checkbox(props) {
-    return BEM(
-        {
-            block,
-            tag: 'label'
-        },
-        BEM({
+export default function Checkbox({ mods, mix, ...props }) {
+    return block({ mods, mix, tag: 'label' },
+        block({
             ...props,
-            block,
             elem: 'control',
             tag: 'input',
             type: 'checkbox'

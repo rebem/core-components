@@ -1,16 +1,11 @@
-import { BEM } from 'rebem';
+import { blockFactory } from 'rebem';
 
-const block = 'button';
+const block = blockFactory('button');
 
-export default function Button(props) {
-    return BEM(
-        {
-            block,
-            tag: 'label'
-        },
-        BEM({
+export default function Button({ mods, mix, ...props }) {
+    return block({ mods, mix, tag: 'label' },
+        block({
             ...props,
-            block,
             elem: 'control',
             tag: 'input',
             type: 'button'

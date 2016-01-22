@@ -1,16 +1,11 @@
-import { BEM } from 'rebem';
+import { blockFactory } from 'rebem';
 
-const block = 'radio';
+const block = blockFactory('radio');
 
-export default function Radio(props) {
-    return BEM(
-        {
-            block,
-            tag: 'label'
-        },
-        BEM({
+export default function Radio({ mods, mix, ...props }) {
+    return block({ mods, mix, tag: 'label' },
+        block({
             ...props,
-            block,
             elem: 'control',
             tag: 'input',
             type: 'radio'

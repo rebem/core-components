@@ -1,16 +1,11 @@
-import { BEM } from 'rebem';
+import { blockFactory } from 'rebem';
 
-const block = 'colorpicker';
+const block = blockFactory('colorpicker');
 
-export default function Colorpicker(props) {
-    return BEM(
-        {
-            block,
-            tag: 'label'
-        },
-        BEM({
+export default function Colorpicker({ mods, mix, ...props }) {
+    return block({ mods, mix, tag: 'label' },
+        block({
             ...props,
-            block,
             elem: 'control',
             tag: 'input',
             type: 'color'

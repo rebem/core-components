@@ -25,8 +25,6 @@ import Tabs from '#tabs';
 import Textarea from '#textarea';
 
 export default class extends Component {
-    static displayName = 'demo: demo';
-
     constructor(props, context) {
         super(props, context);
 

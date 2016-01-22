@@ -1,12 +1,10 @@
 import { PropTypes } from 'react';
 import { BEM } from 'rebem';
 
-const block = 'select';
-
 export default function Option({ value, text }) {
     return BEM(
         {
-            block,
+            block: 'select',
             elem: 'option',
             tag: 'option',
             value

@@ -5,8 +5,8 @@ import Label from '#label-group/label';
 import Control from '#label-group/control';
 
 function renderChildren(props) {
-    const label = Label(props);
-    const control = Control(props);
+    const label = Label({ ...props, key: 'label' });
+    const control = Control({ ...props, key: 'control' });
 
     if (props.controlPosition === 'right') {
         return [ label, control ];

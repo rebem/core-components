@@ -17,7 +17,7 @@ function runKarma(config) {
 export function karmaBuild() {
     process.env.NODE_ENV = 'test';
 
-    const karmaConfig = require('../test/conf/karma.build');
+    const karmaConfig = require('../test/conf/karma.build').default;
 
     return runKarma(karmaConfig);
 }
@@ -25,7 +25,7 @@ export function karmaBuild() {
 export function karmaDev() {
     process.env.NODE_ENV = 'test';
 
-    const karmaConfig = require('../test/conf/karma.dev');
+    const karmaConfig = require('../test/conf/karma.dev').default;
 
     return runKarma(karmaConfig);
 }

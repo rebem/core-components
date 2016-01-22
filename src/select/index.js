@@ -1,20 +1,9 @@
 import { PropTypes } from 'react';
 import { BEM } from 'rebem';
 
-const block = 'select';
+import Option from '#select/option';
 
-function renderOptions(props) {
-    return props.options.map(option => {
-        return BEM(
-            {
-                tag: 'option',
-                value: option.value,
-                key: option.value
-            },
-            option.text
-        );
-    });
-}
+const block = 'select';
 
 export default function Select(props) {
     return BEM(
@@ -29,7 +18,12 @@ export default function Select(props) {
                 elem: 'control',
                 tag: 'select'
             },
-            renderOptions(props)
+            props.options.map(optionProps => {
+                return Option({
+                    ...optionProps,
+                    key: optionProps.value
+                });
+            })
         ),
         props.children
     );

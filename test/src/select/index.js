@@ -4,6 +4,7 @@ import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
 import Select from '#select';
+import OptionClass from '#select/option?class';
 
 describe('select', function() {
     describe('basic', function() {
@@ -61,13 +62,7 @@ describe('select', function() {
                     ]
                 });
 
-                const options = this.component.find('option');
-
-                expect(options).to.have.length(2);
-                expect(options.at(0)).to.have.attr('value', 'option1');
-                expect(options.at(0)).to.have.text('option 1');
-                expect(options.at(1)).to.have.attr('value', 'option2');
-                expect(options.at(1)).to.have.text('option 2');
+                expect(this.component.find(OptionClass)).to.have.length(2);
             });
         });
     });

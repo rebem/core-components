@@ -2,7 +2,7 @@ import { blockFactory } from 'rebem';
 
 const block = blockFactory('input');
 
-export default function Input({ mods, mix, ...props }) {
+export default function Input({ mods, mix, children, ...props }) {
     return block({ mods, mix, tag: 'label' },
         block({
             ...props,
@@ -10,6 +10,6 @@ export default function Input({ mods, mix, ...props }) {
             tag: 'input',
             type: 'text'
         }),
-        props.children
+        children
     );
 }

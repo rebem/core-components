@@ -2,7 +2,7 @@ import { blockFactory } from 'rebem';
 
 const block = blockFactory('radio');
 
-export default function Radio({ mods, mix, ...props }) {
+export default function Radio({ mods, mix, children, ...props }) {
     return block({ mods, mix, tag: 'label' },
         block({
             ...props,
@@ -10,6 +10,6 @@ export default function Radio({ mods, mix, ...props }) {
             tag: 'input',
             type: 'radio'
         }),
-        props.children
+        children
     );
 }

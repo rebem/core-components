@@ -5,7 +5,7 @@ import Option from '#select/option';
 
 const block = blockFactory('select');
 
-export default function Select({ mods, mix, ...props }) {
+export default function Select({ mods, mix, children, ...props }) {
     return block({ mods, mix, tag: 'label' },
         block(
             {
@@ -20,7 +20,7 @@ export default function Select({ mods, mix, ...props }) {
                 });
             })
         ),
-        props.children
+        children
     );
 }
 

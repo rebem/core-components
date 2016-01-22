@@ -4,7 +4,7 @@ import { BEM } from 'rebem';
 const ESC_KEYCODE = 27;
 const block = 'popup';
 
-export default function Popup(props) {
+export default function Popup({ children, ...props }) {
     return BEM(
         {
             ...props,
@@ -42,7 +42,7 @@ export default function Popup(props) {
                 block,
                 elem: 'content'
             },
-            props.children
+            children
         )
     );
 }

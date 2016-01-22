@@ -2,7 +2,7 @@ import { blockFactory } from 'rebem';
 
 const block = blockFactory('colorpicker');
 
-export default function Colorpicker({ mods, mix, ...props }) {
+export default function Colorpicker({ mods, mix, children, ...props }) {
     return block({ mods, mix, tag: 'label' },
         block({
             ...props,
@@ -10,6 +10,6 @@ export default function Colorpicker({ mods, mix, ...props }) {
             tag: 'input',
             type: 'color'
         }),
-        props.children
+        children
     );
 }

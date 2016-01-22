@@ -10,8 +10,8 @@ export default function TabsPanel(props) {
             block,
             elem: 'panel',
             mods: {
-                selected: props.selected === props.index,
-                ...props.mods
+                ...props.mods,
+                selected: props.selected === props.index
             }
         },
         props.children

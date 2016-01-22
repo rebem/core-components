@@ -10,8 +10,8 @@ export default function Popup(props) {
             ...props,
             block,
             mods: {
-                visible: props.visible,
-                ...props.mods
+                ...props.mods,
+                visible: props.visible
             },
             tabIndex: -1,
             ref(ref) {

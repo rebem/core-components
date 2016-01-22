@@ -5,8 +5,8 @@ import Label from '#label-group/label';
 import Control from '#label-group/control';
 
 function renderChildren(props) {
-    const label = Label({ ...props, key: 'label' });
-    const control = Control({ ...props, key: 'control' });
+    const label = Label({ labelText: props.labelText, key: 'label' });
+    const control = Control({ key: 'control' }, props.children);
 
     if (props.controlPosition === 'right') {
         return [ label, control ];
@@ -15,15 +15,16 @@ function renderChildren(props) {
     return [ control, label ];
 }
 
-export default function LabelGroup(props) {
+export default function LabelGroup({ mods, mix, ...props }) {
     return BEM(
         {
             ...props,
             block: 'label-group',
             mods: {
-                'control-position': props.controlPosition,
-                ...props.mods
+                ...mods,
+                'control-position': props.controlPosition
             },
+            mix,
             tag: 'label'
         },
         ...renderChildren(props)

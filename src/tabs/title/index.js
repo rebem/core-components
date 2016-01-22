@@ -1,17 +1,16 @@
 import { PropTypes } from 'react';
-import { BEM } from 'rebem';
+import { blockFactory } from 'rebem';
 
-const block = 'tabs';
+const block = blockFactory('tabs');
 
 export default function TabsTitle(props) {
-    return BEM(
+    return block(
         {
-            props,
-            block,
+            ...props,
             elem: 'title',
             mods: {
-                selected: props.selected === props.index,
-                ...props.mods
+                ...props.mods,
+                selected: props.selected === props.index
             },
             onClick() {
                 if ('onTabChange' in props) {
@@ -19,19 +18,14 @@ export default function TabsTitle(props) {
                 }
             }
         },
-        BEM(
-            {
-                block,
-                elem: 'title-inner'
-            },
-            props.title
+        block({ elem: 'title-inner' },
+            props.children
         )
     );
 }
 
 TabsTitle.displayName = `core: ${block}/title`;
 TabsTitle.propTypes = {
-    title: PropTypes.node.isRequired,
     index: PropTypes.number.isRequired,
     selected: PropTypes.number,
     onTabChange: PropTypes.func

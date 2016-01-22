@@ -8,34 +8,35 @@ import Panel from '#tabs/panel';
 
 function renderTitles(props) {
     if ('renderTitles' in props) {
-        return props.renderTitles({ ...props, key: 'titles' });
+        return props.renderTitles(props);
     }
 
-    return Titles(
-        props,
+    return Titles(null,
         props.tabs.map((tab, index) => {
-            return Title({
-                title: tab.title,
-                index,
-                ...props,
-                key: index
-            });
+            return Title(
+                {
+                    index,
+                    selected: props.selected,
+                    onTabChange: props.onTabChange,
+                    key: index
+                },
+                tab.title
+            );
         })
     );
 }
 
 function renderPanels(props) {
     if ('renderPanels' in props) {
-        return props.renderPanels({ ...props, key: 'panels' });
+        return props.renderPanels(props);
     }
 
-    return Panels(
-        props,
+    return Panels(null,
         props.tabs.map((tab, index) => {
             return Panel(
                 {
                     index,
-                    ...props,
+                    selected: props.selected,
                     key: index
                 },
                 tab.content
@@ -44,9 +45,11 @@ function renderPanels(props) {
     );
 }
 
-export default function Tabs(props) {
+export default function Tabs({ mods, mix, ...props }) {
     return BEM(
         {
+            mods,
+            mix,
             ...props,
             block: 'tabs'
         },

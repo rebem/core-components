@@ -54,7 +54,7 @@ export function demo() {
                     ],
                     loader: 'babel',
                     query: {
-                        cacheDirectory: false
+                        cacheDirectory: true
                     }
                 }
             ],

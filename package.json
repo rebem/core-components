@@ -41,7 +41,7 @@
     "react-dom": "0.14.x",
     "rebem-layers-loader": "0.1.x",
     "react-addons-test-utils": "0.14.x",
-    "enzyme": "1.3.x",
+    "enzyme": "1.4.x",
     "chai-enzyme": "0.2.x",
 
     "webpack": "1.12.x",

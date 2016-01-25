@@ -1,29 +1,34 @@
-export { cleanBuild, cleanCoverage } from './clean';
+import eslint from 'start-eslint';
+import clean from 'start-clean';
+
 export { babelBuild } from './build';
 export { karmaBuild, karmaDev } from './karma';
-export { eslint } from './lint';
 export { coverage } from './coverage';
 export { demo } from './demo';
 
+export const lint = eslint();
+export const cleanBuild = clean('build/');
+export const cleanCoverage = clean('coverage/');
+
 export const test = [
-    exports.eslint,
-    exports.cleanCoverage,
+    lint,
+    cleanCoverage,
     exports.karmaBuild
 ];
 
 export const tdd = [
-    exports.cleanCoverage,
+    cleanCoverage,
     exports.karmaDev
 ];
 
 export const travis = [
-    exports.eslint,
-    exports.cleanCoverage,
+    eslint(),
+    cleanCoverage,
     exports.karmaBuild,
     exports.coverage
 ];
 
 export const build = [
-    exports.cleanBuild,
+    cleanBuild,
     exports.babelBuild
 ];

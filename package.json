@@ -19,12 +19,12 @@
   },
   "devDependencies": {
     "start": "1.2.x",
+    "start-eslint": "0.2.x",
+    "start-clean": "0.1.x",
     "husky": "0.10.x",
-    "del": "2.2.x",
     "node-dir": "0.1.x",
     "mkdirp": "0.5.x",
 
-    "eslint": "1.10.x",
     "eslint-plugin-babel": "3.0.x",
     "eslint-plugin-react": "3.15.x",
     "babel-eslint": ">5.0.0-beta1",
@@ -69,7 +69,7 @@
     "demo": "npm run task demo",
     "start": "npm run demo",
 
-    "lint": "npm run task eslint",
+    "lint": "npm run task lint",
     "test": "npm run task test",
     "tdd": "npm run task tdd",
 

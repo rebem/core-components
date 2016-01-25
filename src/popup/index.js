@@ -35,7 +35,8 @@ export default function Popup({ children, ...props }) {
         },
         BEM({
             block,
-            elem: 'overlay'
+            elem: 'overlay',
+            onClick: props.onHide
         }),
         BEM(
             {

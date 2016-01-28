@@ -3,6 +3,7 @@ import logger from 'start-simple-logger';
 import clean from 'start-clean';
 import eslint from 'start-eslint';
 import babel from 'start-babel';
+import watch from 'start-watch';
 
 import { karmaBuild, karmaDev } from './karma';
 export { demo } from './demo';
@@ -44,5 +45,16 @@ export function build() {
     return start(
         clean('build/'),
         babel('src/**/*.js', 'build/')
+    );
+}
+
+export function dev() {
+    return start(
+        clean('build/'),
+        watch('src/**/*.js', function(file) {
+            return start(
+                babel(file, 'build/')
+            );
+        })
     );
 }

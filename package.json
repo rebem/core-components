@@ -23,6 +23,7 @@
     "start-eslint": "0.3.x",
     "start-clean": "0.2.x",
     "start-babel": "0.1.x",
+    "start-watch": "0.2.x",
     "husky": "0.10.x",
     "node-dir": "0.1.x",
     "mkdirp": "0.5.x",
@@ -68,6 +69,7 @@
     "task": "babel-node node_modules/.bin/start tasks/",
 
     "build": "npm run task build",
+    "dev": "npm run task dev",
     "demo": "npm run task demo",
     "start": "npm run demo",
 

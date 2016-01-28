@@ -1,34 +1,48 @@
-import eslint from 'start-eslint';
+import Start from 'start';
+import logger from 'start-simple-logger';
 import clean from 'start-clean';
+import eslint from 'start-eslint';
+import babel from 'start-babel';
 
-export { babelBuild } from './build';
-export { karmaBuild, karmaDev } from './karma';
-export { coverage } from './coverage';
+import { karmaBuild, karmaDev } from './karma';
 export { demo } from './demo';
+import coverage from './coverage';
 
-export const lint = eslint();
-export const cleanBuild = clean('build/');
-export const cleanCoverage = clean('coverage/');
+const start = Start(logger);
 
-export const test = [
-    lint,
-    cleanCoverage,
-    exports.karmaBuild
-];
+export function lint() {
+    return start(
+        eslint()
+    );
+}
 
-export const tdd = [
-    cleanCoverage,
-    exports.karmaDev
-];
+export function test() {
+    return start(
+        eslint(),
+        clean('coverage/'),
+        karmaBuild
+    );
+}
 
-export const travis = [
-    eslint(),
-    cleanCoverage,
-    exports.karmaBuild,
-    exports.coverage
-];
+export function tdd() {
+    return start(
+        clean('coverage/'),
+        karmaDev
+    );
+}
 
-export const build = [
-    cleanBuild,
-    exports.babelBuild
-];
+export function travis() {
+    return start(
+        eslint(),
+        clean('coverage/'),
+        karmaBuild,
+        coverage
+    );
+}
+
+export function build() {
+    return start(
+        clean('build/'),
+        babel('src/**/*.js', 'build/')
+    );
+}

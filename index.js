@@ -4,5 +4,6 @@ module.exports = {
     path: path.resolve(__dirname, 'build/'),
     files: {
         main: 'index.js'
-    }
+    },
+    exportFactory: true
 };

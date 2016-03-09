@@ -4,3 +4,7 @@
 [![deps](https://img.shields.io/gemnasium/rebem/core-components.svg?style=flat-square)](https://gemnasium.com/rebem/core-components)
 
 WIP
+
+## Notes
+
+If you use `rebem-layers-loader`, please upgrade it to [v0.5.0](https://github.com/rebem/layers-loader/releases/tag/v0.5.0) or higher.

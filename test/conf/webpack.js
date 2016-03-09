@@ -23,7 +23,7 @@ export default {
                             }
                         }
                     ],
-                    include: [
+                    consumers: [
                         path.resolve('test/src/')
                     ]
                 }

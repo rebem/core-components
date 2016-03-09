@@ -5,5 +5,5 @@ module.exports = {
     files: {
         main: 'index.js'
     },
-    exportFactory: true
+    importFactory: true
 };

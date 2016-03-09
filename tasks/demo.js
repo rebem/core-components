@@ -42,7 +42,7 @@ export function demo() {
                                 }
                             }
                         ],
-                        include: [
+                        consumers: [
                             path.resolve('demo/index')
                         ]
                     }

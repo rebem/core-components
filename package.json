@@ -13,7 +13,7 @@
   "main": "index.js",
   "dependencies": {
     "react": "0.14.x",
-    "rebem": "0.3.x",
+    "rebem": "0.7.x",
     "component-uid": "0.0.x",
     "eventemitter3": "1.1.x"
   },
@@ -41,7 +41,7 @@
     "babel-preset-react-hmre": "1.0.x",
 
     "react-dom": "0.14.x",
-    "rebem-layers-loader": "0.3.x",
+    "rebem-layers-loader": "0.5.x",
     "react-addons-test-utils": "0.14.x",
     "enzyme": "1.4.x",
     "chai-enzyme": "0.2.x",

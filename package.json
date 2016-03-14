@@ -12,12 +12,12 @@
   "files": [ "build/", "index.js" ],
   "main": "index.js",
   "dependencies": {
-    "react": "0.14.x",
     "rebem": "0.7.x",
     "component-uid": "0.0.x",
     "eventemitter3": "1.1.x"
   },
   "devDependencies": {
+    "react": "0.14.x",
     "start": "2.0.x",
     "start-simple-logger": "0.2.x",
     "start-eslint": "0.3.x",
@@ -64,6 +64,9 @@
     "karma-coverage": "0.5.x",
     "karma-clear-screen-reporter": "1.0.x",
     "codecov": "1.0.x"
+  },
+  "peerDependencies": {
+    "react": "0.14.x || >=15.0.0-rc.1"
   },
   "scripts": {
     "task": "babel-node node_modules/.bin/start tasks/",

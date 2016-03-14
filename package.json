@@ -17,7 +17,6 @@
     "eventemitter3": "1.1.x"
   },
   "devDependencies": {
-    "react": "0.14.x",
     "start": "2.0.x",
     "start-simple-logger": "0.2.x",
     "start-eslint": "0.3.x",
@@ -40,9 +39,10 @@
     "babel-loader": "6.2.x",
     "babel-preset-react-hmre": "1.0.x",
 
-    "react-dom": "0.14.x",
+    "react": ">=15.0.0-rc.1",
+    "react-dom": ">=15.0.0-rc.1",
+    "react-addons-test-utils": ">=15.0.0-rc.1",
     "rebem-layers-loader": "0.5.x",
-    "react-addons-test-utils": "0.14.x",
     "enzyme": "1.4.x",
     "chai-enzyme": "0.2.x",
 
@@ -66,7 +66,7 @@
     "codecov": "1.0.x"
   },
   "peerDependencies": {
-    "react": "0.14.x"
+    "react": "0.14.x || >=15.0.0-rc.1"
   },
   "scripts": {
     "task": "babel-node node_modules/.bin/start tasks/",

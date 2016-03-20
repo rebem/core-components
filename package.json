@@ -70,7 +70,8 @@
     "react": "0.14.x || >=15.0.0-rc.1"
   },
   "scripts": {
-    "start": "start-runner ./tasks.js"
+    "start": "start-runner ./tasks.js",
+    "prepublish": "npm start build"
   },
   "engines": {
     "node": ">=0.12.0",

@@ -1,3 +1,4 @@
+import { PropTypes } from 'react';
 import { blockFactory } from 'rebem';
 
 const block = blockFactory('button');
@@ -7,9 +8,21 @@ export default function Button({ mods, mix, children, ...props }) {
         block({
             ...props,
             elem: 'control',
-            tag: 'input',
-            type: 'button'
+            tag: 'input'
         }),
         children
     );
 }
+
+Button.defaultProps = {
+    type: 'button'
+};
+
+Button.propTypes = {
+    type: PropTypes.oneOf([
+        'button',
+        'submit',
+        'image',
+        'reset'
+    ])
+};

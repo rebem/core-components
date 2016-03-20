@@ -53,6 +53,22 @@ describe('button', function() {
 
                 expect(this.component.contains(dummy)).to.true;
             });
+
+            it('type default', function() {
+                const control = this.component.find('.button__control');
+
+                expect(control).to.have.prop('type', 'button');
+            });
+
+            it('type explicit', function() {
+                this.component.setProps({
+                    type: 'reset'
+                });
+
+                const control = this.component.find('.button__control');
+
+                expect(control).to.have.prop('type', 'reset');
+            });
         });
     });
 });

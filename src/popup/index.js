@@ -49,8 +49,8 @@ export default function Popup({ children, ...props }) {
 }
 
 Popup.propTypes = {
-    visible: PropTypes.bool,
     hideWithEsc: PropTypes.bool,
+    visible: PropTypes.bool,
     onHide: PropTypes.func.isRequired,
     onKeyUp: PropTypes.func
 };

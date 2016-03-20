@@ -59,6 +59,8 @@ export default function Tabs({ mods, mix, ...props }) {
 }
 
 Tabs.propTypes = {
+    renderPanels: PropTypes.func,
+    renderTitles: PropTypes.func,
     selected: (props, propName, componentName, ...rest) => {
         if (
             typeof props.selected !== 'number' ||
@@ -79,9 +81,7 @@ Tabs.propTypes = {
             ])
         })
     ).isRequired,
-    onTabChange: PropTypes.func,
-    renderTitles: PropTypes.func,
-    renderPanels: PropTypes.func
+    onTabChange: PropTypes.func
 };
 
 Tabs.defaultProps = {

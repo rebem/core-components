@@ -15,7 +15,8 @@ export default function Button({ mods, mix, children, ...props }) {
 }
 
 Button.defaultProps = {
-    type: 'button'
+    type: 'button',
+    value: ''
 };
 
 Button.propTypes = {

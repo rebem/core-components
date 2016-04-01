@@ -54,9 +54,10 @@ describe('button', function() {
                 expect(this.component.contains(dummy)).to.true;
             });
 
-            it('type default', function() {
+            it('default props', function() {
                 const control = this.component.find('.button__control');
 
+                expect(control).to.have.prop('value', '');
                 expect(control).to.have.prop('type', 'button');
             });
 

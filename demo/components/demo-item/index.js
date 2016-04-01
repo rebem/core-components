@@ -51,13 +51,13 @@ export default function DemoItem(props) {
 }
 
 DemoItem.propTypes = {
-    title: PropTypes.oneOfType([
+    description: PropTypes.oneOfType([
         PropTypes.node,
         PropTypes.arrayOf(PropTypes.node),
         PropTypes.object,
         PropTypes.arrayOf(PropTypes.object)
     ]),
-    description: PropTypes.oneOfType([
+    title: PropTypes.oneOfType([
         PropTypes.node,
         PropTypes.arrayOf(PropTypes.node),
         PropTypes.object,

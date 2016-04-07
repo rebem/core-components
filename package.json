@@ -12,9 +12,7 @@
   "files": [ "build/", "index.js" ],
   "main": "index.js",
   "dependencies": {
-    "rebem": ">=0.8.0",
-    "component-uid": "0.0.x",
-    "eventemitter3": "1.2.x"
+    "rebem": ">=0.8.0"
   },
   "devDependencies": {
     "start": "4.x.x",

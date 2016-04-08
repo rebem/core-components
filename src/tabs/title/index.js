@@ -13,7 +13,7 @@ export default function TabsTitle(props) {
                 selected: props.selected === props.index
             },
             onClick() {
-                if ('onTabChange' in props) {
+                if (props.onTabChange) {
                     props.onTabChange(props.index);
                 }
             }

@@ -16,24 +16,10 @@ const start = Start(reporter());
 
 export function build() {
     return start(
-        env('production'),
-        files('build/'),
-        clean(),
-        files('src/**/*.js'),
-        read(),
-        babel(),
-        write('build/')
-    );
-}
-
-export function dev() {
-    return start(
-        env('development'),
-        files('build/'),
-        clean(),
-        files('src/**/*.js'),
-        watch(file => start(
-            files(file),
+        env('production', () => start(
+            files('build/'),
+            clean(),
+            files('src/**/*.js'),
             read(),
             babel(),
             write('build/')
@@ -41,31 +27,50 @@ export function dev() {
     );
 }
 
+export function dev() {
+    return start(
+        env('development', () => start(
+            files('build/'),
+            clean(),
+            files('src/**/*.js'),
+            watch(file => start(
+                files(file),
+                read(),
+                babel(),
+                write('build/')
+            ))
+        ))
+    );
+}
+
 export function lint() {
     return start(
-        env('test'),
-        files([ 'src/**/*.js', 'demo/**/*.js' ]),
-        eslint()
+        env('test', () => start(
+            files([ 'src/**/*.js', 'demo/**/*.js' ]),
+            eslint()
+        ))
     );
 }
 
 export function test() {
     return start(
-        env('test'),
-        lint,
-        files('coverage/'),
-        clean(),
-        karma(require('./test/conf/karma.build').default)
+        env('test', () => start(
+            lint,
+            files('coverage/'),
+            clean(),
+            karma(require('./test/conf/karma.build').default)
+        )),
     );
 }
 
 export function tdd() {
     return start(
-        env('test'),
-        lint,
-        files('coverage/'),
-        clean(),
-        karma(require('./test/conf/karma.dev').default)
+        env('test', () => start(
+            lint,
+            files('coverage/'),
+            clean(),
+            karma(require('./test/conf/karma.dev').default)
+        ))
     );
 }
 

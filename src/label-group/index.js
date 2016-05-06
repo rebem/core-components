@@ -24,7 +24,8 @@ export default function LabelGroup({ mods, mix, ...props }) {
                 ...mods,
                 'control-position': props.controlPosition
             },
-            mix
+            mix,
+            tag: 'label'
         },
         ...renderChildren(props)
     );

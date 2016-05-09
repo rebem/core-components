@@ -26,7 +26,7 @@ describe('label-group/label', function() {
 
         describe('DOM', function() {
             it('initial', function() {
-                expect(this.component).to.have.tagName('label');
+                expect(this.component).to.have.tagName('div');
                 expect(this.component).to.be.an.elem({ block: 'label-group', elem: 'label' });
             });
 

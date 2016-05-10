@@ -4,8 +4,8 @@ export default function(props) {
     return BEM(
         {
             ...props,
-            block: 'label-group',
-            elem: 'control'
+            block: 'field-group',
+            elem: 'content'
         },
         props.children
     );

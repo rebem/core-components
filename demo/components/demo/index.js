@@ -8,7 +8,7 @@ import Checkbox from '#checkbox';
 import ColorPicker from '#colorpicker';
 import Img from '#img';
 import Input from '#input';
-import LabelGroup from '#label-group';
+import FieldGroup from '#field-group';
 import Link from '#link';
 import Popup from '#popup';
 import Radio from '#radio';
@@ -170,15 +170,18 @@ export default class extends Component {
             ),
             DemoItem(
                 {
-                    title: 'Label group',
-                    key: 'labelgroup'
+                    title: 'Field group',
+                    key: 'fieldgroup'
                 },
-                LabelGroup(
+                FieldGroup(
                     {
-                        labelText: 'field title'
+                        label: 'label'
                     },
                     Input({
-                        placeholder: 'field control'
+                        placeholder: 'content1'
+                    }),
+                    Input({
+                        placeholder: 'content2'
                     })
                 )
             ),

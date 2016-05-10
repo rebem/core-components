@@ -4,10 +4,10 @@ export default function(props) {
     return BEM(
         {
             ...props,
-            block: 'label-group',
+            block: 'field-group',
             elem: 'label',
             tag: 'label'
         },
-        props.labelText
+        props.label
     );
 }

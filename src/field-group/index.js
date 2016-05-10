@@ -15,18 +15,18 @@ function renderChildren(props) {
     return [ content, label ];
 }
 
-export default function FieldGroup({ mods, mix, ...props }) {
+export default function FieldGroup({ mods, mix, label, labelPosition, children, ...props }) {
     return BEM(
         {
             ...props,
             block: 'field-group',
             mods: {
                 ...mods,
-                'label-position': props.labelPosition
+                'label-position': labelPosition
             },
             mix
         },
-        ...renderChildren(props)
+        ...renderChildren({ label, labelPosition, children })
     );
 }
 

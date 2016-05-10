@@ -9,6 +9,7 @@ import ColorPicker from '#colorpicker';
 import Img from '#img';
 import Input from '#input';
 import FieldGroup from '#field-group';
+import Label from '#label';
 import Link from '#link';
 import Popup from '#popup';
 import Radio from '#radio';
@@ -183,6 +184,17 @@ export default class extends Component {
                     Input({
                         placeholder: 'content2'
                     })
+                )
+            ),
+            DemoItem(
+                {
+                    title: 'Label'
+                },
+                Label(
+                    {
+                        text: 'click me to trigger checkbox'
+                    },
+                    Input({ type: 'checkbox' })
                 )
             ),
             DemoItem(

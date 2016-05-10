@@ -32,7 +32,7 @@
     "husky": "0.11.x",
 
     "eslint-plugin-babel": "3.2.x",
-    "eslint-plugin-react": "5.0.x",
+    "eslint-plugin-react": "5.1.x",
     "babel-eslint": "6.0.x",
     "eslint-config-rebem": "1.1.x",
 
@@ -54,7 +54,7 @@
     "chai": "3.5.x",
     "chai-spies": "0.7.x",
     "chai-bem": "1.4.x",
-    "enzyme": "2.2.x",
+    "enzyme": "2.3.x",
     "chai-enzyme": "0.4.x",
     "karma-mocha": "1.0.x",
     "karma-mocha-reporter": "2.0.x",

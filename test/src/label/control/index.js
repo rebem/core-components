@@ -3,27 +3,27 @@ import TestUtils from 'react-addons-test-utils';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
-import LabelGroupControl from '#label-group/control';
+import LabelControl from '#label/control';
 
-describe('label-group/control', function() {
+describe('label/control', function() {
     describe('basic', function() {
         it('exists', function() {
-            expect(LabelGroupControl).to.exist;
+            expect(LabelControl).to.exist;
         });
 
         it('is a component', function() {
-            expect(TestUtils.isElement(LabelGroupControl())).to.be.true;
+            expect(TestUtils.isElement(LabelControl())).to.be.true;
         });
     });
 
     describe('render', function() {
         beforeEach(function() {
-            this.component = shallow(LabelGroupControl());
+            this.component = shallow(LabelControl());
         });
 
         describe('DOM', function() {
             it('initial', function() {
-                expect(this.component).to.be.an.elem({ block: 'label-group', elem: 'control' });
+                expect(this.component).to.be.an.elem({ block: 'label', elem: 'control' });
             });
 
             it('children', function() {

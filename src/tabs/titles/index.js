@@ -4,7 +4,9 @@ export default function TabsTitles(props) {
     return BEM(
         {
             block: 'tabs',
-            elem: 'titles'
+            elem: 'titles',
+            mix: props.mix,
+            mods: props.mods
         },
         props.children
     );

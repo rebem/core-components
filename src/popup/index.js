@@ -12,6 +12,7 @@ export default function Popup({ children, ...props }) {
                 ...props.mods,
                 visible: props.visible
             },
+            mix: props.mix,
             tabIndex: -1,
             ref(ref) {
                 if (props.hideWithEsc && ref) {

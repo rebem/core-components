@@ -1,12 +1,15 @@
 import { BEM } from 'rebem';
 
-export default function(props) {
+export default function TabsTitles(props) {
     return BEM(
         {
-            ...props,
             block: 'tabs',
-            elem: 'titles'
+            elem: 'titles',
+            mix: props.mix,
+            mods: props.mods
         },
         props.children
     );
 }
+
+TabsTitles.displayName = 'core: tabs/titles';

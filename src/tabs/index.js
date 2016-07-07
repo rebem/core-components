@@ -50,7 +50,6 @@ export default function Tabs({ mods, mix, ...props }) {
         {
             mods,
             mix,
-            ...props,
             block: 'tabs'
         },
         renderTitles(props),

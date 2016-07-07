@@ -7,12 +7,12 @@ const block = 'popup';
 export default function Popup({ children, ...props }) {
     return BEM(
         {
-            ...props,
             block,
             mods: {
                 ...props.mods,
                 visible: props.visible
             },
+            mix: props.mix,
             tabIndex: -1,
             ref(ref) {
                 if (props.hideWithEsc && ref) {

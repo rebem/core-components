@@ -6,12 +6,12 @@ const block = blockFactory('tabs');
 export default function TabsTitle(props) {
     return block(
         {
-            ...props,
             elem: 'title',
             mods: {
                 ...props.mods,
                 selected: props.selected === props.index
             },
+            mix: props.mix,
             onClick() {
                 if (props.onTabChange) {
                     props.onTabChange(props.index);
@@ -24,7 +24,7 @@ export default function TabsTitle(props) {
     );
 }
 
-TabsTitle.displayName = `core: ${block}/title`;
+TabsTitle.displayName = 'core: tabs/title';
 TabsTitle.propTypes = {
     index: PropTypes.number.isRequired,
     selected: PropTypes.number,

@@ -7,7 +7,6 @@ const block = 'popup';
 export default function Popup({ children, ...props }) {
     return BEM(
         {
-            ...props,
             block,
             mods: {
                 ...props.mods,

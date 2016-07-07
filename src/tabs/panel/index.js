@@ -6,13 +6,13 @@ const block = 'tabs';
 export default function TabsPanel(props) {
     return BEM(
         {
-            ...props,
             block,
             elem: 'panel',
             mods: {
                 ...props.mods,
                 selected: props.selected === props.index
-            }
+            },
+            mix: props.mix
         },
         props.children
     );

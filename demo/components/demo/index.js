@@ -156,7 +156,7 @@ export default class extends Component {
                     title: 'Image'
                 },
                 Img({
-                    src: 'http://funkyimg.com/i/26sLr.gif'
+                    src: 'https://www.google.com.vn/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png'
                 })
             ),
             DemoItem(

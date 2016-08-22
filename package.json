@@ -48,7 +48,7 @@
 
     "webpack": "1.13.x",
     "html-webpack-plugin": "2.22.x",
-    "babel-istanbul-loader": "0.1.x",
+    "babel-plugin-istanbul": "2.0.x",
     "json-loader": "0.5.x",
     "mocha": "3.0.x",
     "chai": "3.5.x",

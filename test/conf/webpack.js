@@ -30,18 +30,7 @@ export default {
             },
             {
                 test: /\.js$/,
-                include: [
-                    path.resolve('src/')
-                ],
-                loader: 'babel-istanbul',
-                query: {
-                    cacheDirectory: true
-                }
-            },
-            {
-                test: /\.js$/,
                 exclude: [
-                    path.resolve('src/'),
                     path.resolve('node_modules/')
                 ],
                 loader: 'babel',
